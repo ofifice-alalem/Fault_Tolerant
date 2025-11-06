@@ -1,0 +1,184 @@
+[
+  {
+    "slide_number": 2,
+    "slide_title_ar": "ما هو \"الفشل\"؟",
+    "slide_title_en": "What Is “Failure”?",
+    "general_summary_ar": "هذه الشريحة أساسية جداً لأنها تضع حجر الأساس للمحاضرة كلها. هي تُعرّف المصطلحات الثلاثة الأهم: **الفشل (Failure)**، **الخطأ (Error)**، و**العطل (Fault)**. الأهم من ذلك، هي توضح العلاقة السببية (من يسبب ماذا) بين هذه المصطلحات الثلاثة.",
+    "details_and_text": [
+      {
+        "text_en": "\"A system is said to “fail” when it cannot meet its promises.\"",
+        "explanation_ar": "الفشل هو النتيجة النهائية التي يراها المستخدم. \"وعود\" النظام هي المهام التي صُمم ليقوم بها. مثال: \"وعد\" برنامج الآلة الحاسبة هو إعطاء ناتج جمع صحيح. إذا أعطاك ناتجاً خاطئاً، فهذا \"فشل\"."
+      },
+      {
+        "text_en": "\"A failure is brought about by the existence of “errors” in the system.\"",
+        "explanation_ar": "الفشل لا يحدث من فراغ. السبب المباشر له هو وجود \"خطأ\" واحد أو أكثر. \"الخطأ\" هو حالة (State) غير صحيحة داخل النظام. مثال (تابع): سبب الفشل (الناتج الخاطئ) هو \"خطأ\" في الذاكرة، كأن يتم تخزين قيمة 5 بدلاً من 2."
+      },
+      {
+        "text_en": "\"The cause of an error is called a “fault”.\"",
+        "explanation_ar": "هذا هو السبب الجذري. \"العطل\" هو العيب الأولي الذي تسبب في حدوث \"الخطأ\". مثال (تابع): سبب الخطأ (تخزين 5 بدلاً من 2) هو \"عطل\" في الكود أو في العتاد (Hardware). **التسلسل المنطقي هو: العطل (Fault) ⬅️ يسبب ⬅️ الخطأ (Error) ⬅️ والذي قد يؤدي إلى ⬅️ الفشل (Failure).**"
+      }
+    ],
+    "questions_ar": {
+      "a_current_slide": [
+        "بناءً على هذه التعريفات، ما هو الفرق الرئيسي بين \"الخطأ\" (Error) و\"العطل\" (Fault)؟",
+        "هل تعتقد أنه من الممكن أن يوجد \"عطل\" في النظام ولكنه لا يسبب \"فشل\"؟ (مثلاً، خطأ برمجي في جزء من الكود لا يتم استخدامه أبداً)."
+      ],
+      "b_previous_slides": [
+        {
+          "question_ar": "الشريحة الأولى أعطت عنوان \"Fault-Tolerant\" (تحمل الأخطاء). بناءً على تعريفات الشريحة الثانية، ماذا تتوقع أن يكون معنى \"تحمل الأخطاء\"؟",
+          "hint_ar": "النظام يتصدى للعطل والخطأ لمنع الفشل."
+        },
+        {
+          "question_ar": "بالنظر إلى صورة مكوك الفضاء، هل يمكنك تخمين مثال بسيط لـ \"عطل\" قد يؤدي إلى \"فشل\" كارثي في مهمة فضائية؟"
+        }
+      ]
+    }
+  },
+  {
+    "slide_number": 3,
+    "slide_title_ar": "تحمل الأخطاء (Fault Tolerance)",
+    "slide_title_en": "Fault Tolerance",
+    "general_summary_ar": "هذه الشريحة تُعرّف المفهوم الرئيسي للمحاضرة. إنه قدرة النظام على الاستمرار في العمل بشكل صحيح حتى عند حدوث الأعطال، ويُصنَّف كـ **\"متطلب غير وظيفي\" (non-functional requirement)**، ويجب أن يحدث بأقل تدخل بشري ممكن.",
+    "details_and_text": [
+      {
+        "text_en": "\"Ability of system to continue error-free operation in presence of unexpected fault.\"",
+        "explanation_ar": "قدرة النظام على مواصلة التشغيل \"بدون أخطاء\" حتى لو واجه \"عطلاً\" (fault) غير متوقع. الهدف هو ألا يلاحظ المستخدم النهائي وجود مشكلة."
+      },
+      {
+        "text_en": "\"Fault tolerance is a non-functional requirement that requires a system to continue to operate, even in the presence of faults.\"",
+        "explanation_ar": "يُعد \"تحمل الأخطاء\" متطلباً غير وظيفي (Non-functional requirement) يصف جودة وكيفية عمل النظام، وليس وظيفته الأساسية."
+      },
+      {
+        "text_en": "\"Fault tolerance should be achieved with minimal involvement of users or system administrators.\"",
+        "explanation_ar": "يجب أن يتعافى النظام من الأعطال **تلقائياً** دون الحاجة إلى تدخل يدوي من المستخدمين أو مديري النظام."
+      }
+    ],
+    "questions_en_ar": {
+      "a_current_slide_qa": [
+        {
+          "type": "True/False",
+          "question_en": "Fault tolerance means a system will never experience a \"fault\".",
+          "answer_en": "False",
+          "explanation_ar": "العبارة خاطئة. \"تحمل الأخطاء\" لا يمنع حدوث \"الأعطال\"، بل يعني أن النظام سيستمر في العمل *على الرغم من* حدوثها."
+        },
+        {
+          "type": "Multiple Choice",
+          "question_en": "According to the slide, fault tolerance is considered a: (a) Functional requirement (b) Non-functional requirement (c) System failure (d) Design fault",
+          "answer_en": "(b) Non-functional requirement",
+          "explanation_ar": "الإجابة الصحيحة هي (b) لأن الشريحة تصف \"تحمل الأخطاء\" صراحة بأنه \"متطلب غير وظيفي\"."
+        },
+        {
+          "type": "True/False",
+          "question_en": "A good fault-tolerant system relies on the system administrator to manually fix problems as they happen.",
+          "answer_en": "False",
+          "explanation_ar": "العبارة خاطئة. الشريحة تؤكد أن \"تحمل الأخطاء\" يجب أن يتم \"بأقل تدخل ممكن\" من مديري النظام أو المستخدمين. الهدف هو المعالجة التلقائية."
+        }
+      ],
+      "b_previous_slides": [
+        {
+          "question_ar": "بناءً على تعريف \"تحمل الأخطاء\"، ما الذي يحاول النظام \"تحمله\"؟ هل يحاول منع \"العطل\" أم منع \"الفشل\"؟",
+          "hint_ar": "النظام يحاول \"تحمل\" **العطل (Fault)** لمنع حدوث **الفشل (Failure)**."
+        },
+        {
+          "question_ar": "بالنظر إلى صورة المكوكات الفضائية، لماذا تعتقد أن \"تحمل الأخطاء\" بأقل تدخل بشري هو أمر حيوي جداً في نظام مثل مكوك الفضاء؟"
+        }
+      ]
+    }
+  },
+  {
+    "slide_number": 4,
+    "slide_title_ar": "المفاهيم الأساسية (Basic Concepts)",
+    "slide_title_en": "Basic Concepts",
+    "general_summary_ar": "توضح هذه الشريحة أن مفهوم \"تحمل الأخطاء\" يرتبط ارتباطًا وثيقًا بمفهوم أوسع هو **\"الاعتمادية\" (Dependability)**. وتُعرّف الشريحة أربعة خصائص رئيسية تُستخدم لتوصيف هذه \"الاعتمادية\" وهي: **الإتاحة (Availability)، الموثوقية (Reliability)، السلامة (Safety)، وقابلية الصيانة (Maintainability)**.",
+    "details_and_text": [
+      {
+        "text_en": "\"Availability – the system is ready to be used immediately.\"",
+        "explanation_ar": "**الإتاحة (Availability):** هي مقياس لاحتمالية أن يكون النظام قيد التشغيل وجاهزًا لتقديم الخدمة في أي لحظة معينة."
+      },
+      {
+        "text_en": "\"Reliability – the system can run continuously without failure.\"",
+        "explanation_ar": "**الموثوقية (Reliability):** هي مقياس لاستمرارية الخدمة. أي قدرة النظام على العمل لفترة طويلة من الزمن دون أن يتعرض للفشل."
+      },
+      {
+        "text_en": "\"Safety – if a system fails, nothing catastrophic will happen.\"",
+        "explanation_ar": "**السلامة (Safety):** تركز على العواقب. تضمن عدم حدوث نتائج كارثية أو ضارة (مثل إلحاق ضرر بالبيئة أو حياة البشر) حتى لو حدث فشل."
+      },
+      {
+        "text_en": "\"Maintainability – when a system fails, it can be repaired easily and quickly (and, sometimes, without its users noticing the failure).\"",
+        "explanation_ar": "**قابلية الصيانة (Maintainability):** هي سهولة وسرعة إصلاح النظام بعد الفشل، وأحيانًا يتم الإصلاح دون أن يلاحظ المستخدمون الفشل."
+      }
+    ],
+    "questions_en_ar": {
+      "a_current_slide_qa": [
+        {
+          "type": "Multiple Choice",
+          "question_en": "A system that is ready to be used immediately is characterized by high: (a) Reliability (b) Safety (c) Availability (d) Maintainability",
+          "answer_en": "(c) Availability",
+          "explanation_ar": "الإتاحة (Availability) تعني أن النظام جاهز للاستخدام في الحال."
+        },
+        {
+          "type": "True/False",
+          "question_en": "Safety focuses on ensuring the system can run continuously without any downtime.",
+          "answer_en": "False",
+          "explanation_ar": "العبارة خاطئة. هذا هو تعريف الموثوقية (Reliability). السلامة (Safety) تركز على منع حدوث أي شيء كارثي حتى لو فشل النظام."
+        }
+      ],
+      "b_previous_slides": [
+        {
+          "question_ar": "بالرجوع إلى الشريحة 3، تحمل الأخطاء هو \"متطلب غير وظيفي\". هل يمكنك تحديد خاصيتين من خصائص \"الاعتمادية\" الأربعة التي تعتبر الأكثر أهمية في تصميم نظام يتحمل الأخطاء؟",
+          "hint_ar": "**الموثوقية** (لضمان الاستمرارية) و**السلامة** (لمنع الكوارث) هما الأكثر أهمية."
+        },
+        {
+          "question_ar": "إذا كان لديك نظام حاسوبي لغرفة تحكم نووية. أي خاصية من خصائص الاعتمادية الأربعة هي الأكثر أهمية بالنسبة لك في هذا النظام؟ ولماذا؟",
+          "hint_ar": "**السلامة (Safety)** هي الأهم لمنع النتائج الكارثية في حال فشل النظام."
+        }
+      ]
+    }
+  },
+  {
+    "slide_number": 5,
+    "slide_title_ar": "أنواع الأعطال (Types of Fault)",
+    "slide_title_en": "Types of Fault",
+    "general_summary_ar": "تُصنّف هذه الشريحة الأعطال (**Faults**)، التي تم تعريفها في الشريحة 2 كأسباب جذرية للأخطاء، إلى ثلاثة أنواع رئيسية بناءً على سلوكها واستمراريتها في النظام. هذا التصنيف أمر بالغ الأهمية عند تصميم أنظمة **تحمل الأخطاء**، لأن طريقة معالجة كل نوع تختلف عن الأخرى.",
+    "details_and_text": [
+      {
+        "text_en": "A **transient fault** starts at a particular time, remains in the system for some period and then disappears. E.g. hardware components which have an adverse reaction to radioactivity Many faults in communication systems are transient",
+        "explanation_ar": "**العطل العابر (Transient Fault):** هو عطل مؤقت يحدث لمرة واحدة ويزول تلقائياً من النظام بعد فترة قصيرة. سببه غالباً عوامل خارجية مؤقتة (مثل التشويش الكهرومغناطيسي أو الإشعاع). هذا النوع هو الأكثر شيوعاً في أنظمة الاتصالات."
+      },
+      {
+        "text_en": "**Intermittent faults** are transient faults that occur from time to time. E.g. a hardware component that is heat sensitive, it works for a time, stops working, cools down and then starts to work again",
+        "explanation_ar": "**العطل المتقطع (Intermittent Fault):** هو عطل عابر لكنه يتكرر بشكل غير منتظم أو غير متوقع. يظهر ويختفي بسبب ظروف معينة مثل ارتفاع درجة الحرارة. هذا النوع أصعب في التشخيص."
+      },
+      {
+        "text_en": "**Permanent faults** repeatable error, E.g. failed component, a broken wire, power fail, fire, flood, design error. Remain in the system until they are repaired",
+        "explanation_ar": "**العطل الدائم (Permanent Fault):** هو عطل مستمر وثابت لا يزول من تلقاء نفسه، ويؤدي إلى خطأ يمكن تكراره. **أمثلته** تشمل: مكون تالف (failed component)، سلك مقطوع، انقطاع في التيار الكهربائي، حريق، فيضان، أو خطأ في تصميم النظام. هذا العطل **يبقى في النظام حتى يتم إصلاحه** يدوياً."
+      }
+    ],
+    "questions_en_ar": {
+      "a_current_slide_qa": [
+        {
+          "type": "Multiple Choice",
+          "question_en": "A fault that disappears after a short time without repeating is called: (a) Intermittent fault (b) Permanent fault (c) Transient fault (d) System failure",
+          "answer_en": "(c) Transient fault",
+          "explanation_ar": "العطل العابر (Transient fault) هو الذي يظهر ويختفي لمرة واحدة."
+        },
+        {
+          "type": "True/False",
+          "question_en": "An intermittent fault is typically easier to diagnose than a permanent fault because it only happens once.",
+          "answer_en": "False",
+          "explanation_ar": "العبارة خاطئة. العطل المتقطع (Intermittent) يتكرر بشكل غير منتظم، مما يجعله أصعب في التشخيص."
+        }
+      ],
+      "b_previous_slides": [
+        {
+          "question_ar": "ما هو النوع من الأعطال الثلاثة (عابر، متقطع، دائم) الذي يتطلب أعلى مستوى من خاصية **قابلية الصيانة (Maintainability)** (الشريحة 4)؟ ولماذا؟",
+          "hint_ar": "**العطل الدائم (Permanent Fault)**، لأنه يتطلب استبدال أو إصلاحاً فعلياً للمكون."
+        },
+        {
+          "question_ar": "بالرجوع إلى تعريف **تحمل الأخطاء** (الشريحة 3)، أي نوع من الأعطال تعتقد أنه الأكثر شيوعاً في أنظمة الاتصالات الحديثة؟ وكيف يمكن للنظام تحمل هذا النوع؟",
+          "hint_ar": "الأعطال **العابرة** هي الأكثر شيوعاً، وتُتَحَمَّل عادةً من خلال إعادة المحاولة (retrying) أو التكرار (redundancy)."
+        }
+      ]
+    }
+  }
+]

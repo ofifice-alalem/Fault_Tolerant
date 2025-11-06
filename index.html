@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fault Tolerant Systems - الصفحة الرئيسية</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="mobile-header">
+        <button class="menu-toggle" onclick="toggleSidebar()">
+            <span class="menu-icon">☰</span>
+        </button>
+        <div class="mobile-header-title">Fault Tolerant</div>
+        <button class="theme-toggle" onclick="toggleTheme()">
+            <span class="theme-icon">🌙</span>
+        </button>
+    </div>
+    
+    <div class="sidebar" id="sidebar">
+        <div class="logo">
+            <div class="logo-icon">🛡️</div>
+            <span>Fault Tolerant</span>
+        </div>
+        
+        <div class="theme-toggle-sidebar" onclick="toggleTheme()">
+            <span class="theme-icon">🌙</span>
+            <span>تبديل الوضع</span>
+        </div>
+        
+        <div class="menu-section">
+            <div class="menu-title">المحاضرات</div>
+            <a href="#lecture-1" class="menu-item active" onclick="setActive(this)">
+                <span>🔧</span> المحاضرة الأولى - مقدمة
+            </a>
+        </div>
+    </div>
+    
+    <div class="main-content">
+        <div class="container">
+            <h1>Fault Tolerant Systems</h1>
+            <p class="welcome-text">مرحباً بك في مجموعة محاضرات الأنظمة المتحملة للأخطاء. اختر المحاضرة التي تريد مراجعتها:</p>
+
+            <hr class="section-separator">
+
+            <div class="lectures-grid">
+                <div class="lecture-card" id="lecture-1">
+                    <div class="lecture-header">
+                        <div class="lecture-icon">🔧</div>
+                        <h2>المحاضرة الأولى</h2>
+                        <h3>Introduction - مقدمة في تحمل الأخطاء</h3>
+                    </div>
+                    
+                    <div class="lecture-content">
+                        <div class="lecture-description">
+                            <p><strong>المواضيع المغطاة:</strong></p>
+                            <ul>
+                                <li>تعريف الفشل والخطأ والعطل</li>
+                                <li>مفهوم تحمل الأخطاء</li>
+                                <li>المفاهيم الأساسية للاعتمادية</li>
+                                <li>أنواع الأعطال المختلفة</li>
+                                <li>خصائص الأنظمة الموثوقة</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="lecture-stats">
+                            <div class="stat-item">
+                                <span class="stat-number">4</span>
+                                <span class="stat-label">شريحة</span>
+                            </div>
+                        </div>
+                        
+                        <div class="lecture-actions">
+                            <a href="lec-1/index.html" class="btn btn-primary">
+                                <span>🔍</span>
+                                عرض المحاضرة
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <hr class="section-separator">
+
+            <div class="info-section">
+                <h2>معلومات إضافية</h2>
+                <div class="info-grid">
+                    <div class="info-card">
+                        <div class="info-icon">📖</div>
+                        <h3>طريقة الاستخدام</h3>
+                        <p>انقر على "عرض المحاضرة" للوصول إلى المحتوى التفاعلي مع إمكانية التنقل بين الشرائح والبحث في المحتوى.</p>
+                    </div>
+                    
+                    <div class="info-card">
+                        <div class="info-icon">📱</div>
+                        <h3>متوافق مع الأجهزة</h3>
+                        <p>جميع المحاضرات مصممة لتعمل بشكل مثالي على أجهزة الكمبيوتر والهواتف الذكية والأجهزة اللوحية.</p>
+                    </div>
+                    
+                    <div class="info-card">
+                        <div class="info-icon">🔄</div>
+                        <h3>تحديثات مستمرة</h3>
+                        <p>يتم تحديث المحتوى بانتظام لإضافة محاضرات جديدة وتحسين المحتوى الموجود.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        function setActive(element) {
+            document.querySelectorAll('.menu-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            element.classList.add('active');
+            
+            if (window.innerWidth <= 768) {
+                closeSidebar();
+            }
+        }
+        
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            sidebar.classList.toggle('active');
+        }
+        
+        function closeSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            sidebar.classList.remove('active');
+        }
+        
+        window.addEventListener('resize', function() {
+            if (window.innerWidth > 768) {
+                closeSidebar();
+            }
+        });
+        
+        let lastScrollTop = 0;
+        const header = document.querySelector('.mobile-header');
+        
+        document.querySelector('.main-content').addEventListener('scroll', function() {
+            if (window.innerWidth <= 768) {
+                const scrollTop = this.scrollTop;
+                
+                if (scrollTop > lastScrollTop && scrollTop > 190) {
+                    header.classList.add('hidden');
+                } else {
+                    header.classList.remove('hidden');
+                }
+                
+                lastScrollTop = scrollTop;
+            }
+        });
+
+        document.querySelectorAll('a[href^="#lecture-"]').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href').substring(1);
+                const targetElement = document.getElementById(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+        
+        document.addEventListener('click', function(e) {
+            const sidebar = document.getElementById('sidebar');
+            const menuToggle = document.querySelector('.menu-toggle');
+            if (!sidebar.contains(e.target) && !menuToggle.contains(e.target)) {
+                closeSidebar();
+            }
+        });
+        
+        function toggleTheme() {
+            document.body.classList.toggle('light-mode');
+            const themeIcon = document.querySelector('.theme-icon');
+            const isLight = document.body.classList.contains('light-mode');
+            themeIcon.textContent = isLight ? '☀️' : '🌙';
+            localStorage.setItem('theme', isLight ? 'light' : 'dark');
+        }
+        
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'light') {
+            document.body.classList.add('light-mode');
+            document.querySelector('.theme-icon').textContent = '☀️';
+        }
+    </script>
+
+</body>
+
+</html>

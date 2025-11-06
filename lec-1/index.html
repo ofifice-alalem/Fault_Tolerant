@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fault Tolerant - المحاضرة الأولى</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="mobile-header">
+        <button class="menu-toggle" onclick="toggleSidebar()">
+            <span class="menu-icon">☰</span>
+        </button>
+        <div class="mobile-header-title">Fault Tolerant - Lec 1</div>
+        <button class="theme-toggle" onclick="toggleTheme()">
+            <span class="theme-icon">🌙</span>
+        </button>
+    </div>
+
+    <div class="sidebar" id="sidebar">
+        <div class="logo">
+            <div class="logo-icon">🛡️</div>
+            <span>Fault Tolerant</span>
+        </div>
+        <div class="theme-toggle-sidebar" onclick="toggleTheme()">
+            <span class="theme-icon">🌙</span>
+            <span>تبديل الوضع</span>
+        </div>
+        
+        <div class="menu-section">
+            <a href="../index.html" class="menu-item home-btn">
+                <span>🏠</span> الرجوع للرئيسية
+            </a>
+            <div class="menu-title">الشرائح</div>
+            <nav id="slides-menu"></nav>
+        </div>
+    </div>
+
+    <div class="main-content">
+        <div class="container">
+            <h1>المحاضرة الأولى - Fault Tolerant Systems</h1>
+
+            <div class="toolbar">
+                <button id="prevBtn" class="nav-btn">السابق ←</button>
+                <div class="status"><span id="statusText"></span></div>
+                <button id="nextBtn" class="nav-btn">→ التالي</button>
+            </div>
+
+            <section id="slideView" class="slide-content">
+                <h2 id="slideTitle">—</h2>
+                <img id="slideImage" alt="صورة الشريحة" />
+                <div id="slideText" class="slide-text"></div>
+                <div class="mobile-nav-bottom mobile-only">
+                    <button id="prevBtnBottom" class="nav-btn">السابق ←</button>
+                    <div class="mobile-status"><span id="statusTextBottom"></span></div>
+                    <button id="nextBtnBottom" class="nav-btn">→ التالي</button>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+    <script>
+        function toggleSidebar() {
+            document.getElementById('sidebar').classList.toggle('active');
+        }
+    </script>
+    <script>
+        let lastScrollTop = 0;
+        const header = document.querySelector('.mobile-header');
+        
+        document.querySelector('.main-content').addEventListener('scroll', function() {
+            if (window.innerWidth <= 768) {
+                const scrollTop = this.scrollTop;
+                
+                if (scrollTop > lastScrollTop && scrollTop > 190) {
+                    header.classList.add('hidden');
+                } else {
+                    header.classList.remove('hidden');
+                }
+                
+                lastScrollTop = scrollTop;
+            }
+        });
+        
+        function toggleTheme() {
+            document.body.classList.toggle('light-mode');
+            const themeIcon = document.querySelector('.theme-icon');
+            const isLight = document.body.classList.contains('light-mode');
+            themeIcon.textContent = isLight ? '☀️' : '🌙';
+            localStorage.setItem('theme', isLight ? 'light' : 'dark');
+        }
+        
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'light') {
+            document.body.classList.add('light-mode');
+            document.querySelector('.theme-icon').textContent = '☀️';
+        }
+        
+        document.addEventListener('click', function(e) {
+            const sidebar = document.getElementById('sidebar');
+            const menuToggle = document.querySelector('.menu-toggle');
+            if (!sidebar.contains(e.target) && !menuToggle.contains(e.target)) {
+                sidebar.classList.remove('active');
+            }
+        });
+    </script>
+</body>
+
+</html>
