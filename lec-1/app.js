@@ -51,7 +51,7 @@ function buildMenu() {
     slides.forEach((s, idx) => {
         const a = document.createElement('a');
         a.href = `#slide-${s.id}`;
-        a.textContent = `الشريحة ${s.id}`;
+        a.textContent = `${s.id}- ${s.content.slide_title_ar} - ${s.content.slide_title_en}`;
         a.addEventListener('click', (e) => {
             e.preventDefault();
             currentIndex = idx;
