@@ -153,6 +153,7 @@ function formatSlideContent(slide) {
                 <div class="explanation-label">أسئلة تفاعلية:</div>
                 <div class="explanation-content">`;
             slide.questions_en_ar.a_current_slide_qa.forEach((qa, index) => {
+                const questionId = `question-${currentIndex}-${index}`;
                 html += `<div style="margin-bottom: 15px; padding: 10px; background: rgba(124, 58, 237, 0.05); border-radius: 8px;">`;
                 
                 let questionText = qa.question_en;
@@ -182,8 +183,11 @@ function formatSlideContent(slide) {
                     html += `<p><strong>${qa.type} - س${index + 1}:</strong> ${questionText}</p>`;
                 }
                 
+                html += `<button onclick="toggleAnswer('${questionId}')" class="show-answer-btn" style="background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%); color: white; border: none; padding: 6px 12px; border-radius: 8px; cursor: pointer; font-family: 'Cairo', sans-serif; font-weight: 500; font-size: 13px; margin: 10px 0; transition: all 0.3s ease; box-shadow: 0 2px 8px rgba(34, 197, 94, 0.3); border: 1px solid rgba(34, 197, 94, 0.4);" onmouseover="this.style.transform='translateY(-1px)'; this.style.boxShadow='0 4px 12px rgba(34, 197, 94, 0.4)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 8px rgba(34, 197, 94, 0.3)'">عرض الجواب</button>`;
+                html += `<div id="${questionId}" class="answer-section" style="display: none; margin-top: 10px; padding: 10px; background: rgba(34, 197, 94, 0.1); border-radius: 6px; border: 1px solid rgba(34, 197, 94, 0.2);">`;
                 html += `<p><strong>الإجابة:</strong> ${qa.answer_en}</p>`;
                 html += `<p><strong>الشرح:</strong> ${qa.explanation_ar}</p>`;
+                html += `</div>`;
                 html += `</div>`;
             });
             html += `</div></div>`;
@@ -268,3 +272,22 @@ window.addEventListener('DOMContentLoaded', () => {
 window.addEventListener('resize', function () {
     if (window.innerWidth > 768) closeSidebar();
 });
+
+function toggleAnswer(questionId) {
+    const answerDiv = document.getElementById(questionId);
+    const button = answerDiv.previousElementSibling;
+    
+    if (answerDiv.style.display === 'none') {
+        answerDiv.style.display = 'block';
+        button.textContent = 'إخفاء الجواب';
+        button.style.background = 'linear-gradient(135deg, #ef4444 0%, #dc2626 100%)';
+        button.style.borderColor = 'rgba(239, 68, 68, 0.4)';
+        button.style.boxShadow = '0 2px 8px rgba(239, 68, 68, 0.3)';
+    } else {
+        answerDiv.style.display = 'none';
+        button.textContent = 'عرض الجواب';
+        button.style.background = 'linear-gradient(135deg, #22c55e 0%, #16a34a 100%)';
+        button.style.borderColor = 'rgba(34, 197, 94, 0.4)';
+        button.style.boxShadow = '0 2px 8px rgba(34, 197, 94, 0.3)';
+    }
+}
