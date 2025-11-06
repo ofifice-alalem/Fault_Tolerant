@@ -111,7 +111,7 @@ body::before {
     position: relative;
 }
 
-#slides-menu .menu-item {
+#slides-menu a {
     display: block;
     padding: 10px 15px;
     margin-bottom: 8px;
@@ -121,16 +121,17 @@ body::before {
     color: rgba(255,255,255,0.8);
     font-weight: 500;
     text-align: center;
+    text-decoration: none;
 }
 
-#slides-menu .menu-item:hover {
+#slides-menu a:hover {
     background: rgba(124, 58, 237, 0.2);
     border-color: rgba(124, 58, 237, 0.4);
     color: #ffffff;
     transform: translateX(-2px);
 }
 
-#slides-menu .menu-item.active {
+#slides-menu a.active {
     background: linear-gradient(135deg, #7c3aed 0%, #a855f7 100%);
     border-color: rgba(124, 58, 237, 0.6);
     color: #ffffff;
@@ -267,13 +268,15 @@ h1::after {
     background: linear-gradient(135deg, #7c3aed 0%, #a855f7 100%);
     color: white;
     border: none;
-    padding: 10px 20px;
-    border-radius: 8px;
+    padding: 12px 24px;
+    border-radius: 12px;
     cursor: pointer;
+    font-family: 'Cairo', sans-serif;
     font-weight: 600;
-    font-size: 14px;
+    font-size: 15px;
     transition: all 0.3s ease;
     box-shadow: 0 4px 12px rgba(124, 58, 237, 0.3);
+    border: 1px solid rgba(124, 58, 237, 0.4);
 }
 
 .nav-btn:hover {
@@ -289,9 +292,14 @@ h1::after {
 }
 
 .status {
+    font-family: 'Cairo', sans-serif;
     font-weight: 600;
     color: #a855f7;
     font-size: 16px;
+    background: rgba(124, 58, 237, 0.1);
+    padding: 8px 16px;
+    border-radius: 8px;
+    border: 1px solid rgba(124, 58, 237, 0.2);
 }
 
 .slide-content {
@@ -429,9 +437,19 @@ h1::after {
 }
 
 .mobile-status {
+    font-family: 'Cairo', sans-serif;
     font-weight: 600;
     color: #a855f7;
     font-size: 16px;
+    background: rgba(124, 58, 237, 0.1);
+    padding: 6px 12px;
+    border-radius: 6px;
+    border: 1px solid rgba(124, 58, 237, 0.2);
+}
+
+.bottom-toolbar {
+    margin-top: 30px;
+    margin-bottom: 0;
 }
 
 .mobile-header {
@@ -701,6 +719,26 @@ body.light-mode .theme-toggle-sidebar {
 body.light-mode .theme-toggle-sidebar:hover {
     background: rgba(124, 58, 237, 0.1);
     color: #1e293b;
+}
+
+body.light-mode #slides-menu a {
+    background: rgba(124, 58, 237, 0.08);
+    border: 1px solid rgba(124, 58, 237, 0.15);
+    color: #1e293b;
+}
+
+body.light-mode #slides-menu a:hover {
+    background: rgba(124, 58, 237, 0.15);
+    border-color: rgba(124, 58, 237, 0.3);
+    color: #1e293b;
+}
+
+body.light-mode #slides-menu a.active {
+    background: linear-gradient(135deg, #7c3aed 0%, #a855f7 100%);
+    border-color: rgba(124, 58, 237, 0.6);
+    color: #ffffff;
+    font-weight: 600;
+    box-shadow: 0 4px 12px rgba(124, 58, 237, 0.3);
 }
 
 @media (max-width: 768px) {

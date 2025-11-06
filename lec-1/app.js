@@ -73,9 +73,11 @@ function updateActiveMenu() {
 function setStatus() {
     const status = document.getElementById('statusText');
     const statusBottom = document.getElementById('statusTextBottom');
+    const statusBottom2 = document.getElementById('statusTextBottom2');
     const statusText = `${currentIndex + 1} / ${slides.length}`;
     status.textContent = statusText;
     if (statusBottom) statusBottom.textContent = statusText;
+    if (statusBottom2) statusBottom2.textContent = statusText;
 }
 
 function formatSlideContent(slide) {
@@ -152,7 +154,34 @@ function formatSlideContent(slide) {
                 <div class="explanation-content">`;
             slide.questions_en_ar.a_current_slide_qa.forEach((qa, index) => {
                 html += `<div style="margin-bottom: 15px; padding: 10px; background: rgba(124, 58, 237, 0.05); border-radius: 8px;">`;
-                html += `<p><strong>${qa.type} - س${index + 1}:</strong> ${qa.question_en}</p>`;
+                
+                let questionText = qa.question_en;
+                if (qa.type === 'Multiple Choice') {
+                    // فصل السؤال عن الخيارات
+                    const parts = questionText.split(': ');
+                    if (parts.length > 1) {
+                        const question = parts[0] + ':';
+                        const choices = parts[1];
+                        // فصل الخيارات
+                        const choicesList = choices.split(/\s*\([a-d]\)\s*/).filter(choice => choice.trim());
+                        const choiceLetters = choices.match(/\([a-d]\)/g) || [];
+                        
+                        html += `<p><strong>${qa.type} - س${index + 1}:</strong> ${question}</p>`;
+                        html += `<div style="margin: 10px 0; padding-left: 20px;">`;
+                        
+                        choiceLetters.forEach((letter, i) => {
+                            if (choicesList[i]) {
+                                html += `<p style="margin: 5px 0;"><strong>${letter}</strong> ${choicesList[i].trim()}</p>`;
+                            }
+                        });
+                        html += `</div>`;
+                    } else {
+                        html += `<p><strong>${qa.type} - س${index + 1}:</strong> ${questionText}</p>`;
+                    }
+                } else {
+                    html += `<p><strong>${qa.type} - س${index + 1}:</strong> ${questionText}</p>`;
+                }
+                
                 html += `<p><strong>الإجابة:</strong> ${qa.answer_en}</p>`;
                 html += `<p><strong>الشرح:</strong> ${qa.explanation_ar}</p>`;
                 html += `</div>`;
@@ -208,6 +237,8 @@ async function renderCurrent() {
     document.getElementById('nextBtn').disabled = currentIndex === slides.length - 1;
     document.getElementById('prevBtnBottom').disabled = currentIndex === 0;
     document.getElementById('nextBtnBottom').disabled = currentIndex === slides.length - 1;
+    document.getElementById('prevBtnBottom2').disabled = currentIndex === 0;
+    document.getElementById('nextBtnBottom2').disabled = currentIndex === slides.length - 1;
 }
 
 function next() {
@@ -229,6 +260,8 @@ window.addEventListener('DOMContentLoaded', () => {
     document.getElementById('nextBtn').addEventListener('click', next);
     document.getElementById('prevBtnBottom').addEventListener('click', prev);
     document.getElementById('nextBtnBottom').addEventListener('click', next);
+    document.getElementById('prevBtnBottom2').addEventListener('click', prev);
+    document.getElementById('nextBtnBottom2').addEventListener('click', next);
     loadSlides();
 });
 

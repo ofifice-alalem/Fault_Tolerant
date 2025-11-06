@@ -180,5 +180,59 @@
         }
       ]
     }
+  },
+  {
+    "slide_number": 6,
+    "slide_title_ar": "مصطلحات تحمل الأخطاء (Terminology of Fault Tolerance)",
+    "slide_title_en": "Terminology of Fault Tolerance",
+    "general_summary_ar": "تُعد هذه الشريحة بمثابة ملخص ومراجعة للمفاهيم الجوهرية التي تم تعريفها في الشرائح السابقة (العطل، الخطأ، الفشل، تحمل الأخطاء). وتقدم الشريحة هذه المفاهيم في إطار رسم بياني يوضح العلاقة السببية بينها، بالإضافة إلى إعادة تعريف كل مصطلح بشكل رسمي.",
+    "details_and_text": [
+      {
+        "text_en": "Fault  causes  Error  results in  Failure ",
+        "explanation_ar": "يوضح هذا المخطط التسلسل السببي: **العطل (Fault)** هو الذي **يُسبب (causes)** **الخطأ (Error)**، والذي بدوره **يؤدي إلى (results in)** **الفشل (Failure)**."
+      },
+      {
+        "text_en": "Fault – is a defect within the system. ",
+        "explanation_ar": "**العطل** هو عيب أو خلل موجود داخل مكونات النظام (سواء كان عتاداً مادياً أو برنامجاً)."
+      },
+      {
+        "text_en": "Error – is observed by a deviation from the expected behavior of the system. ",
+        "explanation_ar": "**الخطأ** هو انحراف يُلاحظ في سلوك النظام عن السلوك المتوقع أو الصحيح. هذا الانحراف هو الحالة الداخلية غير الصحيحة التي تسبق الفشل."
+      },
+      {
+        "text_en": "Failure occurs when the system can no longer perform as required (does not meet specifications). ",
+        "explanation_ar": "**الفشل** يحدث عندما يعجز النظام عن أداء وظيفته المطلوبة (أي لا يلبي المواصفات المحددة له)، وهي النتيجة الخارجية للخطأ."
+      },
+      {
+        "text_en": "Fault Tolerance – is ability of system to provide a service, even in the presence of errors. ",
+        "explanation_ar": "**تحمل الأخطاء** هو قدرة النظام على الاستمرار في تقديم الخدمة المطلوبة، حتى مع وجود الأخطاء الداخلية (Errors)."
+      }
+    ],
+    "questions_en_ar": {
+      "a_current_slide_qa": [
+        {
+          "type": "Multiple Choice",
+          "question_en": "What is the term for a **defect** within the system? (a) Failure (b) Error (c) Fault (d) Dependability",
+          "answer_en": "(c) Fault",
+          "explanation_ar": "الإجابة هي (c) لأن العطل (Fault) يُعرَّف بأنه العيب أو الخلل الأولي داخل النظام."
+        },
+        {
+          "type": "True/False",
+          "question_en": "A deviation from the expected behavior of the system is called a Failure.",
+          "answer_en": "False",
+          "explanation_ar": "العبارة خاطئة. الانحراف عن السلوك المتوقع يُسمى **خطأ (Error)**، أما **الفشل (Failure)** فهو النتيجة النهائية عندما يتوقف النظام عن الأداء المطلوب."
+        }
+      ],
+      "b_previous_slides": [
+        {
+          "question_ar": "ما هي الخاصية من خصائص **الاعتمادية (Dependability)** (الشريحة 4) التي تُعالج بشكل مباشر منع **الفشل (Failure)** الذي له نتائج كارثية؟",
+          "hint_ar": "**السلامة (Safety)** هي التي تمنع النتائج الكارثية."
+        },
+        {
+          "question_ar": "بالنظر إلى أنواع الأعطال (الشريحة 5: العابر، المتقطع، الدائم)، ما هو النوع الذي يتطلب إجراءات **تحمل أخطاء** تعتمد على التكرار الزمني (Time Redundancy)؟",
+          "hint_ar": "**العطل العابر (Transient Fault)**، لأن التكرار الزمني مفيد لاكتشاف الأعطال التي تزول بمرور الوقت."
+        }
+      ]
+    }
   }
 ]
