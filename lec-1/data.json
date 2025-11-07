@@ -63,7 +63,13 @@
         },
         {
           "type": "Multiple Choice",
-          "question_en": "According to the slide, fault tolerance is considered a: (a) Functional requirement (b) Non-functional requirement (c) System failure (d) Design fault",
+          "question_en": "According to the slide, fault tolerance is considered a:",
+          "options": [
+            "(a) Functional requirement",
+            "(b) Non-functional requirement",
+            "(c) System failure",
+            "(d) Design fault"
+          ],
           "answer_en": "(b) Non-functional requirement",
           "explanation_ar": "الإجابة الصحيحة هي (b) لأن الشريحة تصف \"تحمل الأخطاء\" صراحة بأنه \"متطلب غير وظيفي\"."
         },
@@ -112,7 +118,13 @@
       "a_current_slide_qa": [
         {
           "type": "Multiple Choice",
-          "question_en": "A system that is ready to be used immediately is characterized by high: (a) Reliability (b) Safety (c) Availability (d) Maintainability",
+          "question_en": "A system that is ready to be used immediately is characterized by high:",
+          "options": [
+            "(a) Reliability",
+            "(b) Safety",
+            "(c) Availability",
+            "(d) Maintainability"
+          ],
           "answer_en": "(c) Availability",
           "explanation_ar": "الإتاحة (Availability) تعني أن النظام جاهز للاستخدام في الحال."
         },
@@ -158,7 +170,13 @@
       "a_current_slide_qa": [
         {
           "type": "Multiple Choice",
-          "question_en": "A fault that disappears after a short time without repeating is called: (a) Intermittent fault (b) Permanent fault (c) Transient fault (d) System failure",
+          "question_en": "A fault that disappears after a short time without repeating is called:",
+          "options": [
+            "(a) Intermittent fault",
+            "(b) Permanent fault",
+            "(c) Transient fault",
+            "(d) System failure"
+          ],
           "answer_en": "(c) Transient fault",
           "explanation_ar": "العطل العابر (Transient fault) هو الذي يظهر ويختفي لمرة واحدة."
         },
@@ -212,7 +230,13 @@
       "a_current_slide_qa": [
         {
           "type": "Multiple Choice",
-          "question_en": "What is the term for a **defect** within the system: (a) Failure (b) Error (c) Fault (d) Dependability",
+          "question_en": "What is the term for a **defect** within the system:",
+          "options": [
+            "(a) Failure",
+            "(b) Error",
+            "(c) Fault",
+            "(d) Dependability"
+          ],
           "answer_en": "(c) Fault",
           "explanation_ar": "الإجابة هي (c) لأن العطل (Fault) يُعرَّف بأنه العيب أو الخلل الأولي داخل النظام."
         },
@@ -272,7 +296,13 @@
         },
         {
           "type": "Multiple Choice",
-          "question_en": "A single-bit error is easier to occur in which type of data transmission: (a) Serial transmission (b) Parallel transmission (c) Fiber optic transmission (d) Analog transmission",
+          "question_en": "A single-bit error is easier to occur in which type of data transmission:",
+          "options": [
+            "(a) Serial transmission",
+            "(b) Parallel transmission",
+            "(c) Fiber optic transmission",
+            "(d) Analog transmission"
+          ],
           "answer_en": "(b) Parallel transmission",
           "explanation_ar": "الإجابة هي (b) حيث تشير الشريحة إلى أن هذا النوع من الأخطاء يمكن أن يحدث في الإرسال المتوازي."
         }
@@ -305,7 +335,13 @@
       "a_current_slide_qa": [
         {
           "type": "Multiple Choice",
-          "question_en": "What is the minimum number of changed bits required for a Multiple-Bit Error? (a) One bit (b) Two bits (c) Three bits (d) Four bits",
+          "question_en": "What is the minimum number of changed bits required for a Multiple-Bit Error?",
+          "options": [
+            "(a) One bit",
+            "(b) Two bits",
+            "(c) Three bits",
+            "(d) Four bits"
+          ],
           "answer_en": "(b) Two bits",
           "explanation_ar": "الإجابة هي (b) لأن التعريف يشير إلى 'بتين أو أكثر'."
         },
@@ -558,7 +594,13 @@
       "a_current_slide_qa": [
         {
           "type": "Multiple Choice",
-          "question_en": "Which type of redundancy is primarily concerned with repeating a process to overcome temporary data corruption: (a) Information redundancy (b) Hardware redundancy (c) Time redundancy (d) Fault avoidance",
+          "question_en": "Which type of redundancy is primarily concerned with repeating a process to overcome temporary data corruption:",
+          "options": [
+            "(a) Information redundancy",
+            "(b) Hardware redundancy",
+            "(c) Time redundancy",
+            "(d) Fault avoidance"
+          ],
           "answer_en": "(c) Time redundancy",
           "explanation_ar": "التكرار الزمني هو إعادة العملية في فترة زمنية لاحقة للتغلب على الأعطال العابرة."
         },
@@ -596,7 +638,13 @@
       "a_current_slide_qa": [
         {
           "type": "Multiple Choice",
-          "question_en": "Which factor is generally *not* negatively impacted by the addition of redundancy: (a) Power Consumption (b) Size (c) Fault Tolerance (d) Performance",
+          "question_en": "Which factor is generally *not* negatively impacted by the addition of redundancy:",
+          "options": [
+            "(a) Power Consumption",
+            "(b) Size",
+            "(c) Fault Tolerance",
+            "(d) Performance"
+          ],
           "answer_en": "(c) Fault Tolerance",
           "explanation_ar": "تحمل الأخطاء هو الهدف الأساسي من التكرار، وبالتالي هو الشيء الوحيد الذي يجب أن يتحسن وليس يتأثر سلباً."
         },
@@ -638,7 +686,13 @@
       "a_current_slide_qa": [
         {
           "type": "Multiple Choice",
-          "question_en": "If a system uses Hamming codes for error correction, which type of redundancy is it primarily relying on to mask the failure: (a) Time Redundancy (b) Information Redundancy (c) Hardware Redundancy (d) Fault Forecasting",
+          "question_en": "If a system uses Hamming codes for error correction, which type of redundancy is it primarily relying on to mask the failure:",
+          "options": [
+            "(a) Time Redundancy",
+            "(b) Information Redundancy",
+            "(c) Hardware Redundancy",
+            "(d) Fault Forecasting"
+          ],
           "answer_en": "(b) Information Redundancy",
           "explanation_ar": "أكواد هامينغ هي تقنية تعتمد على إضافة معلومات (بتات تكرارية) لتصحيح الأخطاء."
         },
@@ -658,52 +712,362 @@
     }
   },
   {
-  "slide_number": [
-    19,
-    20
-  ],
-  "slide_title_ar": "مثال: تحمل الأخطاء في مكوك الفضاء (Space Shuttle)",
-  "slide_title_en": "Example: Space Shuttle Fault Tolerance",
-  "general_summary_ar": "تُعد هذه الشرائح دراسة حالة كلاسيكية لتطبيق مبادئ تحمل الأخطاء، حيث يوضح المثال كيف استخدم مكوك الفضاء خمسة حواسيب متطابقة لتوفير مستويات عالية من التكرار المادي وإخفاء الأخطاء.",
-  "details_and_text": [
-    {
-      "text_en": "Uses 5 identical computers which can be assigned to redundant operation under program control.",
-      "explanation_ar": "يستخدم المكوك 5 حواسيب متطابقة يمكن برمجتها للعمل بتكوينات تكرارية مختلفة."
-    },
-    {
-      "text_en": "During critical mission phases - boost, re-entry and loading - 4 of its 5 computers operate an NMR configuration, receiving the same inputs and executing identical tasks. When a failure is detected the computer concerned is switched out of the system leaving a TMR arrangement.",
-      "explanation_ar": "في المراحل الحرجة، تعمل 4 حواسيب بتكوين **NMR** (تكرار معياري N). عند اكتشاف عطل، يُعزل الحاسوب المعيب، ليتبقى تكوين **TMR** (تكرار ثلاثي معياري)."
-    },
-    {
-      "text_en": "The fifth computer is used to perform non-critical tasks in a simplex mode, however, under extreme cases may take over critical functions. The unit has 'diverse' software and could be used if a systematic fault was discovered in the other four computers.",
-      "explanation_ar": "الحاسوب الخامس يعمل لمهام غير حرجة، لكنه يحتوي على **برمجيات متنوعة (Diverse software)** لمواجهة **الأعطال المنهجية** التي قد تؤثر على الحواسيب الأربعة الأخرى."
-    },
-    {
-      "text_en": "The shuttle can tolerate up to two computer failures; after a second failure it operates as a duplex system and uses comparison and self-test techniques to survive a third fault.",
-      "explanation_ar": "يتحمل النظام فشل حاسوبين. بعد الفشل الثاني، يعمل كنظام **مزدوج (Duplex system)** ويستخدم المقارنة والاختبار الذاتي للبقاء في حالة تشغيل."
-    }
-  ],
-  "questions_en_ar": {
-    "a_current_slides_qa": [
+    "slide_number": [
+      19,
+      20
+    ],
+    "slide_title_ar": "مثال: تحمل الأخطاء في مكوك الفضاء (Space Shuttle)",
+    "slide_title_en": "Example: Space Shuttle Fault Tolerance",
+    "general_summary_ar": "تُعد هذه الشرائح دراسة حالة كلاسيكية لتطبيق مبادئ تحمل الأخطاء، حيث يوضح المثال كيف استخدم مكوك الفضاء خمسة حواسيب متطابقة لتوفير مستويات عالية من التكرار المادي وإخفاء الأخطاء.",
+    "details_and_text": [
       {
-        "type": "Definition",
-        "question_en": "Why is the fifth computer given Diverse Software?",
-        "answer_en": "To protect the system against Systematic Faults (مثل أخطاء الكود البرمجي) التي قد تؤثر على جميع الحواسيب الأربعة الأخرى التي تشترك في نفس البرنامج.",
-        "explanation_ar": "البرمجيات المتنوعة ضرورية للتحمل ضد الأخطاء المنهجية التي تنشأ من خطأ بشري في التصميم أو الكود."
+        "text_en": "Uses 5 identical computers which can be assigned to redundant operation under program control.",
+        "explanation_ar": "يستخدم المكوك 5 حواسيب متطابقة يمكن برمجتها للعمل بتكوينات تكرارية مختلفة."
       },
       {
-        "type": "Scenario",
-        "question_en": "If the system is operating in a TMR configuration and a fault is detected in one computer, what is the next operating configuration?",
-        "answer_en": "Duplex System (نظام مزدوج)",
-        "explanation_ar": "التكوين يبدأ بـ 4 (NMR)، بعد فشل 1 يصبح 3 (TMR)، وبعد فشل 2 يصبح 2 (Duplex)."
+        "text_en": "During critical mission phases - boost, re-entry and loading - 4 of its 5 computers operate an NMR configuration, receiving the same inputs and executing identical tasks. When a failure is detected the computer concerned is switched out of the system leaving a TMR arrangement.",
+        "explanation_ar": "في المراحل الحرجة، تعمل 4 حواسيب بتكوين **NMR** (تكرار معياري N). عند اكتشاف عطل، يُعزل الحاسوب المعيب، ليتبقى تكوين **TMR** (تكرار ثلاثي معياري)."
+      },
+      {
+        "text_en": "The fifth computer is used to perform non-critical tasks in a simplex mode, however, under extreme cases may take over critical functions. The unit has 'diverse' software and could be used if a systematic fault was discovered in the other four computers.",
+        "explanation_ar": "الحاسوب الخامس يعمل لمهام غير حرجة، لكنه يحتوي على **برمجيات متنوعة (Diverse software)** لمواجهة **الأعطال المنهجية** التي قد تؤثر على الحواسيب الأربعة الأخرى."
+      },
+      {
+        "text_en": "The shuttle can tolerate up to two computer failures; after a second failure it operates as a duplex system and uses comparison and self-test techniques to survive a third fault.",
+        "explanation_ar": "يتحمل النظام فشل حاسوبين. بعد الفشل الثاني، يعمل كنظام **مزدوج (Duplex system)** ويستخدم المقارنة والاختبار الذاتي للبقاء في حالة تشغيل."
       }
     ],
-    "b_previous_slides": [
+    "questions_en_ar": {
+      "a_current_slides_qa": [
+        {
+          "type": "Definition",
+          "question_en": "Why is the fifth computer given Diverse Software?",
+          "answer_en": "To protect the system against Systematic Faults (مثل أخطاء الكود البرمجي) التي قد تؤثر على جميع الحواسيب الأربعة الأخرى التي تشترك في نفس البرنامج.",
+          "explanation_ar": "البرمجيات المتنوعة ضرورية للتحمل ضد الأخطاء المنهجية التي تنشأ من خطأ بشري في التصميم أو الكود."
+        },
+        {
+          "type": "Scenario",
+          "question_en": "If the system is operating in a TMR configuration and a fault is detected in one computer, what is the next operating configuration?",
+          "answer_en": "Duplex System (نظام مزدوج)",
+          "explanation_ar": "التكوين يبدأ بـ 4 (NMR)، بعد فشل 1 يصبح 3 (TMR)، وبعد فشل 2 يصبح 2 (Duplex)."
+        }
+      ],
+      "b_previous_slides": [
+        {
+          "question_ar": "في سيناريو مكوك الفضاء، يتم تحقيق **إخفاء الأخطاء (Fault Masking)** (الشريحة 14) باستخدام أي تكوين تكراري؟",
+          "hint_ar": "يتم تحقيقه باستخدام **NMR (4 حواسيب)** و **TMR (3 حواسيب)**، حيث يتم استخدام **التصويت** لإخفاء الخطأ الفردي."
+        }
+      ]
+    }
+  },
+  {
+    "slide_number": 22,
+    "slide_title_ar": "التكرار الزمني",
+    "slide_title_en": "Time Redundancy",
+    "general_summary_ar": "تُركز هذه الشريحة على **التكرار الزمني** كوسيلة لكشف الأعطال المؤقتة من خلال إعادة تنفيذ العملية نفسها مرتين أو أكثر، مع مقارنة النتائج. تُبرز المزايا (قلة التكلفة المادية) والعيوب (تأثير على الأداء).",
+    "details_and_text": [
       {
-        "question_ar": "في سيناريو مكوك الفضاء، يتم تحقيق **إخفاء الأخطاء (Fault Masking)** (الشريحة 14) باستخدام أي تكوين تكراري؟",
-        "hint_ar": "يتم تحقيقه باستخدام **NMR (4 حواسيب)** و **TMR (3 حواسيب)**، حيث يتم استخدام **التصويت** لإخفاء الخطأ الفردي."
+        "text_en": "Perform Same Operation Twice (or more)",
+        "explanation_ar": "**تنفيذ العملية نفسها مرتين (أو أكثر):** يتم إعادة العملية الحسابية أو الإرسال للتحقق من النتيجة."
+      },
+      {
+        "text_en": "See if get same result both times\nIf not, then fault occurred",
+        "explanation_ar": "**مقارنة النتائج:** إذا كانت النتائج متطابقة، فالنظام سليم. إذا اختلفت، فهناك عطل حدث."
+      },
+      {
+        "text_en": "Can detect temporary faults\nCannot detect permanent faults – Would affect both computations",
+        "explanation_ar": "**يكشف الأعطال المؤقتة فقط:** الأعطال العابرة (transient) تظهر في محاولة واحدة فقط. أما الأعطال الدائمة (permanent) فتؤثر على كِلا التنفيذين، فلا يمكن كشفها بهذه الطريقة."
+      },
+      {
+        "text_en": "Advantage\nLittle to no hardware overhead",
+        "explanation_ar": "**الميزة:** تكلفة مادية (هاردوير) قليلة جدًا أو معدومة، حيث لا حاجة لمكونات إضافية."
+      },
+      {
+        "text_en": "Disadvantage\nImpacts system or circuit performance",
+        "explanation_ar": "**العيب:** يؤثر سلبًا على أداء النظام أو الدائرة بسبب زيادة الوقت اللازم لإتمام العمليات (ضعف السرعة تقريبًا)."
       }
-    ]
+    ],
+    "questions_en_ar": {
+      "a_current_slide_qa": [
+        {
+          "type": "Multiple Choice",
+          "question_en": "What type of faults can Time Redundancy reliably detect when performing the same operation twice?",
+          "options": [
+            "(a) Temporary (transient) faults",
+            "(b) Permanent faults",
+            "(c) Intermittent faults only",
+            "(d) All types of faults"
+          ],
+          "answer_en": "(a) Temporary (transient) faults",
+          "explanation_ar": "الأعطال المؤقتة تظهر في تنفيذ واحد فقط، مما يؤدي إلى نتائج مختلفة عند المقارنة."
+        },
+        {
+          "type": "Multiple Choice",
+          "question_en": "Why does Time Redundancy fail to detect permanent faults?",
+          "options": [
+            "(a) It requires extra hardware",
+            "(b) The fault affects only one execution",
+            "(c) The fault corrupts both executions identically",
+            "(d) It cannot compare results"
+          ],
+          "answer_en": "(c) The fault corrupts both executions identically",
+          "explanation_ar": "العطل الدائم يؤثر على كِلا التنفيذين بنفس الطريقة، فتكون النتائج متطابقة (لكن خاطئة)، ولا يُكتشف العطل."
+        },
+        {
+          "type": "Multiple Choice",
+          "question_en": "What is the primary advantage of Time Redundancy?",
+          "options": [
+            "(a) High performance",
+            "(b) Little to no hardware overhead",
+            "(c) Detects all fault types",
+            "(d) Automatic error correction"
+          ],
+          "answer_en": "(b) Little to no hardware overhead",
+          "explanation_ar": "ميزته الأساسية هي عدم الحاجة إلى هاردوير إضافي، بل يعتمد على إعادة التنفيذ زمنيًا."
+        },
+        {
+          "type": "Multiple Choice",
+          "question_en": "Which of the following is a disadvantage of Time Redundancy?",
+          "options": [
+            "(a) High hardware cost",
+            "(b) Impacts system performance",
+            "(c) Cannot detect transient faults",
+            "(d) Requires complex software"
+          ],
+          "answer_en": "(b) Impacts system performance",
+          "explanation_ar": "يتطلب وقتًا إضافيًا لإعادة التنفيذ، مما يقلل من سرعة النظام."
+        },
+        {
+          "type": "True/False",
+          "question_en": "Time Redundancy requires significant additional hardware to function.",
+          "options": [
+            "True",
+            "False"
+          ],
+          "answer_en": "False",
+          "explanation_ar": "ميزته الأساسية هي عدم الحاجة إلى هاردوير إضافي، بل يعتمد على إعادة التنفيذ زمنيًا."
+        },
+        {
+          "type": "Definition",
+          "question_en": "How does Time Redundancy detect a fault?",
+          "answer_en": "By comparing the results of two or more executions of the same operation; mismatch indicates a fault.",
+          "explanation_ar": "يتم اكتشاف العطل عندما تكون نتائج التنفيذين مختلفتين، مما يشير إلى حدوث خطأ في إحدى المحاولتين."
+        }
+      ],
+      "b_previous_slides": [
+        {
+          "question_ar": "كيف يرتبط **التكرار الزمني** (الشريحة 22) بمفهوم **إخفاء الفشل (Failure Masking)** الذي شُرح في الشريحة 18؟",
+          "hint_ar": "التكرار الزمني يُستخدم أساسًا لـ **الكشف** وليس الإخفاء. في الإخفاء، يُصحح الخطأ فورًا دون إظهار تأثيره، بينما هنا يُكتشف العطل لكن لا يُصحح تلقائيًا."
+        }
+      ]
+    }
+  },
+  {
+    "slide_number": 23,
+    "slide_title_ar": "التكرار الزمني - مخطط الدائرة",
+    "slide_title_en": "Time Redundancy - Circuit Diagram",
+    "general_summary_ar": "تُوضح هذه الشريحة تنفيذًا عمليًا للتكرار الزمني باستخدام تأخير زمني (d) بين تنفيذين متتاليين لنفس العملية، مع مقارنة النتائج لكشف الأعطال المؤقتة القصيرة. تُبرز انخفاض التكلفة المادية مع وجود عقوبة أداء تعتمد على قيمة التأخير (d).",
+    "details_and_text": [
+      {
+        "text_en": "Combinational Logic",
+        "explanation_ar": "**الدائرة المنطقية المدمجة:** تُنفّذ العملية الحسابية وتُنتج الإخراج بناءً على المدخلات."
+      },
+      {
+        "text_en": "D Q (CK + d)",
+        "explanation_ar": "**مُسجّل D-Flip-Flop (بساعة متأخرة CK + d):** يخزن الإخراج من التنفيذ السابق بعد تأخير زمني قدره d."
+      },
+      {
+        "text_en": "D Q (CK)",
+        "explanation_ar": "**مُسجّل D-Flip-Flop (بساعة حالية CK):** يخزن الإخراج من التنفيذ الحالي في الوقت الحقيقي."
+      },
+      {
+        "text_en": "Comparator → Logic 1 indicates error",
+        "explanation_ar": "**المقارن:** يقارن بين الإخراجين (الحالي والسابق). إذا اختلفت النتائج → يُخرج 1 (يُشير إلى وجود خطأ)."
+      },
+      {
+        "text_en": "Hardware overhead is low.",
+        "explanation_ar": "**تكلفة الأجهزة منخفضة:** لا يتطلب تكرار الدائرة المنطقية، فقط مُسجّل إضافي ومقارن بسيط."
+      },
+      {
+        "text_en": "Performance penalty (~ d) = maximum detectable pulse width.",
+        "explanation_ar": "**عقوبة الأداء (~ d) = أقصى عرض نبضة قابلة للكشف:** التأخير d يحدد الحد الأقصى لمدة التشويش القابل للكشف. النبضات الأطول من d قد لا تُكتشف."
+      }
+    ],
+    "questions_en_ar": {
+      "a_current_slide_qa": [
+        {
+          "type": "Multiple Choice",
+          "question_en": "In the Time Redundancy circuit shown, what is the role of the delay 'd'?",
+          "options": [
+            "(a) To increase hardware complexity",
+            "(b) To define the maximum detectable fault pulse width",
+            "(c) To store the input data",
+            "(d) To speed up the combinational logic"
+          ],
+          "answer_en": "(b) To define the maximum detectable fault pulse width",
+          "explanation_ar": "التأخير d يحدد أقصى مدة للنبضة المؤقتة التي يمكن اكتشافها. إذا كانت النبضة أطول من d، فستؤثر على كِلا التنفيذين."
+        },
+        {
+          "type": "Multiple Choice",
+          "question_en": "What does a 'Logic 1' output from the comparator indicate?",
+          "options": [
+            "(a) The system is operating normally",
+            "(b) A transient fault has been detected",
+            "(c) The clock is delayed",
+            "(d) The inputs have changed"
+          ],
+          "answer_en": "(b) A transient fault has been detected",
+          "explanation_ar": "المقارن يُخرج 1 عندما تكون النتيجتان مختلفتين، مما يعني أن عطلًا مؤقتًا أثر على أحد التنفيذين."
+        },
+        {
+          "type": "Multiple Choice",
+          "question_en": "Why is the hardware overhead considered low in this design?",
+          "options": [
+            "(a) It uses two full copies of the combinational logic",
+            "(b) It only adds one extra D Flip-Flop and a comparator",
+            "(c) It eliminates the need for a clock",
+            "(d) It uses analog components"
+          ],
+          "answer_en": "(b) It only adds one extra D Flip-Flop and a comparator",
+          "explanation_ar": "لا يتم تكرار الدائرة المنطقية بالكامل، بل يُضاف فقط مُسجّل واحد إضافي ودائرة مقارنة بسيطة."
+        },
+        {
+          "type": "Multiple Choice",
+          "question_en": "Which type of fault might NOT be detected if its duration exceeds 'd'?",
+          "options": [
+            "(a) A transient fault shorter than d",
+            "(b) A permanent stuck-at fault",
+            "(c) A transient fault longer than d",
+            "(d) An input error"
+          ],
+          "answer_en": "(c) A transient fault longer than d",
+          "explanation_ar": "إذا استمر التشويش لأكثر من d، فسيؤثر على كِلا التنفيذين (الحالي والمتأخر)، فتتطابق النتائج الخاطئة ولا يُكتشف العطل."
+        },
+        {
+          "type": "True/False",
+          "question_en": "This Time Redundancy design can detect permanent faults effectively.",
+          "options": [
+            "True",
+            "False"
+          ],
+          "answer_en": "False",
+          "explanation_ar": "العطل الدائم سيؤثر على كِلا التنفيذين بنفس الطريقة، فتكون النتائج متطابقة (لكن خاطئة)، ولا يُكتشف."
+        }
+      ],
+      "b_previous_slides": [
+        {
+          "question_ar": "ما الفرق بين نهج التكرار الزمني في الشريحة 22 (إعادة التنفيذ الكامل) والشريحة 23 (التأخير الزمني d)؟",
+          "hint_ar": "الشريحة 22 تعيد التنفيذ من البداية (مكلفة زمنيًا)، بينما الشريحة 23 تستخدم تأخيرًا بسيطًا بين دورات الساعة لتحقيق نفس الهدف بتكلفة أقل."
+        },
+        {
+          "question_ar": "هل يمكن اعتبار هذا التصميم (الشريحة 23) وسيلة لـ **إخفاء الفشل (Failure Masking)** كما في الشريحة 18؟",
+          "hint_ar": "لا، هذا التصميم يكشف الخطأ فقط (Detection)، ولا يُصححه تلقائيًا. الإخفاء يتطلب تصحيحًا فوريًا دون ظهور تأثير."
+        }
+      ]
+    }
+  },
+  {
+    "slide_number": 24,
+    "slide_title_ar": "التكرار الزمني - كشف الأعطال العابرة",
+    "slide_title_en": "Time Redundancy - Transient Fault Detection",
+    "general_summary_ar": "تُوضح هذه الشريحة آلية **التكرار الزمني** لكشف الأعطال العابرة (Transient Faults) من خلال إعادة تنفيذ نفس العملية الحسابية في أوقات مختلفة (T1، T2، ...، Tn)، ثم تخزين النتائج ومقارنتها. إذا اختلفت النتائج، يُصدر النظام **إشارة خطأ (Error Signal)**. يتطلب بعض الأجهزة الإضافية لكن بتكلفة أقل من التكرار المادي الكامل.",
+    "details_and_text": [
+      {
+        "text_en": "In time redundancy, computations are repeated at different points in time and then compared. Some extra hardware is required.",
+        "explanation_ar": "**في التكرار الزمني:** تُعاد العمليات الحسابية في أوقات مختلفة، ثم تُقارن النتائج. يتطلب بعض الأجهزة الإضافية (مثل المخازن والمقارن)، لكن أقل بكثير من تكرار الدائرة بالكامل."
+      },
+      {
+        "text_en": "T1 → Data → Computation → Store Result",
+        "explanation_ar": "**في الوقت T1:** تُدخل البيانات، تُنفّذ العملية، ثم تُخزن النتيجة."
+      },
+      {
+        "text_en": "T2 → Data → Computation → Store Result",
+        "explanation_ar": "**في الوقت T2:** تُعاد نفس العملية مع نفس البيانات، وتُخزن النتيجة الجديدة."
+      },
+      {
+        "text_en": "Tn → Data → Computation → Store Result",
+        "explanation_ar": "**في الوقت Tn:** يمكن تكرار العملية مرات إضافية لزيادة الدقة في الكشف."
+      },
+      {
+        "text_en": "Compare → Error Signal",
+        "explanation_ar": "**المقارنة:** تُقارن جميع النتائج المخزنة. إذا كان هناك اختلاف → يُصدر **إشارة خطأ (Error Signal)** تشير إلى حدوث عطل عابر."
+      },
+      {
+        "text_en": "Mermaid Diagram",
+        "explanation_ar": "**رسم تخطيطي بصيغة Mermaid:** يُظهر التدفق الزمني للعمليات المتكررة، تخزين النتائج، ثم المقارنة لإصدار إشارة الخطأ."
+      }
+    ],
+    "questions_en_ar": {
+      "a_current_slide_qa": [
+        {
+          "type": "Multiple Choice",
+          "question_en": "What is the main purpose of repeating computations at different time points (T1, T2, ..., Tn)?",
+          "options": [
+            "(a) To improve system speed",
+            "(b) To detect transient faults by comparing results",
+            "(c) To reduce hardware cost",
+            "(d) To permanently fix errors"
+          ],
+          "answer_en": "(b) To detect transient faults by comparing results",
+          "explanation_ar": "الهدف هو اكتشاف الأعطال العابرة التي تؤثر على تنفيذ واحد فقط، مما يؤدي إلى نتائج مختلفة عند المقارنة."
+        },
+        {
+          "type": "Multiple Choice",
+          "question_en": "What happens when the stored results from different time points are compared and found to be different?",
+          "options": [
+            "(a) The system ignores the difference",
+            "(b) An Error Signal is generated",
+            "(c) The computation is permanently halted",
+            "(d) The inputs are changed"
+          ],
+          "answer_en": "(b) An Error Signal is generated",
+          "explanation_ar": "المقارن يُصدر إشارة خطأ عند اكتشاف عدم تطابق، مما يشير إلى حدوث عطل عابر."
+        },
+        {
+          "type": "Multiple Choice",
+          "question_en": "Compared to hardware redundancy, what is the advantage of this time redundancy approach?",
+          "options": [
+            "(a) No extra hardware is needed",
+            "(b) Less hardware overhead (only storage + comparator)",
+            "(c) It can detect permanent faults",
+            "(d) It has no performance penalty"
+          ],
+          "answer_en": "(b) Less hardware overhead (only storage + comparator)",
+          "explanation_ar": "لا يتطلب تكرار الدائرة المنطقية، بل فقط وحدات تخزين ومقارن، مما يقلل التكلفة المادية."
+        },
+        {
+          "type": "Multiple Choice",
+          "question_en": "Can this method reliably detect permanent faults?",
+          "options": [
+            "(a) Yes, by repeating more than twice",
+            "(b) No, because permanent faults affect all executions equally",
+            "(c) Only if the fault occurs during storage",
+            "(d) Yes, if the comparison logic is duplicated"
+          ],
+          "answer_en": "(b) No, because permanent faults affect all executions equally",
+          "explanation_ar": "العطل الدائم يُفسد كل التنفيذات بنفس الطريقة، فتكون النتائج متطابقة (لكن خاطئة)، ولا يُكتشف."
+        },
+        {
+          "type": "True/False",
+          "question_en": "Time redundancy requires duplicating the entire combinational logic circuit.",
+          "options": [
+            "True",
+            "False"
+          ],
+          "answer_en": "False",
+          "explanation_ar": "يكفي تخزين النتائج ومقارنتها، دون الحاجة لتكرار الدائرة الحسابية."
+        }
+      ],
+      "b_previous_slides": [
+        {
+          "question_ar": "ما الفرق بين النهج في الشريحة 23 (تأخير بين دورات الساعة) والشريحة 24 (إعادة تنفيذ في أوقات منفصلة T1، T2، ...، Tn)؟",
+          "hint_ar": "الشريحة 23 تستخدم تأخيرًا صغيرًا ضمن الدورة، بينما الشريحة 24 تعيد التنفيذ الكامل في أوقات منفصلة، مما يزيد من المرونة والتغطية لكن بتكلفة زمنية أعلى."
+        },
+        {
+          "question_ar": "هل يمكن دمج هذا النهج (الشريحة 24) مع **إخفاء الفشل (Failure Masking)** من الشريحة 18؟",
+          "hint_ar": "نعم، إذا أُضيف تصويت بالأغلبية (مثل 3 نتائج: T1، T2، T3) واختيار النتيجة الأكثر تكرارًا، يتحول من كشف إلى إخفاء."
+        }
+      ]
+    }
   }
-}
 ]
