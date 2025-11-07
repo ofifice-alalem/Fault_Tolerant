@@ -844,6 +844,17 @@ body.light-mode #slides-menu a.active {
     }
 }
 
+/* Dark mode image filter */
+img {
+    filter: invert(1);
+    box-shadow: rgb(38 56 127 / 13%) 0px 8px 25px;
+}
+
+/* Light mode - remove filter */
+body.light-mode img {
+    filter: none;
+}
+
 @media (max-width: 480px) {
     .container {
         padding: 10px;
