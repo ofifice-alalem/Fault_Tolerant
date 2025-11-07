@@ -114,10 +114,50 @@ function formatSlideContent(slide) {
             }
             
             if (detail.explanation_ar) {
+                let explanationContent = detail.explanation_ar;
+                
+                // تحويل \n إلى <br>
+                explanationContent = explanationContent.replace(/\\n/g, '<br>');
+                
+                // تحويل **النص** إلى <strong>
+                explanationContent = explanationContent.replace(/\*\*(.+?)\*\*/g, '<strong style="color: #7c3aed; font-weight: 700;">$1</strong>');
+                
+                // تحويل جداول Markdown إلى HTML
+                explanationContent = explanationContent.replace(/\|(.+)\|/g, (match, content) => {
+                    const cells = content.split('|').map(cell => cell.trim());
+                    const isHeaderSeparator = cells.every(cell => cell.match(/^-+$/));
+                    
+                    if (isHeaderSeparator) {
+                        return ''; // تجاهل خط الفصل
+                    }
+                    
+                    const cellTags = cells.map((cell, index) => {
+                        const isHeader = index === 0;
+                        const style = `padding: 12px 15px; border: 1px solid rgba(124, 58, 237, 0.3); text-align: right; direction: rtl; ${isHeader ? 'background: rgba(124, 58, 237, 0.1); font-weight: 600;' : 'background: rgba(124, 58, 237, 0.05);'}`;
+                        return `<td style="${style}">${cell}</td>`;
+                    }).join('');
+                    return `<tr>${cellTags}</tr>`;
+                });
+                
+                // إضافة تاغ الجدول إذا وُجدت صفوف
+                if (explanationContent.includes('<tr>')) {
+                    explanationContent = explanationContent.replace(/(<tr>.*<\/tr>)/gs, '<table style="width: 100%; border-collapse: collapse; margin: 20px 0; background: rgba(124, 58, 237, 0.08); border-radius: 12px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.2); border: 1px solid rgba(124, 58, 237, 0.2);">$1</table>');
+                }
+                
                 html += `<div class="explanation-block">
                     <div class="explanation-label">الشرح:</div>
-                    <div class="explanation-content">${detail.explanation_ar}</div>
+                    <div class="explanation-content">${explanationContent}</div>
                 </div>`;
+                
+                if (detail.mermaid_diagram) {
+                    html += `<div class="explanation-block">
+                        <div class="explanation-label">المخطط التوضيحي:</div>
+                        <div class="mermaid-container" style="margin: 15px 0; padding: 25px; background: #2d2d56; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1); text-align: center; overflow: hidden;">
+                            <div class="mermaid" style="display: inline-block; transform: scale(1.1); transform-origin: center; margin: 20px;">${detail.mermaid_diagram}</div>
+                        </div>
+                    </div>`;
+                }
+                
                 html += '<div class="separator"></div>';
             }
         });
@@ -241,6 +281,11 @@ async function renderCurrent() {
     
     const textEl = document.getElementById('slideText');
     textEl.innerHTML = formatSlideContent(slide.content);
+    
+    // رندر مخططات Mermaid إذا كانت موجودة
+    if (typeof mermaid !== 'undefined') {
+        mermaid.init();
+    }
     
     setStatus();
     updateActiveMenu();

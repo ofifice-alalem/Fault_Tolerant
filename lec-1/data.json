@@ -994,7 +994,8 @@
       },
       {
         "text_en": "Mermaid Diagram",
-        "explanation_ar": "**رسم تخطيطي بصيغة Mermaid:** يُظهر التدفق الزمني للعمليات المتكررة، تخزين النتائج، ثم المقارنة لإصدار إشارة الخطأ."
+        "explanation_ar": "**رسم تخطيطي بصيغة Mermaid:** يُظهر التدفق الزمني للعمليات المتكررة، تخزين النتائج، ثم المقارنة لإصدار إشارة الخطأ.",
+        "mermaid_diagram": "graph TD\n    subgraph Time\n        T1[T1] --> C1[Computation] --> S1[Store Result]\n        T2[T2] --> C2[Computation] --> S2[Store Result]\n        Tn[Tn] --> C3[Computation] --> S3[Store Result]\n    end\n\n    S1 --> COMP[Compare]\n    S2 --> COMP\n    S3 --> COMP\n    COMP --> ERR[Error Signal]\n\n    style T1 fill:#a050f5,stroke:#232048,stroke-width:3px,rx:15,ry:15\n    style T2 fill:#a050f5,stroke:#232048,stroke-width:3px,rx:15,ry:15\n    style Tn fill:#a050f5,stroke:#232048,stroke-width:3px,rx:15,ry:15\n    style C1 fill:#7c3aed,stroke:#232048,stroke-width:3px,rx:15,ry:15\n    style C2 fill:#7c3aed,stroke:#232048,stroke-width:3px,rx:15,ry:15\n    style C3 fill:#7c3aed,stroke:#232048,stroke-width:3px,rx:15,ry:15\n    style S1 fill:#8b5cf6,stroke:#232048,stroke-width:3px,rx:15,ry:15\n    style S2 fill:#8b5cf6,stroke:#232048,stroke-width:3px,rx:15,ry:15\n    style S3 fill:#8b5cf6,stroke:#232048,stroke-width:3px,rx:15,ry:15\n    style COMP fill:#FFA500,stroke:#232048,stroke-width:4px,color:#000,rx:20,ry:20\n    style ERR fill:#FF4500,stroke:#232048,stroke-width:4px,color:#FFF,rx:20,ry:20"
       }
     ],
     "questions_en_ar": {
@@ -1066,6 +1067,985 @@
         {
           "question_ar": "هل يمكن دمج هذا النهج (الشريحة 24) مع **إخفاء الفشل (Failure Masking)** من الشريحة 18؟",
           "hint_ar": "نعم، إذا أُضيف تصويت بالأغلبية (مثل 3 نتائج: T1، T2، T3) واختيار النتيجة الأكثر تكرارًا، يتحول من كشف إلى إخفاء."
+        }
+      ]
+    }
+  },
+  {
+    "slide_number": 25,
+    "slide_title_ar": "التكرار الزمني - كشف الأعطال الدائمة",
+    "slide_title_en": "Time Redundancy - Permanent Fault Detection",
+    "general_summary_ar": "تُقدّم هذه الشريحة تقنية متقدمة من **التكرار الزمني** لكشف **الأعطال الدائمة (Permanent Faults)** من خلال تنفيذ العملية مرتين باستخدام **ترميز مختلف للمدخلات** في التنفيذ الثاني. يتم اختيار دالة الترميز بحيث تُظهر أي عطل دائم في الأجهزة كاختلاف في النتائج بعد فك الترميز، مما يُمكّن من كشف العيوب الثابتة التي لا يمكن اكتشافها بالتكرار الزمني العادي.",
+    "details_and_text": [
+      {
+        "text_en": "During first computation, the operands are used as presented.",
+        "explanation_ar": "**في التنفيذ الأول:** تُستخدم المدخلات (Operands) كما هي، بدون أي تعديل أو ترميز."
+      },
+      {
+        "text_en": "During second computation, the operands are encoded in some fashion.",
+        "explanation_ar": "**في التنفيذ الثاني:** تُرمّز المدخلات باستخدام دالة ترميز محددة (مثل قلب البتات، أو إضافة قيمة، أو تحويل رياضي)."
+      },
+      {
+        "text_en": "The selection of encoding function is made so as to allow faults in the hardware to be detected.",
+        "explanation_ar": "**اختيار دالة الترميز:** تُختار الدالة بحيث يؤدي أي عطل دائم في الدائرة (مثل بوابة معطلة) إلى نتيجة مختلفة في التنفيذ الثاني حتى بعد فك الترميز، مما يكشف العطل."
+      },
+      {
+        "text_en": "Mermaid Diagram",
+        "explanation_ar": "**رسم تخطيطي بصيغة Mermaid:** يُظهر مسارين: تنفيذ عادي (أزرق داكن)، وتنفيذ مُرمّز (سماوي) مع فك ترميز ومقارنة نهائية لكشف الخطأ.",
+        "mermaid_diagram": "graph TD\n    subgraph First_Computation\n        A1[Operands Original] --> B1[Computation]\n        B1 --> C1[Store Result 1]\n    end\n\n    subgraph Second_Computation\n        A2[Operands Encoded] --> B2[Computation]\n        B2 --> C2[Store Result 2 Encoded]\n        C2 --> D[Decode]\n        D --> E[Compare with Result 1]\n    end\n\n    C1 --> E\n    E --> F{Error?}\n\n    style A1 fill:#232048,stroke:#000\n    style A2 fill:#a050f5,stroke:#000\n    style F fill:#FF4500,stroke:#000,color:#FFF"
+      }
+    ],
+    "questions_en_ar": {
+      "a_current_slide_qa": [
+        {
+          "type": "Multiple Choice",
+          "question_en": "Why is encoding used in the second computation for permanent fault detection?",
+          "options": [
+            "(a) To speed up the computation",
+            "(b) To make permanent faults produce different results in the two executions",
+            "(c) To reduce memory usage",
+            "(d) To encrypt the data"
+          ],
+          "answer_en": "(b) To make permanent faults produce different results in the two executions",
+          "explanation_ar": "العطل الدائم يؤثر بنفس الطريقة على المدخلات العادية، لكن عند الترميز يُغيّر تأثيره، فتظهر النتائج مختلفة بعد فك الترميز."
+        },
+        {
+          "type": "Multiple Choice",
+          "question_en": "What must happen after the second (encoded) computation to detect the fault?",
+          "options": [
+            "(a) The result is discarded",
+            "(b) The result is decoded and compared with the first result",
+            "(c) The operands are re-encoded",
+            "(d) The hardware is reset"
+          ],
+          "answer_en": "(b) The result is decoded and compared with the first result",
+          "explanation_ar": "يجب فك ترميز النتيجة الثانية ثم مقارنتها بالنتيجة الأولى. الاختلاف يشير إلى وجود عطل دائم."
+        },
+        {
+          "type": "Multiple Choice",
+          "question_en": "Which of the following is an example of an encoding function that could help detect stuck-at faults?",
+          "options": [
+            "(a) Multiplying all operands by 1",
+            "(b) Inverting all bits (1's complement)",
+            "(c) Using the same operands again",
+            "(d) Adding zero to each operand"
+          ],
+          "answer_en": "(b) Inverting all bits (1's complement)",
+          "explanation_ar": "قلب البتات يُغيّر تأثير العطل (مثلاً: stuck-at-0 سيُصبح stuck-at-1 في النسخة المقلوبة)، فيظهر الخطأ عند المقارنة."
+        },
+        {
+          "type": "Multiple Choice",
+          "question_en": "Can regular time redundancy (without encoding) detect permanent faults?",
+          "options": [
+            "(a) Yes, reliably",
+            "(b) No, because both executions are affected identically",
+            "(c) Only if repeated more than twice",
+            "(d) Yes, if the clock is delayed"
+          ],
+          "answer_en": "(b) No, because both executions are affected identically",
+          "explanation_ar": "بدون ترميز، العطل الدائم يُفسد كِلا التنفيذين بنفس الطريقة → نتائج متطابقة (خاطئة) → لا يُكتشف."
+        },
+        {
+          "type": "True/False",
+          "question_en": "The encoding function must be invertible to allow correct comparison.",
+          "options": [
+            "True",
+            "False"
+          ],
+          "answer_en": "True",
+          "explanation_ar": "يجب أن تكون دالة الترميز قابلة للعكس (invertible) حتى يمكن فك الترميز ومقارنة النتيجة بالأصلية بدقة."
+        },
+        {
+          "type": "Definition",
+          "question_en": "Explain briefly how this method overcomes the limitation of basic time redundancy.",
+          "answer_en": "By using different data representations (encoding), a permanent hardware fault affects the two computations differently, causing mismatched results even after decoding.",
+          "explanation_ar": "الترميز يُغيّر شكل البيانات، فالعطل الدائم الذي يُفسد '0' لن يُفسد '1' في النسخة المرمزة، فيظهر التناقض عند المقارنة."
+        }
+      ],
+      "b_previous_slides": [
+        {
+          "question_ar": "كيف تختلف تقنية كشف الأعطال الدائمة في الشريحة 25 عن كشف الأعطال العابرة في الشريحة 24؟",
+          "hint_ar": "الشريحة 24 تكرر بنفس البيانات (يكشف العابر فقط)، أما الشريحة 25 تُرمز البيانات في التنفيذ الثاني لتكشف الدائم."
+        },
+        {
+          "question_ar": "هل يمكن تطبيق هذه الطريقة (الشريحة 25) مع **إخفاء الفشل (Failure Masking)** من الشريحة 18؟",
+          "hint_ar": "نعم، إذا أُجري تنفيذ ثالث (مثلاً بترميز آخر) واستُخدم التصويت بالأغلبية على النتائج المفكوكة، يصبح النظام قادرًا على الإخفاء."
+        }
+      ]
+    }
+  },
+  {
+    "slide_number": 26,
+    "slide_title_ar": "التكرار الزمني - كشف الأعطال الدائمة (مع الترميز)",
+    "slide_title_en": "Time Redundancy - Permanent Fault Detection (with Encoding)",
+    "general_summary_ar": "تُوضح هذه الشريحة آلية عملية لكشف **الأعطال الدائمة** باستخدام التكرار الزمني مع **ترميز المدخلات** في التنفيذ الثاني. يتم تنفيذ العملية مرة بالبيانات العادية (T1)، ومرة بالبيانات المُرمَّزة (Tn)، ثم فك الترميز ومقارنة النتائج. أي اختلاف يُشير إلى وجود عطل دائم في الأجهزة، مما يُمكّن من كشف ما لا يُكتشف بالتكرار الزمني العادي.",
+    "details_and_text": [
+      {
+        "text_en": "T1: Data → Computation → Store Result",
+        "explanation_ar": "**التنفيذ الأول (T1):** البيانات تُدخل كما هي، تُنفَّذ العملية، وتُخزن النتيجة الأولى."
+      },
+      {
+        "text_en": "Tn: Data → Encode → Computation → Store Result → Decode",
+        "explanation_ar": "**التنفيذ الثاني (Tn):** البيانات تُرمَّز أولاً، ثم تُنفَّذ العملية على النسخة المُرمَّزة، تُخزن النتيجة، ثم تُفكّ النتيجة لتعود إلى النطاق الأصلي."
+      },
+      {
+        "text_en": "Compare → Error Signal",
+        "explanation_ar": "**المقارنة:** تُقارن النتيجة الأولى (T1) مع النتيجة المفكوكة (من Tn). الاختلاف يُصدر **إشارة خطأ** تدل على عطل دائم."
+      },
+      {
+        "text_en": "Why this detects permanent faults",
+        "explanation_ar": "**لماذا ينجح هذا في كشف الأعطال الدائمة؟** العطل الدائم (مثل بوابة AND معطلة على 0) يؤثر بنفس الطريقة فقط إذا كانت البيانات متطابقة. لكن عند الترميز (مثل قلب البتات): `0` يصبح `1`، فالعطل الذي كان يُخرج `0` دائمًا يُخرج `1` دائمًا في التنفيذ الثاني. → النتيجة بعد فك الترميز **ستختلف** عن الأولى → يُكتشف العطل."
+      },
+      {
+        "text_en": "Difference from regular time redundancy (Slide 24)",
+        "explanation_ar": "**الفرق عن التكرار الزمني العادي (الشريحة 24):**\n| الطريقة | تكشف العابر؟ | تكشف الدائم؟ | السبب |\n|--------|--------------|--------------|------|\n| تكرار عادي | نعم | لا | العطل الدائم يُفسد التنفيذين بنفس الشكل → نتائج متطابقة (خاطئة). |\n| تكرار مع **ترميز** | نعم | نعم | الترميز يُغيّر شكل البيانات → يتغيّر تأثير العطل → نتائج مختلفة بعد فك الترميز. |"
+      },
+      {
+        "text_en": "Important technical notes",
+        "explanation_ar": "**ملاحظات تقنية مهمة:** \\n - دالة **الترميز وفك الترميز يجب أن تكون عكوسة (invertible)**.\\n- أمثلة على الترميز: قلب البتات (1’s complement)، إضافة قيمة ثابتة (+K، ثم -K)، تحويل رياضي.\\n- **التكلفة:** زيادة طفيفة في الوقت والأجهزة (وحدة ترميز + فك ترميز + مخزن)، لكن أقل بكثير من التكرار المادي الكامل."
+      }
+    ],
+    "questions_en_ar": {
+      "a_current_slide_qa": [
+        {
+          "type": "Multiple Choice",
+          "question_en": "In the second computation (Tn), why is the data encoded before processing?",
+          "options": [
+            "(a) To reduce computation time",
+            "(b) To make a permanent fault produce a different result after decoding",
+            "(c) To compress the data",
+            "(d) To protect against transient faults only"
+          ],
+          "answer_en": "(b) To make a permanent fault produce a different result after decoding",
+          "explanation_ar": "الترميز يُغيّر تأثير العطل الدائم، فمثلاً: stuck-at-0 يُصبح stuck-at-1 في البيانات المقلوبة، فيظهر التناقض بعد فك الترميز."
+        },
+        {
+          "type": "Multiple Choice",
+          "question_en": "What is the purpose of the 'Decode' step after the second computation?",
+          "options": [
+            "(a) To re-encode the result",
+            "(b) To convert the encoded result back to the original domain for comparison",
+            "(c) To store the result permanently",
+            "(d) To generate the error signal"
+          ],
+          "answer_en": "(b) To convert the encoded result back to the original domain for comparison",
+          "explanation_ar": "يجب فك الترميز لتتمكن من مقارنة النتيجة الثانية بالأولى في نفس النطاق."
+        },
+        {
+          "type": "Multiple Choice",
+          "question_en": "If a permanent fault exists and the two final results (after decode) match, what does it mean?",
+          "options": [
+            "(a) The fault was transient",
+            "(b) No fault occurred, or the encoding failed to expose it",
+            "(c) The decode step failed",
+            "(d) The comparison logic is faulty"
+          ],
+          "answer_en": "(b) No fault occurred, or the encoding failed to expose it",
+          "explanation_ar": "إذا تطابقت النتائج بعد فك الترميز، فإما لا يوجد عطل، أو أن دالة الترميز لم تكن فعالة في كشف هذا النوع من العطل."
+        },
+        {
+          "type": "True/False",
+          "question_en": "This method can detect both transient and permanent faults simultaneously.",
+          "options": [
+            "True",
+            "False"
+          ],
+          "answer_en": "True",
+          "explanation_ar": "العطل العابر يُكتشف بالاختلاف العشوائي، والدائم بالاختلاف الناتج عن الترميز المختلف."
+        },
+        {
+          "type": "Definition",
+          "question_en": "Why does simple time redundancy (without encoding) fail to detect permanent faults, but this method succeeds?",
+          "answer_en": "Because encoding changes the data pattern, causing the same hardware fault to corrupt the two computations differently, leading to mismatch after decoding.",
+          "explanation_ar": "بدون ترميز: العطل يُفسد التنفيذين بنفس الشكل. مع الترميز: يتغير شكل البيانات، فيتغير تأثير العطل، فيظهر التناقض بعد فك الترميز."
+        }
+      ],
+      "b_previous_slides": [
+        {
+          "question_ar": "ما التحسين الذي أضافته الشريحة 26 على الشريحة 25؟",
+          "hint_ar": "الشريحة 25 وصفت الفكرة نظريًا، أما الشريحة 26 قدمت **مخططًا تنفيذيًا** يُظهر التدفق الزمني، الترميز، فك الترميز، والمقارنة."
+        },
+        {
+          "question_ar": "هل يمكن تحويل هذا النظام من **كشف** إلى **إخفاء الفشل (Masking)**؟",
+          "hint_ar": "نعم، بإجراء تنفيذ ثالث (بترميز مختلف) واستخدام **التصويت بالأغلبية** على النتائج المفكوكة الثلاث."
+        }
+      ]
+    }
+  },
+  {
+    "slide_number": 27,
+    "slide_title_ar": "التكرار المعلوماتي",
+    "slide_title_en": "Information Redundancy",
+    "general_summary_ar": "تُعرّف هذه الشريحة **التكرار المعلوماتي** كإضافة بيانات زائدة (redundant information) إلى البيانات الأصلية لتحقيق **كشف الأعطال**، **إخفاء الفشل (fault masking)**، أو حتى **تحمّل الأعطال (fault tolerance)**. تُركز على **أكواد كشف وتصحيح الأخطاء (EDC codes)** المستخدمة أساسًا في البيئات الملوثة بالضوضاء (noisy environments).",
+    "details_and_text": [
+      {
+        "text_en": "Definition: Information redundancy is the addition of redundant information to data to allow fault detection, fault masking or possibly fault tolerance.",
+        "explanation_ar": "**تعريف التكرار المعلوماتي:** إضافة معلومات زائدة إلى البيانات الأصلية لتمكين:\n- **كشف الأعطال (fault detection)**\n- **إخفاء الفشل (fault masking)**\n- أو حتى **تحمّل الأعطال (fault tolerance)** في بعض الحالات المتقدمة."
+      },
+      {
+        "text_en": "Error detecting and correcting codes (EDC codes): Encoding of information for transmission in noisy environments",
+        "explanation_ar": "**أكواد كشف وتصحيح الأخطاء (EDC codes):** تقنيات ترميز تُستخدم لتشفير المعلومات أثناء النقل عبر قنوات تحتوي على **ضوضاء (noise)**، مما يُمكّن من اكتشاف الأخطاء الناتجة عن التشويش وتصحيحها تلقائيًا في بعض الأنواع."
+      },
+      {
+        "text_en": "Why this detects permanent faults",
+        "explanation_ar": "**لماذا ينجح التكرار المعلوماتي في كشف الأعطال الدائمة؟** لأن البيانات الزائدة تُنشئ قيودًا رياضية (مثل البتات التكافؤية أو مسافة هامينغ). أي تغيير غير مصرح به (سواء من عطل دائم أو ضوضاء) يُخلّ بهذه القيود، فيُكتشف."
+      },
+      {
+        "text_en": "Difference from regular time redundancy (Slide 24)",
+        "explanation_ar": "**الفرق عن التكرار الزمني العادي (الشريحة 24):**\n| الطريقة | الأساس | تكشف الدائم؟ | تكشف العابر؟ | التكلفة |\n|---------|--------|--------------|--------------|----------|\n| **التكرار الزمني** | إعادة تنفيذ | لا (إلا مع ترميز) | نعم | وقت إضافي |\n| **التكرار المعلوماتي** | بتات زائدة | نعم | نعم | حجم بيانات أكبر |"
+      },
+      {
+        "text_en": "Important technical notes",
+        "explanation_ar": "**ملاحظات تقنية مهمة:**\\n- يُستخدم في **الذاكرة، الاتصالات، الأقراص الصلبة، الشبكات**.\\n- أمثلة شائعة: **Parity Bit، Hamming Code، CRC، Reed-Solomon**.\\n- **القدرة على التصحيح** تعتمد على **عدد البتات الزائدة** و**مسافة الكود (Hamming Distance)**.\\n- لا يتطلب إعادة تنفيذ → لا يؤثر على الأداء الزمني."
+      }
+    ],
+    "questions_en_ar": {
+      "a_current_slide_qa": [
+        {
+          "type": "Multiple Choice",
+          "question_en": "What is the primary purpose of adding redundant information in Information Redundancy?",
+          "options": [
+            "(a) To increase data speed",
+            "(b) To allow fault detection and possibly correction",
+            "(c) To reduce memory usage",
+            "(d) To encrypt the data"
+          ],
+          "answer_en": "(b) To allow fault detection and possibly correction",
+          "explanation_ar": "البيانات الزائدة تُمكّن النظام من اكتشاف الأخطاء (وأحيانًا تصحيحها) الناتجة عن الأعطال أو الضوضاء."
+        },
+        {
+          "type": "Multiple Choice",
+          "question_en": "In which type of environment are EDC codes most commonly used?",
+          "options": [
+            "(a) Completely noise-free channels",
+            "(b) Noisy environments (e.g., wireless, storage)",
+            "(c) High-speed CPU registers",
+            "(d) Permanent hardware duplication"
+          ],
+          "answer_en": "(b) Noisy environments (e.g., wireless, storage)",
+          "explanation_ar": "EDC تعني Error Detection and Correction، وتُستخدم أساسًا في القنوات التي تتعرض للتشويش مثل الاتصالات اللاسلكية أو التخزين."
+        },
+        {
+          "type": "Multiple Choice",
+          "question_en": "Which of the following is an example of Information Redundancy?",
+          "options": [
+            "(a) Recomputing the same operation twice",
+            "(b) Adding a parity bit to a 7-bit data word",
+            "(c) Using two identical processors",
+            "(d) Delaying the clock signal"
+          ],
+          "answer_en": "(b) Adding a parity bit to a 7-bit data word",
+          "explanation_ar": "البت التكافؤي هو مثال كلاسيكي على التكرار المعلوماتي: بت زائد يُضاف لحساب التكافؤ."
+        },
+        {
+          "type": "Multiple Choice",
+          "question_en": "Compared to Time Redundancy, what is the main advantage of Information Redundancy?",
+          "options": [
+            "(a) No impact on performance (no delay)",
+            "(b) Can detect permanent faults without encoding",
+            "(c) Requires no extra hardware",
+            "(d) Always corrects multiple errors"
+          ],
+          "answer_en": "(a) No impact on performance (no delay)",
+          "explanation_ar": "لا يتطلب إعادة تنفيذ → لا يُبطئ النظام، لكنه يزيد من حجم البيانات."
+        },
+        {
+          "type": "True/False",
+          "question_en": "Information Redundancy can achieve fault masking if the code supports error correction.",
+          "options": [
+            "True",
+            "False"
+          ],
+          "answer_en": "True",
+          "explanation_ar": "نعم، أكواد مثل Hamming أو SEC-DED تُصحح الأخطاء تلقائيًا → تُخفي تأثير العطل (masking)."
+        },
+        {
+          "type": "Definition",
+          "question_en": "Explain how Information Redundancy differs from Time Redundancy in fault handling.",
+          "answer_en": "Information Redundancy adds extra bits to data for immediate detection/correction without re-execution. Time Redundancy repeats the computation in time, introducing delay but using less storage.",
+          "explanation_ar": "التكرار المعلوماتي يُضيف بتات → كشف/تصحيح فوري دون تأخير. التكرار الزمني يُعيد التنفيذ → يؤخر الأداء لكنه لا يزيد حجم البيانات."
+        }
+      ],
+      "b_previous_slides": [
+        {
+          "question_ar": "كيف يرتبط **التكرار المعلوماتي** (الشريحة 27) بمفهوم **إخفاء الفشل (Failure Masking)** من الشريحة 18؟",
+          "hint_ar": "نعم، عندما تُستخدم أكواد **تصحيح الأخطاء** (مثل Hamming)، يتم تصحيح الخطأ تلقائيًا دون ظهور تأثيره → إخفاء كامل للفشل."
+        },
+        {
+          "question_ar": "هل يمكن دمج التكرار المعلوماتي مع التكرار الزمني (مثل الشريحة 26)؟",
+          "hint_ar": "نعم، في الأنظمة عالية الموثوقية (مثل الفضاء)، يُستخدم **التكرار المعلوماتي** لحماية البيانات، و**التكرار الزمني مع الترميز** لحماية الحسابات."
+        }
+      ]
+    }
+  },
+  {
+    "slide_number": 28,
+    "slide_title_ar": "التكرار المعلوماتي - نموذج الإرسال والاستقبال",
+    "slide_title_en": "Information Redundancy - Transmission Model",
+    "general_summary_ar": "تُظهر هذه الشريحة تطبيقًا عمليًا للتكرار المعلوماتي في نظام اتصال. يُرسل المرسل البيانات مع بيانات تكرار، ويتحقق المستقبل من صحتها بإعادة حساب التكرار. إذا تطابقت النتيجة → تُقبل البيانات، وإلا → تُرفض. يُستخدم لكشف الأخطاء الناتجة عن الضوضاء أو الأعطال أثناء النقل عبر الوسط.",
+    "details_and_text": [
+      {
+        "text_en": "Sender node: Data + redundancy → Medium",
+        "explanation_ar": "**المرسل:** يُرسل البيانات الأصلية (مثل: 10100000000101010) مع **بيانات التكرار** (مثل: 1011101) عبر الوسط."
+      },
+      {
+        "text_en": "Receiver node: Received (Data & redundancy) → Check OK? → Yes/No",
+        "explanation_ar": "**المستقبل:** يستقبل الرسالة الكاملة، يُعيد حساب التكرار من البيانات، ثم يُقارن. إذا تطابقت → **OK**، وإلا → **رفض البيانات**."
+      },
+      {
+        "text_en": "Example: 10100000000101010 1011101",
+        "explanation_ar": "**مثال عملي:** البيانات: `10100000000101010`، التكرار: `1011101` → إجمالي 23 بت. أي تغيير في أي بت سيُكتشف عند المقارنة."
+      },
+      {
+        "text_en": "Why this detects errors during transmission",
+        "explanation_ar": "**لماذا يكشف الأخطاء أثناء النقل؟** لأن أي تغيير في البتات (بسبب الضوضاء أو عطل) يُغيّر قيمة التكرار المحسوبة، فيظهر عدم تطابق."
+      },
+      {
+        "text_en": "Difference from Time Redundancy (Slide 24)",
+        "explanation_ar": "**الفرق عن التكرار الزمني (الشريحة 24):**\n| الطريقة | يحتاج إعادة إرسال؟ | يكشف الأخطاء أثناء النقل؟ | التأثير على الأداء |\n|---------|------------------|--------------------------|------------------|\n| **التكرار الزمني** | نعم | لا | تأخير كبير |\n| **التكرار المعلوماتي** | لا | نعم | لا تأخير، حجم أكبر |"
+      },
+      {
+        "text_en": "Important technical notes",
+        "explanation_ar": "**ملاحظات تقنية مهمة:**\\n- هذا النموذج يكشف الأخطاء فقط (Detection)، وليس تصحيحها.\\n- للتصحيح → استخدم أكواد مثل **Hamming أو Reed-Solomon**.\\n- شائع في: **Ethernet، Wi-Fi، USB، ECC Memory**.\\n- التكلفة: زيادة في **حجم البيانات**، لا تأخير زمني."
+      }
+    ],
+    "questions_en_ar": {
+      "a_current_slide_qa": [
+        {
+          "type": "Multiple Choice",
+          "question_en": "What happens at the receiver if the recalculated redundancy does NOT match the received redundancy?",
+          "options": [
+            "(a) The data is accepted anyway",
+            "(b) The data is rejected",
+            "(c) The sender is reset",
+            "(d) The medium is repaired"
+          ],
+          "answer_en": "(b) The data is rejected",
+          "explanation_ar": "عدم التطابق يعني حدوث خطأ أثناء النقل → تُرفض البيانات."
+        },
+        {
+          "type": "Multiple Choice",
+          "question_en": "What is the role of the redundancy bits in this model?",
+          "options": [
+            "(a) To speed up transmission",
+            "(b) To enable error detection at the receiver",
+            "(c) To encrypt the data",
+            "(d) To reduce the data size"
+          ],
+          "answer_en": "(b) To enable error detection at the receiver",
+          "explanation_ar": "بتات التكرار تُمكّن المستقبل من التحقق من سلامة البيانات."
+        },
+        {
+          "type": "Multiple Choice",
+          "question_en": "In this diagram, can the receiver correct the error automatically?",
+          "options": [
+            "(a) Yes, using the redundancy bits",
+            "(b) No, it can only detect and reject",
+            "(c) Yes, by retransmitting",
+            "(d) Only if the medium is clean"
+          ],
+          "answer_en": "(b) No, it can only detect and reject",
+          "explanation_ar": "النموذج يُظهر **كشف فقط (Detection)**، وليس تصحيح. التصحيح يتطلب أكواد أقوى مثل Hamming."
+        },
+        {
+          "type": "Multiple Choice",
+          "question_en": "Which real-world protocol uses a similar mechanism?",
+          "options": [
+            "(a) TCP handshake",
+            "(b) Ethernet with CRC-32",
+            "(c) HTTP request",
+            "(d) DNS query"
+          ],
+          "answer_en": "(b) Ethernet with CRC-32",
+          "explanation_ar": "Ethernet يُضيف CRC-32 في نهاية الإطار للتحقق من سلامة البيانات أثناء النقل."
+        },
+        {
+          "type": "True/False",
+          "question_en": "This information redundancy model introduces performance delay.",
+          "options": [
+            "True",
+            "False"
+          ],
+          "answer_en": "False",
+          "explanation_ar": "لا يوجد تأخير زمني، فقط زيادة في حجم البيانات."
+        }
+      ],
+      "b_previous_slides": [
+        {
+          "question_ar": "كيف يرتبط هذا النموذج (الشريحة 28) بتعريف التكرار المعلوماتي في الشريحة 27؟",
+          "hint_ar": "الشريحة 27 عرّفت المفهوم، والشريحة 28 تُظهر تطبيقًا عمليًا في الاتصال: إضافة تكرار → كشف الأخطاء أثناء النقل."
+        },
+        {
+          "question_ar": "هل يمكن تحويل هذا النظام من **كشف** إلى **إخفاء الفشل (Masking)**؟",
+          "hint_ar": "نعم، باستخدام أكواد تصحيح الأخطاء (مثل Hamming) بدلاً من كشف فقط → يُصحح الخطأ تلقائيًا دون رفض البيانات."
+        }
+      ]
+    }
+  },
+  {
+    "slide_number": 29,
+    "slide_title_ar": "التكرار المعلوماتي - تطبيق على المخرجات",
+    "slide_title_en": "Information Redundancy - Output Encoding",
+    "general_summary_ar": "تُركّز هذه الشريحة على استخدام **التكرار المعلوماتي** في **ترميز المخرجات (outputs)** من وحدة ما باستخدام أكواد كشف أو تصحيح الأخطاء. الهدف هو تقليل التكرار المطلوب مع الحفاظ على كشف الأعطال، مع تسليط الضوء على المزايا (أقل أجهزة) والعيوب (تعقيد التصميم).",
+    "details_and_text": [
+      {
+        "text_en": "Encode outputs with error detecting or correcting code",
+        "explanation_ar": "**ترميز المخرجات بكود كشف أو تصحيح الأخطاء:** يتم إضافة بيانات تكرارية إلى مخرجات الوحدة (مثل معالج أو دائرة منطقية) لتتمكن من كشف أو تصحيح الأخطاء الناتجة عن عطل داخلي."
+      },
+      {
+        "text_en": "Code selected to minimize redundancy for class of faults",
+        "explanation_ar": "**اختيار الكود لتقليل التكرار حسب نوع الأعطال:** يُختار نوع الكود (مثل Parity، Hamming، CRC) بحيث يُغطي الفئة المطلوبة من الأعطال بأقل عدد ممكن من البتات الزائدة."
+      },
+      {
+        "text_en": "Advantage: Less hardware to generate redundant information than replicating module",
+        "explanation_ar": "**الميزة:** أقل أجهزة مقارنة بتكرار الوحدة بالكامل. بدلاً من نسخ الدائرة كاملة (Hardware Redundancy)، يُضاف فقط مولّد كود بسيط (مثل XOR gates لـ Parity)."
+      },
+      {
+        "text_en": "Drawback: Added complexity in design",
+        "explanation_ar": "**العيب:** زيادة في تعقيد التصميم. يتطلب تصميم دائرة ترميز/فك ترميز، وفهمًا لأنواع الأعطال المستهدفة، واختبار الكود."
+      },
+      {
+        "text_en": "Why this detects permanent faults",
+        "explanation_ar": "**لماذا يكشف الأعطال الدائمة؟** العطل الدائم في الوحدة سيُغيّر المخرجات، مما يُخلّ بقواعد الكود (مثل التكافؤ أو مسافة هامينغ)، فيُكتشف عند التحقق."
+      },
+      {
+        "text_en": "Difference from Time Redundancy (Slide 24)",
+        "explanation_ar": "**الفرق عن التكرار الزمني (الشريحة 24):**\n| الطريقة | الأساس | التكلفة | التأثير على الأداء |\n|---------|--------|----------|-------------------|\n| **التكرار الزمني** | إعادة تنفيذ | وقت إضافي | تأخير كبير |\n| **التكرار المعلوماتي** | بتات زائدة | أجهزة إضافية بسيطة | لا تأخير |"
+      },
+      {
+        "text_en": "Important technical notes",
+        "explanation_ar": "**ملاحظات تقنية مهمة:**\\n- يُستخدم في **المعالجات، الذاكرة (ECC)، الاتصالات الداخلية**.\\n- مثال: **Parity على خطوط البيانات**، **Hamming في الذاكرة**.\\n- الكود يُصمم حسب **نموذج العطل (Fault Model)**: stuck-at، transient، multiple-bit.\\n- يمكن دمجه مع **التكرار المادي** لتحقيق **إخفاء الفشل**."
+      }
+    ],
+    "questions_en_ar": {
+      "a_current_slide_qa": [
+        {
+          "type": "Multiple Choice",
+          "question_en": "What is the main goal when selecting an error-detecting code for outputs?",
+          "options": [
+            "(a) To maximize the number of redundancy bits",
+            "(b) To minimize redundancy while covering the target fault class",
+            "(c) To eliminate all hardware",
+            "(d) To slow down the system"
+          ],
+          "answer_en": "(b) To minimize redundancy while covering the target fault class",
+          "explanation_ar": "يُختار الكود ليكون فعالًا بأقل بتات ممكنة مع ضمان كشف الأعطال المطلوبة."
+        },
+        {
+          "type": "Multiple Choice",
+          "question_en": "Compared to hardware replication, what is the key advantage of encoding outputs?",
+          "options": [
+            "(a) No design complexity",
+            "(b) Less hardware overhead",
+            "(c) Guaranteed fault masking",
+            "(d) Zero latency"
+          ],
+          "answer_en": "(b) Less hardware overhead",
+          "explanation_ar": "بدلاً من تكرار الوحدة كاملة، يُضاف فقط مولّد كود بسيط (مثل دائرة XOR)."
+        },
+        {
+          "type": "Multiple Choice",
+          "question_en": "What is the primary drawback mentioned for this approach?",
+          "options": [
+            "(a) High performance penalty",
+            "(b) Added complexity in design",
+            "(c) Inability to detect faults",
+            "(d) Large data size"
+          ],
+          "answer_en": "(b) Added complexity in design",
+          "explanation_ar": "يتطلب تصميم دقيق للترميز، اختيار الكود المناسب، وآلية التحقق."
+        },
+        {
+          "type": "Multiple Choice",
+          "question_en": "Which of the following is an example of encoding outputs with minimal redundancy?",
+          "options": [
+            "(a) Duplicating the entire ALU",
+            "(b) Adding a parity bit to a data bus",
+            "(c) Recomputing the result twice",
+            "(d) Using two separate memory modules"
+          ],
+          "answer_en": "(b) Adding a parity bit to a data bus",
+          "explanation_ar": "بت واحد فقط يُضاف لكشف خطأ في أي بت من البيانات."
+        },
+        {
+          "type": "True/False",
+          "question_en": "This method can achieve fault masking if a correcting code is used.",
+          "options": [
+            "True",
+            "False"
+          ],
+          "answer_en": "True",
+          "explanation_ar": "نعم، إذا استُخدم كود تصحيح (مثل Hamming)، يُمكن تصحيح الخطأ تلقائيًا → إخفاء الفشل."
+        },
+        {
+          "type": "Definition",
+          "question_en": "Explain why encoding outputs uses less hardware than module replication.",
+          "answer_en": "Instead of duplicating the entire functional module (which could be large), only a small encoder circuit (e.g., XOR gates for parity) is added to generate redundancy.",
+          "explanation_ar": "تكرار الوحدة يعني نسخ كل البوابات، بينما ترميز المخرجات يحتاج فقط دائرة صغيرة لتوليد الكود."
+        }
+      ],
+      "b_previous_slides": [
+        {
+          "question_ar": "كيف يرتبط هذا النهج (الشريحة 29) بنموذج الإرسال في الشريحة 28؟",
+          "hint_ar": "الشريحة 28 طبّقت التكرار على البيانات أثناء النقل، أما الشريحة 29 تُطبّقه على **مخرجات وحدة داخلية** (مثل معالج أو دائرة) لحمايتها من الأعطال الداخلية."
+        },
+        {
+          "question_ar": "هل يمكن استخدام هذا الأسلوب مع **التكرار الزمني (الشريحة 26)** لتحسين الموثوقية؟",
+          "hint_ar": "نعم، يُستخدم **ترميز المخرجات** لحماية البيانات، و**التكرار الزمني مع الترميز** لحماية العمليات الحسابية → نظام هجين عالي الموثوقية."
+        }
+      ]
+    }
+  },
+  {
+    "slide_number": 30,
+    "slide_title_ar": "نظرية الترميز",
+    "slide_title_en": "Coding Theory",
+    "general_summary_ar": "تُعرّف هذه الشريحة **نظرية الترميز** كاستخدام بتات أكثر من اللازم لتمثيل البيانات، بهدف كشف الأخطاء الناتجة عن انقلاب البتات. تُركّز على **أكواد كشف الأخطاء** المختلفة التي تُغطي فئات مختلفة من الأعطال بكميات متفاوتة من التكرار، مع مراعاة سهولة الترميز وفك الترميز.",
+    "details_and_text": [
+      {
+        "text_en": "Coding: Using more bits than necessary to represent data",
+        "explanation_ar": "**الترميز:** استخدام عدد أكبر من البتات مما هو مطلوب لتمثيل البيانات الأصلية، بهدف إضافة تكرار معلوماتي."
+      },
+      {
+        "text_en": "Provides way to detect errors – Errors occur when bits get flipped",
+        "explanation_ar": "**كشف الأخطاء:** يحدث الخطأ عندما ينقلب بت من 0 إلى 1 أو العكس (bit flip)، والكود يكشف هذا الانقلاب."
+      },
+      {
+        "text_en": "Error Detecting Codes: Many types, detect different classes of errors",
+        "explanation_ar": "**أكواد كشف الأخطاء:** أنواع متعددة (Parity، CRC، Checksum)، كل نوع يكشف فئة معينة من الأخطاء (خطأ واحد، أخطاء متتالية...)."
+      },
+      {
+        "text_en": "Use different amounts of redundancy",
+        "explanation_ar": "**كمية التكرار:** تختلف حسب الكود: بت واحد (Parity)، أو 32 بت (CRC-32)."
+      },
+      {
+        "text_en": "Ease of encoding and decoding data varies",
+        "explanation_ar": "**سهولة الترميز/فك الترميز تختلف:** حسب نوع الكود – أكواد بسيطة (Parity) سهلة وسريعة، أكواد معقدة (Reed-Solomon) تحتاج معالجة أكثر."
+      },
+      {
+        "text_en": "Example: Parity Bit (Before & After bit flip)",
+        "explanation_ar": "**مثال عملي (Parity):**\\n- البيانات: `1011` → مع Parity (زوجي): `10111`\\n- أثناء النقل: انقلاب → `10011`\\n- في المستقبل: مجموع الـ1 = 3 (فردي) → **خطأ مكتشف!**"
+      },
+      {
+        "text_en": "Why this detects permanent faults",
+        "explanation_ar": "**لماذا يكشف الأعطال الدائمة؟** العطل الدائم في الدائرة يُسبب انقلابات منتظمة في المخرجات → تُخلّ بقواعد الكود → يُكتشف."
+      },
+      {
+        "text_en": "Difference from Time Redundancy (Slide 24)",
+        "explanation_ar": "**الفرق عن التكرار الزمني (الشريحة 24):**\\n| الطريقة | الأساس | التكلفة | التأثير على الأداء |\\n|---------|--------|----------|-------------------|\\n| **التكرار الزمني** | إعادة تنفيذ | وقت إضافي | تأخير كبير |\\n| **الترميز** | بتات زائدة | حجم أكبر | لا تأخير |"
+      },
+      {
+        "text_en": "Important technical notes",
+        "explanation_ar": "**ملاحظات تقنية مهمة:**\\n- الترميز **يكشف** الخطأ، لا يمنعه.\\n- للتصحيح → أكواد مثل **Hamming، Reed-Solomon**.\\n- يُستخدم في: **ECC RAM، HDD، Wi-Fi، 5G، الفضاء**.\\n- اختيار الكود يعتمد على: نوع الخطأ، التكلفة، الأداء."
+      }
+    ],
+    "questions_en_ar": {
+      "a_current_slide_qa": [
+        {
+          "type": "Multiple Choice",
+          "question_en": "What is the main reason for using more bits than necessary in coding?",
+          "options": [
+            "(a) To increase speed",
+            "(b) To detect bit flips (errors)",
+            "(c) To reduce hardware",
+            "(d) To encrypt data"
+          ],
+          "answer_en": "(b) To detect bit flips (errors)",
+          "explanation_ar": "البتات الزائدة تُمكّن من كشف الانقلابات في البتات أثناء النقل أو المعالجة."
+        },
+        {
+          "type": "Multiple Choice",
+          "question_en": "In the parity bit example, if data `1011` is sent as `10111` and received as `10011`, what happens?",
+          "options": [
+            "(a) Accepted as correct",
+            "(b) Error detected (odd parity)",
+            "(c) Error corrected automatically",
+            "(d) Data is retransmitted"
+          ],
+          "answer_en": "(b) Error detected (odd parity)",
+          "explanation_ar": "مجموع الـ1 = 3 (فردي)، لكن الكود يتطلب زوجي → خطأ مكتشف."
+        },
+        {
+          "type": "Multiple Choice",
+          "question_en": "Which factor is NOT considered when choosing an error detecting code?",
+          "options": [
+            "(a) Type of errors to detect",
+            "(b) Amount of redundancy",
+            "(c) Ease of encoding/decoding",
+            "(d) Color of the data bus"
+          ],
+          "answer_en": "(d) Color of the data bus",
+          "explanation_ar": "لون الناقل لا يؤثر – العوامل التقنية فقط هي المعيار."
+        },
+        {
+          "type": "True/False",
+          "question_en": "All error detecting codes can correct errors.",
+          "options": [
+            "True",
+            "False"
+          ],
+          "answer_en": "False",
+          "explanation_ar": "أكواد **الكشف** تكتشف فقط. التصحيح يتطلب أكواد **تصحيح** (مثل Hamming)."
+        },
+        {
+          "type": "Definition",
+          "question_en": "Explain with an example how a bit flip is detected using parity.",
+          "answer_en": "Data: 1011 → Even parity: 10111. If bit 3 flips → 10011. Recalculated parity = odd → mismatch → error detected.",
+          "explanation_ar": "البيانات: `1011` → مع تكافؤ زوجي: `10111`. انقلاب البت الثالث → `10011` → مجموع فردي → خطأ مكتشف."
+        }
+      ],
+      "b_previous_slides": [
+        {
+          "question_ar": "ما العلاقة بين **نظرية الترميز** (الشريحة 30) و**ترميز المخرجات** في الشريحة 29؟",
+          "hint_ar": "الشريحة 29 طبّقت المبدأ، والشريحة 30 تُعطي الأساس النظري: كيف تُصمم الأكواد لتكون فعالة وسهلة."
+        },
+        {
+          "question_ar": "هل يمكن استخدام أكواد الترميز مع **التكرار الزمني**؟",
+          "hint_ar": "نعم، في الأنظمة عالية الأمان: **ترميز لكشف الأخطاء** + **تكرار زمني للتحقق** → موثوقية مزدوجة."
+        }
+      ]
+    }
+  },
+  {
+    "slide_number": 31,
+    "slide_title_ar": "كود الكتل",
+    "slide_title_en": "Block Code",
+    "general_summary_ar": "تُوضح هذه الشريحة مبدأ **كود الكتل** في كشف الأخطاء: يُقسم الفضاء الكلي إلى **كلمات صالحة (Codewords)** و**غير صالحة**. يُكتشف الخطأ إذا تحولت الكلمة الصالحة إلى غير صالحة، لكن **لا يُكتشف** إذا تحولت إلى كلمة صالحة أخرى (بسبب مسافة هامينغ صغيرة).",
+    "details_and_text": [
+      {
+        "text_en": "To detect errors, some redundancy needed",
+        "explanation_ar": "**التكرار ضروري لكشف الأخطاء:** بدون تكرار، كل كلمة ممكنة تُعتبر صالحة → لا يُمكن تمييز الخطأ."
+      },
+      {
+        "text_en": "Space of distinct 2n blocks partitioned into codewords and non-codewords",
+        "explanation_ar": "**تقسيم الفضاء:** من 2ⁿ كلمة ممكنة، يُختار عدد أقل كـ **كلمات صالحة**، والباقي **غير صالح**."
+      },
+      {
+        "text_en": "Can detect errors that cause codeword to become non-codeword",
+        "explanation_ar": "**يكشف الأخطاء المكتشفة:** إذا تحولت كلمة صالحة إلى غير صالحة → خطأ مكتشف."
+      },
+      {
+        "text_en": "Cannot detect errors that cause codeword to become another codeword",
+        "explanation_ar": "**لا يكشف الأخطاء غير المكتشفة:** إذا تحولت كلمة صالحة إلى أخرى صالحة → يُفسَّر كبيانات صحيحة (خطأ مخفي)."
+      },
+      {
+        "text_en": "Example: Simple (4,3) Parity Code",
+        "explanation_ar": "**مثال (4,3):**\\n- كلمة مُرسلة: `0110` → انقلاب بت: `0100` (غير صالح) → **مكتشف**\\n- انقلاب بتّين: `0110` → `1111` (صالح) → **غير مكتشف**"
+      },
+      {
+        "text_en": "Why this detects permanent faults",
+        "explanation_ar": "**لماذا يكشف الأعطال الدائمة؟** العطل الدائم يُسبب تغييرًا منتظمًا في المخرجات → يُحوّل الكلمة الصالحة إلى غير صالحة في معظم الحالات."
+      },
+      {
+        "text_en": "Difference from Time Redundancy (Slide 24)",
+        "explanation_ar": "**الفرق عن التكرار الزمني:**\n| الطريقة | كيف تكشف؟ | يكشف خطأين؟ | التكلفة |\n|---------|-----------|-------------|--------|\n| زمني | مقارنة تنفيذين | نعم | تأخير |\n| كتل | صحة الكلمة | فقط إذا d_min > 2 | حجم أكبر |"
+      },
+      {
+        "text_en": "Important technical notes",
+        "explanation_ar": "**ملاحظات تقنية مهمة:**\\n- **مسافة هامينغ (d_min)** تحدد قدرة الكشف.\\n- كود هامينغ: d_min = 3 → يكشف خطأين، يُصحح واحد.\\n- **لا يوجد كود يكشف كل الأخطاء** – دائمًا احتمال خطأ مخفي.\\n- يُستخدم في: ECC، الاتصالات، التخزين."
+      }
+    ],
+    "questions_en_ar": {
+      "a_current_slide_qa": [
+        {
+          "type": "Multiple Choice",
+          "question_en": "In a block code, when is an error guaranteed to be detected?",
+          "options": [
+            "(a) When any bit flips",
+            "(b) When a codeword becomes a non-codeword",
+            "(c) When two codewords are identical",
+            "(d) When redundancy is zero"
+          ],
+          "answer_en": "(b) When a codeword becomes a non-codeword",
+          "explanation_ar": "فقط إذا خرجت الكلمة عن مجموعة الكلمات الصالحة → يُكتشف الخطأ."
+        },
+        {
+          "type": "Multiple Choice",
+          "question_en": "Why might a 2-bit error go undetected in a simple parity code?",
+          "options": [
+            "(a) Because parity bit is missing",
+            "(b) Because it changes one codeword to another valid codeword",
+            "(c) Because the receiver ignores errors",
+            "(d) Because the medium is perfect"
+          ],
+          "answer_en": "(b) Because it changes one codeword to another valid codeword",
+          "explanation_ar": "انقلاب بتّين قد يُحوّل كلمة صالحة إلى أخرى صالحة → خطأ مخفي."
+        },
+        {
+          "type": "Multiple Choice",
+          "question_en": "What is the minimum Hamming distance required to detect 2 errors?",
+          "options": [
+            "(a) 1",
+            "(b) 2",
+            "(c) 3",
+            "(d) 4"
+          ],
+          "answer_en": "(c) 3",
+          "explanation_ar": "d_min ≥ t + 1 → لكشف خطأين: d_min ≥ 3"
+        },
+        {
+          "type": "True/False",
+          "question_en": "A block code with d_min = 3 can correct 1 error.",
+          "options": [
+            "True",
+            "False"
+          ],
+          "answer_en": "True",
+          "explanation_ar": "نعم، للتصحيح: d_min ≥ 2t + 1 → t = 1 → d_min ≥ 3"
+        },
+        {
+          "type": "Definition",
+          "question_en": "Explain with an example why some errors are undetectable in block codes.",
+          "answer_en": "In a (4,3) parity code, sending `0110` (for data 011). If two bits flip to `1111` (valid for data 111), the receiver accepts it as correct → error undetected.",
+          "explanation_ar": "مثال: `0110` → `1111` (كلاهما صالح) → المستقبل يقبل `111` بدل `011` → خطأ غير مكتشف."
+        }
+      ],
+      "b_previous_slides": [
+        {
+          "question_ar": "كيف يرتبط **كود الكتل** (الشريحة 31) بـ **كود هامينغ** الذي شرحناه؟",
+          "hint_ar": "كود هامينغ هو نوع من **كود الكتل** مع d_min = 3 → يكشف خطأين ويُصحح واحد."
+        },
+        {
+          "question_ar": "هل يمكن دمج كود الكتل مع **التكرار الزمني**؟",
+          "hint_ar": "نعم، في الأنظمة عالية الأمان: **كود كتل لكشف الأخطاء في البيانات** + **تكرار زمني للتحقق من العمليات**."
+        }
+      ]
+    }
+  },
+  {
+    "slide_number": 32,
+    "slide_title_ar": "تعريف الكود",
+    "slide_title_en": "Code",
+    "general_summary_ar": "تُعرّف هذه الشريحة **الكود** كمجموعة من التسلسلات (n-tuples) التي تتبع قواعد محددة. تُركّز على **الكود الثنائي** و**كود BCD** الذي يُمثّل كل رقم عشري بـ 4 بتات (من 0000 إلى 1001). يُستخدم BCD لسهولة العرض، ويكشف بعض الأخطاء لكنه ليس مُصممًا للتصحيح.",
+    "details_and_text": [
+      {
+        "text_en": "Code of length n is a set of n-tuples satisfying some well-defined set of rules",
+        "explanation_ar": "**تعريف الكود:** مجموعة من التسلسلات بطول n (مثل 4 بتات) تُلبي قواعد واضحة تحدد ما هو صالح."
+      },
+      {
+        "text_en": "Binary code uses only 0 and 1 symbols",
+        "explanation_ar": "**الكود الثنائي:** يستخدم رمزين فقط: 0 و 1 → أساس كل الأكواد الرقمية."
+      },
+      {
+        "text_en": "binary coded decimal (BCD) code uses 4 bits for each decimal digit",
+        "explanation_ar": "**كود BCD:** كل رقم عشري (0–9) يُمثّل بـ 4 بتات، من `0000` إلى `1001`."
+      },
+      {
+        "text_en": "0000 for 0, 0001 for 1, ..., 1001 for 9",
+        "explanation_ar": "**جدول BCD:**\\n0 → `0000`\\n1 → `0001`\\n...\\n9 → `1001`"
+      },
+      {
+        "text_en": "Example: Number 925 in BCD",
+        "explanation_ar": "**مثال:** الرقم 925 → `1001 0010 0101`"
+      },
+      {
+        "text_en": "Error detection in BCD",
+        "explanation_ar": "**كشف الأخطاء في BCD:**\\n- `0010` (2) → `0011` (غير صالح) → **مكتشف**\\n- `0010` → `1001` (9) → **غير مكتشف**"
+      },
+      {
+        "text_en": "Why this detects permanent faults",
+        "explanation_ar": "**لماذا يكشف الأعطال الدائمة؟** العطل في دائرة BCD قد يُخرج كلمة غير صالحة (مثل `1010`) → يُكتشف كخطأ."
+      },
+      {
+        "text_en": "Difference from Time Redundancy (Slide 24)",
+        "explanation_ar": "**الفرق عن التكرار الزمني:**\n| الطريقة | الهدف | يكشف الأخطاء؟ | التكلفة |\n|---------|-------|---------------|--------|\n| زمني | كشف أعطال | نعم | تأخير |\n| BCD | تمثيل أرقام | جزئيًا | حجم أكبر |"
+      },
+      {
+        "text_en": "Important technical notes",
+        "explanation_ar": "**ملاحظات تقنية مهمة:**\\n- BCD **ليس كود تصحيح** – مجرد تمثيل.\\n- يكشف بعض الأخطاء (مثل `1010`) لكنه يُخطئ في أخرى.\\n- يُستخدم في: **العدادات، الشاشات، الآلات الحاسبة**.\\n- لتحسين الكشف: أضف **بت تكافؤ** أو **هامينغ**."
+      }
+    ],
+    "questions_en_ar": {
+      "a_current_slide_qa": [
+        {
+          "type": "Multiple Choice",
+          "question_en": "How many valid codewords are there in BCD?",
+          "options": [
+            "(a) 16",
+            "(b) 10",
+            "(c) 4",
+            "(d) 2"
+          ],
+          "answer_en": "(b) 10",
+          "explanation_ar": "فقط الأرقام من 0 إلى 9 → 10 كلمات صالحة من 16 ممكنة."
+        },
+        {
+          "type": "Multiple Choice",
+          "question_en": "What is the BCD representation of the decimal number 7?",
+          "options": [
+            "(a) 0111",
+            "(b) 0110",
+            "(c) 1110",
+            "(d) 1000"
+          ],
+          "answer_en": "(a) 0111",
+          "explanation_ar": "7 → `0111` في BCD."
+        },
+        {
+          "type": "Multiple Choice",
+          "question_en": "If BCD code `0010` is received as `1010`, what happens?",
+          "options": [
+            "(a) Accepted as 2",
+            "(b) Error detected (invalid codeword)",
+            "(c) Corrected to 0010",
+            "(d) Ignored"
+          ],
+          "answer_en": "(b) Error detected (invalid codeword)",
+          "explanation_ar": "`1010` ليس رقمًا من 0–9 → خطأ مكتشف."
+        },
+        {
+          "type": "Multiple Choice",
+          "question_en": "Why is BCD used in digital clocks?",
+          "options": [
+            "(a) To correct errors",
+            "(b) For easy human-readable display",
+            "(c) To reduce power",
+            "(d) To increase speed"
+          ],
+          "answer_en": "(b) For easy human-readable display",
+          "explanation_ar": "كل 4 بتات = رقم عشري → سهل التحويل إلى شاشة 7-segment."
+        },
+        {
+          "type": "True/False",
+          "question_en": "BCD can detect all single-bit errors.",
+          "options": [
+            "True",
+            "False"
+          ],
+          "answer_en": "False",
+          "explanation_ar": "بعض انقلابات البت تُحوّل كلمة صالحة إلى أخرى (مثل `0010` → `1001`)."
+        }
+      ],
+      "b_previous_slides": [
+        {
+          "question_ar": "كيف يرتبط **BCD** (الشريحة 32) بـ **كود الكتل** في الشريحة 31؟",
+          "hint_ar": "BCD هو نوع من **كود الكتل** بطول 4: 10 كلمات صالحة من 16، ويكشف بعض الأخطاء."
+        },
+        {
+          "question_ar": "هل يمكن تحسين BCD ليكشف كل الأخطاء؟",
+          "hint_ar": "نعم، بإضافة **بت تكافؤ** أو استخدام **كود هامينغ موسع**."
+        }
+      ]
+    }
+  },
+  {
+    "slide_number": 33,
+    "slide_title_ar": "كلمة الكود",
+    "slide_title_en": "Code Word",
+    "general_summary_ar": "تُعرّف هذه الشريحة **كلمة الكود (Codeword)** كتسلسل رمزي يُمثّل بيانات وفق قواعد الكود، و**Word** كأي تسلسل لا يتبع القواعد. الكلمات الصالحة هي مجموعة فرعية من 2ⁿ تسلسل ثنائي لتمكين كشف/تصحيح الأخطاء. الهدف: تمييز الأخطاء عند الخروج عن المجموعة الصالحة.",
+    "details_and_text": [
+      {
+        "text_en": "A code word is a collection of symbols used to represent a particular piece of data based on specified code.",
+        "explanation_ar": "**كلمة الكود:** مجموعة من الرموز (مثل 1001) تُمثّل بيانات (مثل الرقم 9) وفق قواعد الكود المحدد."
+      },
+      {
+        "text_en": "A word is an n-tuple not satisfying the rules of the code.",
+        "explanation_ar": "**Word (غير كود):** أي تسلسل من n بتات لا يتبع قواعد الكود (مثل 1010 في BCD)."
+      },
+      {
+        "text_en": "Codewords should be a subset of all possible 2^n binary tuples to make error detection/correction possible.",
+        "explanation_ar": "**الكلمات الصالحة مجموعة فرعية:** من أصل 2ⁿ تسلسل، نختار عددًا أقل لتكون صالحة، والباقي غير صالح → لتمييز الأخطاء."
+      },
+      {
+        "text_en": "Example: BCD Codewords",
+        "explanation_ar": "**مثال BCD:**\\n- `1001` → Codeword (9)\\n- `1010` → غير Codeword (غير صالح)"
+      },
+      {
+        "text_en": "Error detection using Codewords",
+        "explanation_ar": "**كشف الخطأ:**\\n- `0101` (5) → `0111` (7) → كلاهما Codeword → **غير مكتشف**\\n- `0101` → `0100` → غير Codeword → **مكتشف**"
+      },
+      {
+        "text_en": "Why this detects permanent faults",
+        "explanation_ar": "**لماذا يكشف الأعطال الدائمة؟** العطل في الدائرة قد يُخرج كلمة خارج المجموعة الصالحة → يُكتشف كخطأ."
+      },
+      {
+        "text_en": "Difference from Time Redundancy (Slide 24)",
+        "explanation_ar": "**الفرق عن التكرار الزمني:**\\n| الطريقة | الأساس | يكشف خطأين؟ | التكلفة |\n|---------|--------|-------------|--------|\n| زمني | مقارنة تنفيذين | نعم | تأخير |\n| كود | صحة الكلمة | يعتمد على d_min | حجم أكبر |"
+      },
+      {
+        "text_en": "Important technical notes",
+        "explanation_ar": "**ملاحظات تقنية مهمة:**\\n- الكلمات الصالحة دائمًا **أقل** من 2ⁿ.\\n- كلما قلّت الكلمات → زادت **المسافة بينها** → أقوى كشف.\\n- مثال: هامينغ (7,4) → 16 من 128.\\n- BCD → 10 من 16."
+      },
+      {
+        "text_en": "--------------------------",
+        "explanation_ar": "----- شرح إضافي -----"
+      },
+      {
+        "text_en": "Why subset of 2^n?",
+        "explanation_ar": "**لماذا مجموعة فرعية؟** لأن استخدام كل التسلسلات يجعل أي تغيير صالحًا → لا كشف للأخطاء."
+      },
+      {
+        "text_en": "Visual example: n=3 even parity",
+        "explanation_ar": "**مثال بصري (n=3، تكافؤ زوجي):**\\n- صالح: `000`, `011`, `101`, `110`\\n- غير صالح: `001`, `010`, `100`, `111`"
+      },
+      {
+        "text_en": "Comparison with Hamming Code",
+        "explanation_ar": "**مقارنة مع هامينغ:**\\n| الكود | الكلمات الصالحة | d_min |\n|------|------------------|------|\n| BCD | 10 من 16 | 1 |\n| هامينغ | 16 من 128 | 3 |"
+      }
+    ],
+    "questions_en_ar": {
+      "a_current_slide_qa": [
+        {
+          "type": "Multiple Choice",
+          "question_en": "What is a 'code word'?",
+          "options": [
+            "(a) Any binary sequence",
+            "(b) A valid representation of data according to the code",
+            "(c) A sequence with errors",
+            "(d) A parity bit"
+          ],
+          "answer_en": "(b) A valid representation of data according to the code",
+          "explanation_ar": "كلمة الكود هي التي تتبع قواعد الكود وتُمثّل بيانات صحيحة."
+        },
+        {
+          "type": "Multiple Choice",
+          "question_en": "In BCD, is `1010` a codeword?",
+          "options": [
+            "(a) Yes",
+            "(b) No",
+            "(c) Only if parity is even",
+            "(d) Only for digit 10"
+          ],
+          "answer_en": "(b) No",
+          "explanation_ar": "`1010` لا يُمثّل أي رقم من 0–9 → غير صالح."
+        },
+        {
+          "type": "Multiple Choice",
+          "question_en": "Why must codewords be a subset of all 2^n tuples?",
+          "options": [
+            "(a) To save memory",
+            "(b) To enable error detection",
+            "(c) To increase speed",
+            "(d) To encrypt data"
+          ],
+          "answer_en": "(b) To enable error detection",
+          "explanation_ar": "إذا كانت كل التسلسلات صالحة → لا نكتشف أي خطأ."
+        },
+        {
+          "type": "True/False",
+          "question_en": "A smaller set of codewords improves error detection.",
+          "options": [
+            "True",
+            "False"
+          ],
+          "answer_en": "True",
+          "explanation_ar": "كلما قلّت الكلمات الصالحة → زادت المسافة بينها → أسهل كشف الخطأ."
+        },
+        {
+          "type": "Definition",
+          "question_en": "Explain the difference between 'code word' and 'word'.",
+          "answer_en": "A code word satisfies the code rules and represents valid data. A word is any n-tuple, even if invalid.",
+          "explanation_ar": "كلمة الكود: صالحة وتُمثّل بيانات. Word: أي تسلسل، قد يكون غير صالح."
+        }
+      ],
+      "b_previous_slides": [
+        {
+          "question_ar": "كيف تُطبّق فكرة **كلمة الكود** على **كود BCD** في الشريحة 32؟",
+          "hint_ar": "في BCD: `0000` إلى `1001` هي **كلمات كود**، و`1010` إلى `1111` هي **غير كلمات كود**."
+        },
+        {
+          "question_ar": "هل يمكن أن يكون لدينا كود بكل 2ⁿ كلمة صالحة؟",
+          "hint_ar": "لا، لأنه لن يكون هناك تمييز بين الصحيح والخاطئ → لا كشف للأخطاء."
         }
       ]
     }
