@@ -212,7 +212,7 @@
       "a_current_slide_qa": [
         {
           "type": "Multiple Choice",
-          "question_en": "What is the term for a **defect** within the system? (a) Failure (b) Error (c) Fault (d) Dependability",
+          "question_en": "What is the term for a **defect** within the system: (a) Failure (b) Error (c) Fault (d) Dependability",
           "answer_en": "(c) Fault",
           "explanation_ar": "الإجابة هي (c) لأن العطل (Fault) يُعرَّف بأنه العيب أو الخلل الأولي داخل النظام."
         },
@@ -234,5 +234,476 @@
         }
       ]
     }
+  },
+  {
+    "slide_number": [
+      7,
+      8,
+      9
+    ],
+    "slide_title_ar": "أنواع الأخطاء (Types of Errors)",
+    "slide_title_en": "Types of Errors",
+    "general_summary_ar": "تنتقل هذه الشريحة إلى تصنيف **الأخطاء (Errors)**، وهي الانحرافات الداخلية التي يسببها العطل (Fault). تبدأ الشريحة بتعريف النوع الأبسط والأقل احتمالاً في النقل التسلسلي، وهو **خطأ البت الواحد (Single-bit error)**، وتوضح سبب ندرته في هذا النوع من الإرسال مقارنة بالإرسال المتوازي.",
+    "details_and_text": [
+      {
+        "text_en": "Single-bit error [cite: 40] when only one bit in the data unit has changed.",
+        "explanation_ar": "**خطأ البت الواحد (Single-bit error):** يحدث هذا الخطأ عندما يتغير بت واحد فقط (من 0 إلى 1 أو العكس) ضمن وحدة البيانات المرسلة."
+      },
+      {
+        "text_en": "Single bit errors are the least likely type of errors in serial data transmission because the noise must have a very short duration which is very rare.",
+        "explanation_ar": "يُعد خطأ البت الواحد هو **الأقل احتمالية** في إرسال البيانات التسلسلي (Serial Transmission). والسبب هو أن الضوضاء يجب أن تكون قصيرة جداً في مدتها الزمنية."
+      },
+      {
+        "text_en": "However this kind of errors can happen in parallel transmission.",
+        "explanation_ar": "هذا النوع من الأخطاء يمكن أن يحدث بسهولة أكبر في الإرسال **المتوازي (Parallel transmission)**."
+      },
+      {
+        "text_en": "Example: If data is sent at 1Mbps then each bit lasts only 1/1,000,000 sec. or 1 μs. For a single-bit error to occur, the noise must have a duration of only 1 μs, which is very rare.",
+        "explanation_ar": "لتوضيح ندرة الحدوث: إذا كان معدل الإرسال **1 ميغابت في الثانية (Mbps)**، فإن البت الواحد يستغرق **1 ميكروثانية **. لكي يحدث خطأ البت الواحد، يجب أن تكون مدة الضوضاء 1 ميكروثانية فقط، وهو أمر نادر الحدوث."
+      }
+    ],
+    "questions_en_ar": {
+      "a_current_slide_qa": [
+        {
+          "type": "True/False",
+          "question_en": "Single-bit errors are the most likely type of error in serial data transmission.",
+          "answer_en": "False",
+          "explanation_ar": "العبارة خاطئة. الشريحة تنص على أنها **الأقل احتمالية (least likely)** في الإرسال التسلسلي لأن الضوضاء يجب أن تكون قصيرة جداً."
+        },
+        {
+          "type": "Multiple Choice",
+          "question_en": "A single-bit error is easier to occur in which type of data transmission: (a) Serial transmission (b) Parallel transmission (c) Fiber optic transmission (d) Analog transmission",
+          "answer_en": "(b) Parallel transmission",
+          "explanation_ar": "الإجابة هي (b) حيث تشير الشريحة إلى أن هذا النوع من الأخطاء يمكن أن يحدث في الإرسال المتوازي."
+        }
+      ],
+      "b_previous_slides": [
+        {
+          "question_ar": "إذا حدث **خطأ بت واحد (Single-bit error)**، هل يمكن اعتباره ناتجاً عن **عطل عابر (Transient Fault)** (الشريحة 5)؟",
+          "hint_ar": "نعم، لأن خطأ البت الواحد عادة ما ينتج عن **ضوضاء (Noise)** وهي عامل خارجي عابر ومؤقت، وهو تعريف العطل العابر."
+        },
+        {
+          "question_ar": "في سياق **الاعتمادية (Dependability)** (الشريحة 4)، لماذا تُعد القدرة على اكتشاف **أخطاء البت الواحد** وتصحيحها مهمة لتحقيق خاصية **الموثوقية (Reliability)**؟",
+          "hint_ar": "لأن الموثوقية تتعلق باستمرارية التشغيل دون فشل، وتصحيح الأخطاء الصغيرة يمنع تحولها إلى فشل في الخدمة."
+        }
+      ]
+    }
+  },
+  {
+    "slide_number": 10,
+    "slide_title_ar": "خطأ البت المتعدد (Multiple-Bit Error)",
+    "slide_title_en": "Multiple-Bit Error",
+    "general_summary_ar": "تُعرّف هذه الشريحة النوع الأول من الأخطاء التي تتجاوز خطأ البت الواحد، وهو **خطأ البت المتعدد (Multiple-Bit Error)**، مع التركيز على حالة عدم تجاور البتات التالفة.",
+    "details_and_text": [
+      {
+        "text_en": "when two or more nonconsecutive bits in the data unit have changed.",
+        "explanation_ar": "**خطأ البت المتعدد:** يحدث عندما يتغير بتان أو أكثر ضمن وحدة البيانات، وتكون هذه البتات **غير متجاورة** (nonconsecutive) في التسلسل. ",
+        "image_context": "يوضح الرسم البياني بتين غير متجاورين تغيرتا في الإرسال (البت الثاني والخامس في المثال)."
+      }
+    ],
+    "questions_en_ar": {
+      "a_current_slide_qa": [
+        {
+          "type": "Multiple Choice",
+          "question_en": "What is the minimum number of changed bits required for a Multiple-Bit Error? (a) One bit (b) Two bits (c) Three bits (d) Four bits",
+          "answer_en": "(b) Two bits",
+          "explanation_ar": "الإجابة هي (b) لأن التعريف يشير إلى 'بتين أو أكثر'."
+        },
+        {
+          "type": "True/False",
+          "question_en": "In a Multiple-Bit Error, the changed bits must be adjacent (consecutive).",
+          "answer_en": "False",
+          "explanation_ar": "العبارة خاطئة. الشريحة تنص صراحة على أنها بتات **غير متجاورة (nonconsecutive)**."
+        }
+      ],
+      "b_previous_slides": [
+        {
+          "question_ar": "هل يمكن لـ **خطأ بت متعدد** أن يكون نتيجة لـ **عطل عابر (Transient Fault)** (الشريحة 5)؟",
+          "hint_ar": "نعم، لأن أي ضوضاء (Noise) عابرة وطويلة بما فيه الكفاية يمكن أن تؤدي إلى تغيير بتين أو أكثر."
+        }
+      ]
+    }
+  },
+  {
+    "slide_number": 11,
+    "slide_title_ar": "خطأ الدفعة (Burst Error)",
+    "slide_title_en": "Burst Error",
+    "general_summary_ar": "تُقدم هذه الشريحة التعريف البصري والأساسي لـ **خطأ الدفعة (Burst Error)**، وهو النوع الأكثر شيوعاً في الإرسال التسلسلي، مع إظهار حالة تجاور البتات التالفة في مثال مصور.",
+    "details_and_text": [
+      {
+        "text_en": "means that 2 or more consecutive bits in the data unit have changed",
+        "explanation_ar": "**خطأ الدفعة:** يحدث عندما يتغير بتان أو أكثر من البتات المتجاورة (consecutive) في وحدة البيانات. ",
+        "image_context": "يوضح الرسم البياني مثالاً على خطأ دفعة حيث تغيرت أربعة بتات متجاورة."
+      }
+    ],
+    "questions_en_ar": {
+      "a_current_slide_qa": [
+        {
+          "type": "True/False",
+          "question_en": "A Burst Error must always affect exactly two bits.",
+          "answer_en": "False",
+          "explanation_ar": "العبارة خاطئة. خطأ الدفعة يؤثر على 'بتين أو أكثر'."
+        },
+        {
+          "type": "Definition",
+          "question_en": "If 5 adjacent bits in a data unit change their values, is this considered a Burst Error?",
+          "answer_en": "Yes",
+          "explanation_ar": "نعم، لأنه ينطبق عليه تعريف خطأ الدفعة: 'بتين أو أكثر متجاورين'."
+        }
+      ],
+      "b_previous_slides": [
+        {
+          "question_ar": "لماذا يُعد **خطأ الدفعة** أكثر خطورة على **الموثوقية (Reliability)** (الشريحة 4) من **خطأ البت الواحد** (الشريحة 7)؟",
+          "hint_ar": "لأنه يفسد قدراً أكبر من البيانات، مما يزيد من احتمالية حدوث فشل في النظام."
+        }
+      ]
+    }
+  },
+  {
+    "slide_number": 12,
+    "slide_title_ar": "خطأ الدفعة - تعريف القياس (Burst Error - Measurement Definition)",
+    "slide_title_en": "Burst Error - Measurement Definition",
+    "general_summary_ar": "تُوضح هذه الشريحة تعريفاً أكثر دقة لـ **خطأ الدفعة**، وتصحح المفهوم الخاطئ بأن الأخطاء يجب أن تكون متجاورة، مؤكدة على أن القياس الفعلي لخطأ الدفعة يعتمد على **طوله (length)** بين أول وآخر بت تالف.",
+    "details_and_text": [
+      {
+        "text_en": "The term burst error means that two or more bits in the data unit have changed from 1 to 0 or from 0 to 1.",
+        "explanation_ar": "التعريف العام: **خطأ الدفعة** يعني أن بتين أو أكثر في وحدة البيانات قد تغيرتا قيمتهما. "
+      },
+      {
+        "text_en": "Burst errors does not necessarily mean that the errors occur in consecutive bits, the length of the burst is measured from the first corrupted bit to the last corrupted bit.",
+        "explanation_ar": "لا يشترط أن تكون الأخطاء متجاورة. ويُقاس **طول الدفعة** من أول بت تالف إلى آخر بت تالف."
+      }
+    ],
+    "questions_en_ar": {
+      "a_current_slide_qa": [
+        {
+          "type": "Scenario",
+          "question_en": "If a 10-bit unit has errors only at position 2 and position 9. What is the length of the burst error?",
+          "answer_en": "8 bits",
+          "explanation_ar": "الطول يُقاس من البت الأول التالف (2) إلى البت الأخير التالف (9): $9 - 2 + 1 = 8$ بت."
+        },
+        {
+          "type": "True/False",
+          "question_en": "If a 20-bit burst error occurs, it means exactly 20 bits have been flipped from 0 to 1 or vice versa.",
+          "answer_en": "False",
+          "explanation_ar": "العبارة خاطئة. الطول يشمل البتات السليمة بين أول وآخر بت تالف، لذا لا يلزم أن تكون جميع الـ 20 بتاً قد تغيرت."
+        }
+      ],
+      "b_previous_slides": [
+        {
+          "question_ar": "ما هو النوع من الأعطال (الشريحة 5) الذي من المرجح أن يسبب خطأ دفعة بطول كبير؟",
+          "hint_ar": "**العطل العابر (Transient Fault)**، خاصة إذا كان على شكل ضوضاء قوية وطويلة الأمد."
+        }
+      ]
+    }
+  },
+  {
+    "slide_number": 13,
+    "slide_title_ar": "خطأ الدفعة - الاحتمالية والأمثلة الحسابية (Burst Error - Probability and Calculation)",
+    "slide_title_en": "Burst Error - Probability and Calculation",
+    "general_summary_ar": "تُركز هذه الشريحة على تبرير سبب كون **خطأ الدفعة (Burst Error)** هو النوع **الأكثر احتمالاً (most likely)** للحدوث في **الإرسال التسلسلي (serial transmission)**، وتقدم أمثلة حسابية توضح كيف يعتمد عدد البتات المتأثرة على **معدل البيانات (Data Rate)** و **مدة الضوضاء (Duration of Noise)**.",
+    "details_and_text": [
+      {
+        "text_en": "Burst error is most likely to happen in serial transmission since the duration of noise is normally longer than the duration of a bit.",
+        "explanation_ar": "خطأ الدفعة هو الأكثر احتمالية في الإرسال التسلسلي. **السبب:** مدة الضوضاء تكون عادةً أطول من مدة البت الواحد، مما يؤدي إلى تلف عدة بتات. "
+      },
+      {
+        "text_en": "The number of bits affected depends on the data rate and duration of noise.",
+        "explanation_ar": "عدد البتات المتأثرة يعتمد على عاملين: **معدل البيانات (Data Rate)** و **مدة الضوضاء (Duration of Noise)**. "
+      },
+      {
+        "text_en": "Example: If data is sent at rate = 1Kbps then a noise of 1/100 sec can affect 10 bits.(1/100*1000)",
+        "explanation_ar": "عند معدل $1Kbps$: ضوضاء $1/100$ ثانية تؤثر على **10 بتات**. [cite: 579]"
+      },
+      {
+        "text_en": "If same data is sent at rate = 1Mbps then a noise of 1/100 sec can affect 10,000 bits.(1/100*10^6)",
+        "explanation_ar": "عند معدل $1Mbps$: نفس الضوضاء تؤثر على **10,000 بت**. [cite: 580] (مما يوضح خطورة ارتفاع معدل البيانات)."
+      }
+    ],
+    "questions_en_ar": {
+      "a_current_slide_qa": [
+        {
+          "type": "True/False",
+          "question_en": "Increasing the data rate while keeping the noise duration constant will decrease the number of affected bits in a burst error.",
+          "answer_en": "False",
+          "explanation_ar": "العبارة خاطئة. زيادة معدل البيانات يزيد من عدد البتات المتأثرة لنفس مدة الضوضاء."
+        },
+        {
+          "type": "Calculation",
+          "question_en": "If data is sent at a rate of 2 Mbps and a noise pulse lasts for 0.0001 sec, how many bits could be affected?",
+          "answer_en": "200 bits",
+          "explanation_ar": "عدد البتات المتأثرة = $(2 \times 10^6 \text{ بت/ث}) \times (10^{-4} \text{ ثانية}) = 200 \text{ بت}$."
+        }
+      ],
+      "b_previous_slides": [
+        {
+          "question_ar": "في سياق **تحمل الأخطاء (Fault Tolerance)** (الشريحة 3)، لماذا تعتبر هذه الشريحة نقطة حاسمة في تصميم بروتوكولات الاتصالات؟",
+          "hint_ar": "لأنها تحدد طبيعة التحدي (وهو الأخطاء الكبيرة)، وبالتالي يجب أن تُصمم آليات تحمل الأخطاء (كالتشفير التصحيحي) لتكون قادرة على معالجة عدد كبير من البتات التالفة."
+        }
+      ]
+    }
+  },
+  {
+    "slide_number": 14,
+    "slide_title_ar": "استراتيجيات تحمل الأخطاء (Fault Tolerant Strategies)",
+    "slide_title_en": "Fault Tolerant Strategies",
+    "general_summary_ar": "توضح هذه الشريحة أن تحمل الأخطاء يتم تحقيقه عبر **التكرار (Redundancy)** بأشكاله المختلفة (مادي، برمجي، معلوماتي، زمني)، وتُعرّف طريقتين تقنيتين مهمتين: إخفاء الأخطاء (Fault Masking) وإعادة التشكيل (Reconfiguration).",
+    "details_and_text": [
+      {
+        "text_en": "Fault tolerance in computer system is achieved through redundancy in hardware, software, information, and/or computations Time. Such redundancy can be implemented in static, dynamic, or hybrid configurations.",
+        "explanation_ar": "يتم تحقيق تحمل الأخطاء من خلال **التكرار** بأشكاله المختلفة (مادي، برمجي، معلوماتي، زمني). يمكن تطبيق التكرار في تكوينات ثابتة (Static)، ديناميكية (Dynamic)، أو هجينة (Hybrid)."
+      },
+      {
+        "text_en": "Fault masking is any process that prevents faults in a system from introducing errors. Example: Error correcting memories and majority voting.",
+        "explanation_ar": "**إخفاء الأخطاء (Fault Masking):** هي عملية تمنع العطل من التسبب في ظهور خطأ واضح، وتعتمد على التكرار الثابت (مثل ذاكرة تصحيح الأخطاء والتصويت بالأغلبية)."
+      },
+      {
+        "text_en": "Reconfiguration is the process of eliminating faulty component from a system and restoring the system to some operational state.",
+        "explanation_ar": "**إعادة التشكيل (Reconfiguration):** هي عملية عزل المكون المعيب من النظام، ومن ثم إعادة تشغيله أو تعديل تكوينه للوصول إلى حالة تشغيل مقبولة."
+      }
+    ],
+    "questions_en_ar": {
+      "a_current_slide_qa": [
+        {
+          "type": "True/False",
+          "question_en": "Fault Masking typically relies on a Dynamic Redundancy approach.",
+          "answer_en": "False",
+          "explanation_ar": "العبارة خاطئة. إخفاء الأخطاء (مثل التصويت بالأغلبية) هو مثال كلاسيكي على التكرار الثابت (Static Redundancy)."
+        },
+        {
+          "type": "Definition",
+          "question_en": "Which strategy involves isolating a failed component and continuing operation?",
+          "answer_en": "Reconfiguration (إعادة التشكيل)",
+          "explanation_ar": "إعادة التشكيل هي عملية إزالة المكون الفاشل وإعادة النظام للعمل بوضعية جديدة."
+        }
+      ],
+      "b_previous_slides": [
+        {
+          "question_ar": "إذا حدث **خطأ بت واحد (Single-bit Error)** (الشريحة 7)، فأي تقنية من الشريحة 14 ستكون الأكثر سرعة وكفاءة للتعامل معه في الذاكرة؟",
+          "hint_ar": "**إخفاء الأخطاء (Fault Masking)**، باستخدام ذاكرة تصحيح الأخطاء التي تعالج الخطأ فوراً دون مقاطعة النظام."
+        }
+      ]
+    }
+  },
+  {
+    "slide_number": 15,
+    "slide_title_ar": "مراحل معالجة الأعطال (Fault Handling Processes)",
+    "slide_title_en": "Fault Handling Processes",
+    "general_summary_ar": "تُركز هذه الشريحة على الخطوات المتسلسلة التي يتبعها النظام للتعامل مع العطل بمجرد حدوثه، بدءًا من الاكتشاف وصولاً إلى التعافي، وهي الأساس لتطبيق استراتيجية تحمل الأخطاء.",
+    "details_and_text": [
+      {
+        "text_en": "Fault detection is the process of recognizing that a fault has occurred. Fault detection is often required before any recovery procedure can be initiated.",
+        "explanation_ar": "**اكتشاف الأعطال (Fault Detection):** عملية التعرف على أن عطلاً قد حدث. هي خطوة ضرورية قبل البدء بأي إجراء للتعافي."
+      },
+      {
+        "text_en": "Fault location is the process of determining where a fault has occurred so that an appropriate recovery can be initiated.",
+        "explanation_ar": "**تحديد موقع العطل (Fault Location):** عملية تحديد المكان الدقيق أو المكون المسؤول عن العطل لضمان تطبيق إجراء التعافي الصحيح."
+      },
+      {
+        "text_en": "Fault Isolating is the process of isolating a fault and preventing the effects of that fault from propagating throughout the system.",
+        "explanation_ar": "**عزل العطل (Fault Isolating):** عملية فصل المكون المعيب لمنع تأثيره من الانتشار إلى باقي الأجزاء السليمة في النظام."
+      },
+      {
+        "text_en": "Fault recovery is the process of remaining operational or regaining operational status via reconfiguration even in the presence of faults",
+        "explanation_ar": "**التعافي من العطل (Fault Recovery):** عملية استعادة أو الحفاظ على حالة التشغيل حتى في وجود الأعطال، غالبًا من خلال **إعادة التشكيل (Reconfiguration)**."
+      }
+    ],
+    "questions_en_ar": {
+      "a_current_slide_qa": [
+        {
+          "type": "Sequence",
+          "question_en": "Arrange the following steps in the correct order: Recovery, Location, Detection, Isolating.",
+          "answer_en": "Detection → Location → Isolating → Recovery.",
+          "explanation_ar": "التسلسل يبدأ بالتعرف على العطل، تحديد مكانه، عزله، والتعافي منه."
+        },
+        {
+          "type": "Definition",
+          "question_en": "Which process specifically aims to prevent a localized fault from damaging other components in the system?",
+          "answer_en": "Fault Isolating",
+          "explanation_ar": "عزل العطل هو الإجراء الذي يمنع انتشاره (Propagation) لباقي أجزاء النظام."
+        }
+      ],
+      "b_previous_slides": [
+        {
+          "question_ar": "باستخدام مفهوم **إخفاء الأخطاء (Fault Masking)** (الشريحة 14)، هل لا يزال يتطلب النظام تمرير جميع مراحل معالجة الأعطال (Detection, Location, Isolating, Recovery)؟",
+          "hint_ar": "لا، إخفاء الأخطاء يتجاوز مراحل Detection و Location و Isolating، حيث يتم التعافي أو 'الإخفاء' بشكل فوري دون تدخل المراحل الأخرى."
+        }
+      ]
+    }
+  },
+  {
+    "slide_number": 16,
+    "slide_title_ar": "مفهوم وأنواع التكرار (The Concept of Redundancy)",
+    "slide_title_en": "The Concept of Redundancy",
+    "general_summary_ar": "تُعرّف هذه الشريحة التكرار كمبدأ أساسي لتحمل الأخطاء، ثم تُصنّفه إلى ثلاثة أنواع رئيسية: المعلوماتي (Information)، والزمني (Time)، والمادي (Hardware).",
+    "details_and_text": [
+      {
+        "text_en": "Redundancy is simply the addition of information, resources, or time beyond what is needed for normal system operation.",
+        "explanation_ar": "**التكرار:** هو إضافة معلومات، أو موارد، أو وقت، تتجاوز الحد الأدنى المطلوب للتشغيل العادي للنظام لتمكينه من تحمل الأخطاء."
+      },
+      {
+        "text_en": "Information redundancy is the addition of extra information beyond that required to implement a given function; for example, error detection codes.",
+        "explanation_ar": "**التكرار المعلوماتي:** إضافة معلومات إضافية (بتات تكرارية)؛ مثال: أكواد كشف الأخطاء."
+      },
+      {
+        "text_en": "Time redundancy uses additional time to perform the functions of a system such that fault detection and often fault tolerance can be achieved. Transient faults are tolerated by this.",
+        "explanation_ar": "**التكرار الزمني:** استخدام وقت إضافي لتكرار وظائف النظام. مناسب بشكل خاص لـ **الأعطال العابرة (Transient Faults)**."
+      },
+      {
+        "text_en": "Hardware redundancy is the addition of extra hardware, usually for the purpose either detecting or tolerating faults.",
+        "explanation_ar": "**التكرار المادي:** إضافة أجهزة إضافية (مثل مكونات احتياطية) لغرض اكتشاف أو تحمل الأعطال."
+      }
+    ],
+    "questions_en_ar": {
+      "a_current_slide_qa": [
+        {
+          "type": "Multiple Choice",
+          "question_en": "Which type of redundancy is primarily concerned with repeating a process to overcome temporary data corruption: (a) Information redundancy (b) Hardware redundancy (c) Time redundancy (d) Fault avoidance",
+          "answer_en": "(c) Time redundancy",
+          "explanation_ar": "التكرار الزمني هو إعادة العملية في فترة زمنية لاحقة للتغلب على الأعطال العابرة."
+        },
+        {
+          "type": "Definition",
+          "question_en": "Give an example of Information Redundancy.",
+          "answer_en": "Error detection codes (مثل Parity Check أو CRC).",
+          "explanation_ar": "أكواد كشف الأخطاء هي معلومات إضافية تُضاف للبيانات الأصلية."
+        }
+      ],
+      "b_previous_slides": [
+        {
+          "question_ar": "في الشريحة 14، ذكرنا تقنية **إخفاء الأخطاء (Fault Masking)**. أي من أنواع التكرار (Information, Time, Hardware) يمكن استخدامه لتحقيق إخفاء الأخطاء؟",
+          "hint_ar": "كلاهما **التكرار المعلوماتي** (باستخدام أكواد تصحيح الأخطاء القوية) و**التكرار المادي** (باستخدام التصويت بالأغلبية)."
+        }
+      ]
+    }
+  },
+  {
+    "slide_number": 17,
+    "slide_title_ar": "التكرار البرمجي وتأثير التكرار العام (Software Redundancy and General Impact)",
+    "slide_title_en": "Software Redundancy and General Impact",
+    "general_summary_ar": "تُعرّف هذه الشريحة **التكرار البرمجي**، ثم تُسلّط الضوء على **التكلفة** والتبعات السلبية التي يجب موازنتها عند تطبيق أي شكل من أشكال التكرار.",
+    "details_and_text": [
+      {
+        "text_en": "Software redundancy is the addition of extra software, beyond what is needed to perform a given function, to detect and possibly tolerate faults.",
+        "explanation_ar": "**التكرار البرمجي:** إضافة كود أو خوارزميات إضافية تتجاوز الحد الأدنى المطلوب لأداء الوظيفة الأساسية، بهدف اكتشاف وتحمل الأعطال. مثال: التنفيذ المتعدد للنسخ (N-Version Programming)."
+      },
+      {
+        "text_en": "The use of redundancy can provide additional capabilities within a system. But, redundancy can have very important impact on a system's performance, size, weight, power consumption, and reliability.",
+        "explanation_ar": "**تأثير التكرار:** التكرار يمنح قدرات تحمل الأخطاء، ولكنه يؤثر سلباً على **الأداء**، ويزيد من **الحجم والوزن** و**استهلاك الطاقة**. قد يؤثر أيضاً على **الموثوقية** بسبب زيادة نقاط الفشل الكلية."
+      }
+    ],
+    "questions_en_ar": {
+      "a_current_slide_qa": [
+        {
+          "type": "Multiple Choice",
+          "question_en": "Which factor is generally *not* negatively impacted by the addition of redundancy: (a) Power Consumption (b) Size (c) Fault Tolerance (d) Performance",
+          "answer_en": "(c) Fault Tolerance",
+          "explanation_ar": "تحمل الأخطاء هو الهدف الأساسي من التكرار، وبالتالي هو الشيء الوحيد الذي يجب أن يتحسن وليس يتأثر سلباً."
+        },
+        {
+          "type": "Definition",
+          "question_en": "What is the primary purpose of adding extra software in Software Redundancy?",
+          "answer_en": "To detect and possibly tolerate faults.",
+          "explanation_ar": "اكتشاف وتحمل الأعطال هو هدف الكود الإضافي."
+        }
+      ],
+      "b_previous_slides": [
+        {
+          "question_ar": "إذا استخدمنا تقنية **التصويت بالأغلبية (Majority Voting)** (الشريحة 14)، فما هو التأثير السلبي الأوضح الذي سيظهر من القائمة المذكورة في الشريحة 17؟",
+          "hint_ar": "زيادة **استهلاك الطاقة** و**الحجم/الوزن**، لأن التصويت بالأغلبية يتطلب مضاعفة الأجهزة."
+        }
+      ]
+    }
+  },
+  {
+    "slide_number": 18,
+    "slide_title_ar": "إخفاء الفشل بالتكرار (Failure Masking by Redundancy)",
+    "slide_title_en": "Failure Masking by Redundancy",
+    "general_summary_ar": "توضح هذه الشريحة كيف تُستخدم الأنواع الثلاثة الرئيسية من التكرار (**المعلوماتي**، **الزمني**، و**المادي**) لتحقيق هدف **إخفاء الفشل (Failure Masking)**، أي منع العطل من التسبب في خطأ واضح يُعيق عمل النظام.",
+    "details_and_text": [
+      {
+        "text_en": "Information Redundancy – add extra bits to allow for error detection/recovery (e.g., Hamming codes and the like).",
+        "explanation_ar": "**التكرار المعلوماتي:** إضافة بتات إضافية تُمكّن من اكتشاف وتصحيح الأخطاء تلقائياً، مما يُخفي تأثير العطل. مثال: أكواد هامينغ."
+      },
+      {
+        "text_en": "Time Redundancy – perform operation and, if needs be, perform it again.",
+        "explanation_ar": "**التكرار الزمني:** إعادة تنفيذ العملية أو الإرسال. يُستخدم لإخفاء الأعطال العابرة التي تزول مع تكرار العملية."
+      },
+      {
+        "text_en": "Hardware Redundancy :add extra (duplicate) hardware and/or software to the system.",
+        "explanation_ar": "**التكرار المادي:** إضافة أجهزة مكررة أو برمجيات مكررة للنظام، مثل أنظمة التصويت بالأغلبية، لإخفاء فشل المكون الأساسي."
+      }
+    ],
+    "questions_en_ar": {
+      "a_current_slide_qa": [
+        {
+          "type": "Multiple Choice",
+          "question_en": "If a system uses Hamming codes for error correction, which type of redundancy is it primarily relying on to mask the failure: (a) Time Redundancy (b) Information Redundancy (c) Hardware Redundancy (d) Fault Forecasting",
+          "answer_en": "(b) Information Redundancy",
+          "explanation_ar": "أكواد هامينغ هي تقنية تعتمد على إضافة معلومات (بتات تكرارية) لتصحيح الأخطاء."
+        },
+        {
+          "type": "Definition",
+          "question_en": "How does Time Redundancy mask a failure?",
+          "answer_en": "By repeating the operation or transmission, which is effective against transient faults.",
+          "explanation_ar": "التكرار الزمني يتيح للمحاولة الثانية أو اللاحقة أن تكون ناجحة إذا كان العطل مؤقتاً."
+        }
+      ],
+      "b_previous_slides": [
+        {
+          "question_ar": "تقنية **إخفاء الأخطاء (Fault Masking)** (الشريحة 14) التي تم شرحها هنا، هل تتطلب مراحل **اكتشاف** و**عزل** العطل (الشريحة 15) بشكل صريح؟",
+          "hint_ar": "لا، إخفاء الأخطاء هو تعافٍ فوري. يتم اكتشاف وتصحيح الخطأ في وقت واحد دون الحاجة لمراحل عزل أو إعادة تشكيل واضحة."
+        }
+      ]
+    }
+  },
+  {
+  "slide_number": [
+    19,
+    20
+  ],
+  "slide_title_ar": "مثال: تحمل الأخطاء في مكوك الفضاء (Space Shuttle)",
+  "slide_title_en": "Example: Space Shuttle Fault Tolerance",
+  "general_summary_ar": "تُعد هذه الشرائح دراسة حالة كلاسيكية لتطبيق مبادئ تحمل الأخطاء، حيث يوضح المثال كيف استخدم مكوك الفضاء خمسة حواسيب متطابقة لتوفير مستويات عالية من التكرار المادي وإخفاء الأخطاء.",
+  "details_and_text": [
+    {
+      "text_en": "Uses 5 identical computers which can be assigned to redundant operation under program control.",
+      "explanation_ar": "يستخدم المكوك 5 حواسيب متطابقة يمكن برمجتها للعمل بتكوينات تكرارية مختلفة."
+    },
+    {
+      "text_en": "During critical mission phases - boost, re-entry and loading - 4 of its 5 computers operate an NMR configuration, receiving the same inputs and executing identical tasks. When a failure is detected the computer concerned is switched out of the system leaving a TMR arrangement.",
+      "explanation_ar": "في المراحل الحرجة، تعمل 4 حواسيب بتكوين **NMR** (تكرار معياري N). عند اكتشاف عطل، يُعزل الحاسوب المعيب، ليتبقى تكوين **TMR** (تكرار ثلاثي معياري)."
+    },
+    {
+      "text_en": "The fifth computer is used to perform non-critical tasks in a simplex mode, however, under extreme cases may take over critical functions. The unit has 'diverse' software and could be used if a systematic fault was discovered in the other four computers.",
+      "explanation_ar": "الحاسوب الخامس يعمل لمهام غير حرجة، لكنه يحتوي على **برمجيات متنوعة (Diverse software)** لمواجهة **الأعطال المنهجية** التي قد تؤثر على الحواسيب الأربعة الأخرى."
+    },
+    {
+      "text_en": "The shuttle can tolerate up to two computer failures; after a second failure it operates as a duplex system and uses comparison and self-test techniques to survive a third fault.",
+      "explanation_ar": "يتحمل النظام فشل حاسوبين. بعد الفشل الثاني، يعمل كنظام **مزدوج (Duplex system)** ويستخدم المقارنة والاختبار الذاتي للبقاء في حالة تشغيل."
+    }
+  ],
+  "questions_en_ar": {
+    "a_current_slides_qa": [
+      {
+        "type": "Definition",
+        "question_en": "Why is the fifth computer given Diverse Software?",
+        "answer_en": "To protect the system against Systematic Faults (مثل أخطاء الكود البرمجي) التي قد تؤثر على جميع الحواسيب الأربعة الأخرى التي تشترك في نفس البرنامج.",
+        "explanation_ar": "البرمجيات المتنوعة ضرورية للتحمل ضد الأخطاء المنهجية التي تنشأ من خطأ بشري في التصميم أو الكود."
+      },
+      {
+        "type": "Scenario",
+        "question_en": "If the system is operating in a TMR configuration and a fault is detected in one computer, what is the next operating configuration?",
+        "answer_en": "Duplex System (نظام مزدوج)",
+        "explanation_ar": "التكوين يبدأ بـ 4 (NMR)، بعد فشل 1 يصبح 3 (TMR)، وبعد فشل 2 يصبح 2 (Duplex)."
+      }
+    ],
+    "b_previous_slides": [
+      {
+        "question_ar": "في سيناريو مكوك الفضاء، يتم تحقيق **إخفاء الأخطاء (Fault Masking)** (الشريحة 14) باستخدام أي تكوين تكراري؟",
+        "hint_ar": "يتم تحقيقه باستخدام **NMR (4 حواسيب)** و **TMR (3 حواسيب)**، حيث يتم استخدام **التصويت** لإخفاء الخطأ الفردي."
+      }
+    ]
   }
+}
 ]

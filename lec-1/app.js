@@ -25,12 +25,21 @@ async function loadSlides() {
         }
         
         // تحويل البيانات إلى تنسيق الشرائح
-        slides = data.map(slide => ({
-            id: slide.slide_number,
-            title: `${slide.slide_title_ar} - ${slide.slide_title_en}`,
-            image: `img/${slide.slide_number}.png`,
-            content: slide
-        }));
+        slides = data.map(slide => {
+            const slideNumber = Array.isArray(slide.slide_number) ? slide.slide_number[0] : slide.slide_number;
+            const slideNumbers = Array.isArray(slide.slide_number) ? slide.slide_number : [slide.slide_number];
+            
+            const slideRange = slideNumbers.length > 1 ? slideNumbers.join('-') : slideNumbers[0];
+            
+            return {
+                id: slideNumber,
+                title: `${slideRange}- ${slide.slide_title_ar} - ${slide.slide_title_en}`,
+                images: slideNumbers.map(num => `img/${num}.png`),
+                content: slide,
+                slideNumbers: slideNumbers,
+                slideRange: slideRange
+            };
+        });
         
         slides.sort((a, b) => a.id - b.id);
         buildMenu();
@@ -51,7 +60,7 @@ function buildMenu() {
     slides.forEach((s, idx) => {
         const a = document.createElement('a');
         a.href = `#slide-${s.id}`;
-        a.textContent = `${s.id}- ${s.content.slide_title_ar} - ${s.content.slide_title_en}`;
+        a.textContent = `${s.slideRange}- ${s.content.slide_title_ar} - ${s.content.slide_title_en}`;
         a.addEventListener('click', (e) => {
             e.preventDefault();
             currentIndex = idx;
@@ -159,32 +168,40 @@ function formatSlideContent(slide) {
                 let questionText = qa.question_en;
                 if (qa.type === 'Multiple Choice') {
                     // فصل السؤال عن الخيارات
-                    const parts = questionText.split(': ');
+                    const parts = questionText.split(/:\s*/);
                     if (parts.length > 1) {
-                        const question = parts[0] + ':';
-                        const choices = parts[1];
-                        // فصل الخيارات
-                        const choicesList = choices.split(/\s*\([a-d]\)\s*/).filter(choice => choice.trim());
-                        const choiceLetters = choices.match(/\([a-d]\)/g) || [];
+                        const question = parts[0] + '?';
+                        const choices = parts.slice(1).join(' ');
+                        // فصل الخيارات باستخدام regex للعثور على الخيارات
+                        const choiceMatches = choices.match(/\([a-d]\)[^(]*/g) || [];
+                        const choicesList = [];
+                        const choiceLetters = [];
                         
-                        html += `<p><strong>${qa.type} - س${index + 1}:</strong> ${question}</p>`;
-                        html += `<div style="margin: 10px 0; padding-left: 20px;">`;
+                        choiceMatches.forEach(match => {
+                            const letter = match.match(/\([a-d]\)/)[0];
+                            const text = match.replace(/\([a-d]\)\s*/, '').trim();
+                            choiceLetters.push(letter);
+                            choicesList.push(text);
+                        });
+                        
+                        html += `<p style="direction: ltr; text-align: left;"><strong>${qa.type} - س${index + 1}:</strong> ${question}</p>`;
+                        html += `<div style="margin: 10px 0; padding-left: 20px; direction: ltr; text-align: left;">`;
                         
                         choiceLetters.forEach((letter, i) => {
                             if (choicesList[i]) {
-                                html += `<p style="margin: 5px 0;"><strong>${letter}</strong> ${choicesList[i].trim()}</p>`;
+                                html += `<p style="margin: 5px 0;"><strong>${letter}</strong> ${choicesList[i]}</p>`;
                             }
                         });
                         html += `</div>`;
                     } else {
-                        html += `<p><strong>${qa.type} - س${index + 1}:</strong> ${questionText}</p>`;
+                        html += `<p style="direction: ltr; text-align: left;"><strong>${qa.type} - س${index + 1}:</strong> ${questionText}</p>`;
                     }
                 } else {
-                    html += `<p><strong>${qa.type} - س${index + 1}:</strong> ${questionText}</p>`;
+                    html += `<p style="direction: ltr; text-align: left;"><strong>${qa.type} - س${index + 1}:</strong> ${questionText}</p>`;
                 }
                 
                 html += `<button onclick="toggleAnswer('${questionId}')" class="show-answer-btn" style="background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%); color: white; border: none; padding: 6px 12px; border-radius: 8px; cursor: pointer; font-family: 'Cairo', sans-serif; font-weight: 500; font-size: 13px; margin: 10px 0; transition: all 0.3s ease; box-shadow: 0 2px 8px rgba(34, 197, 94, 0.3); border: 1px solid rgba(34, 197, 94, 0.4);" onmouseover="this.style.transform='translateY(-1px)'; this.style.boxShadow='0 4px 12px rgba(34, 197, 94, 0.4)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 8px rgba(34, 197, 94, 0.3)'">عرض الجواب</button>`;
-                html += `<div id="${questionId}" class="answer-section" style="display: none; margin-top: 10px; padding: 10px; background: rgba(34, 197, 94, 0.1); border-radius: 6px; border: 1px solid rgba(34, 197, 94, 0.2);">`;
+                html += `<div id="${questionId}" class="answer-section" style="display: none; margin-top: 10px; padding: 10px; background: rgba(34, 197, 94, 0.1); border-radius: 6px; border: 1px solid rgba(34, 197, 94, 0.2); direction: rtl; text-align: right;">`;
                 html += `<p><strong>الإجابة:</strong> ${qa.answer_en}</p>`;
                 html += `<p><strong>الشرح:</strong> ${qa.explanation_ar}</p>`;
                 html += `</div>`;
@@ -220,16 +237,29 @@ async function renderCurrent() {
     
     document.getElementById('slideTitle').textContent = slide.title;
     
-    const img = document.getElementById('slideImage');
-    img.src = slide.image;
-    img.alt = `صورة الشريحة ${slide.id}`;
-    img.onerror = function () {
-        this.style.display = 'none';
-        console.error('Failed to load image:', slide.image);
-    };
-    img.onload = function () {
-        this.style.display = 'block';
-    };
+    const imgContainer = document.getElementById('slideImageContainer');
+    imgContainer.innerHTML = '';
+    
+    slide.images.forEach((imageSrc, index) => {
+        const img = document.createElement('img');
+        img.src = imageSrc;
+        img.alt = `صورة الشريحة ${slide.slideNumbers[index]}`;
+        img.style.width = '100%';
+        img.style.maxWidth = '800px';
+        img.style.height = 'auto';
+        img.style.borderRadius = '12px';
+        img.style.margin = '10px auto';
+        img.style.display = 'block';
+        img.style.boxShadow = '0 8px 25px rgba(0,0,0,0.3)';
+        img.style.border = '1px solid rgba(255,255,255,0.1)';
+        
+        img.onerror = function () {
+            this.style.display = 'none';
+            console.error('Failed to load image:', imageSrc);
+        };
+        
+        imgContainer.appendChild(img);
+    });
     
     const textEl = document.getElementById('slideText');
     textEl.innerHTML = formatSlideContent(slide.content);
