@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تقرير حول تحمل الأعطال ونظرية الترميز</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="theme-toggle" title="تبديل الوضع"></div>
+    <div class="container">
+        <h1>تقرير حول تحمل الأعطال (Fault Tolerance) ونظرية الترميز</h1>
+
+        <h2>1. المفاهيم الأساسية والتعاريف</h2>
+        
+        <p><strong>تحمل الأعطال (Fault Tolerance)</strong> هو قدرة النظام على مواصلة التشغيل الخالي من الأخطاء (error-free operation) في وجود عطل غير متوقع. وهو متطلب غير وظيفي (non-functional requirement) يتطلب من النظام الاستمرار في العمل حتى في وجود الأعطال. كما يُعرّف بأنه قدرة النظام على توفير خدمة ما حتى في وجود الأخطاء.</p>
+
+        <div class="highlight-box">
+            <p>ترتبط المصطلحات الأساسية في هذا السياق بعلاقة السبب والنتيجة (العطل يسبب الخطأ، والخطأ يؤدي إلى الفشل):</p>
+        </div>
+
+        <table class="definition-table">
+            <thead>
+                <tr>
+                    <th>المصطلح</th>
+                    <th>المصطلح الإنجليزي</th>
+                    <th>التعريف وفقاً للمصادر</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>العطل</td>
+                    <td>Fault</td>
+                    <td>هو عيب (defect) داخل النظام. وهو سبب الخطأ.</td>
+                </tr>
+                <tr>
+                    <td>الخطأ</td>
+                    <td>Error</td>
+                    <td>يُلاحظ كانحراف عن السلوك المتوقع للنظام. وجود الأخطاء في النظام هو ما يؤدي إلى الفشل.</td>
+                </tr>
+                <tr>
+                    <td>الفشل</td>
+                    <td>Failure</td>
+                    <td>يُقال إن النظام يفشل عندما لا يستطيع تلبية وعوده (cannot meet its promises)، أي عندما لا يتمكن النظام من الأداء كما هو مطلوب (does not meet specifications).</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <hr class="section-separator">
+
+        <h2>2. الاعتمادية (Dependability) والموثوقية (Reliability)</h2>
+        
+        <p>يرتبط تحمل الأعطال ارتباطاً وثيقاً بمفهوم الاعتمادية (Dependability)، والذي يُعرّف من خلال عدد من الخصائص:</p>
+
+        <ul>
+            <li><strong>التوافرية (Availability):</strong> أن يكون النظام جاهزاً للاستخدام فوراً.</li>
+            <li><strong>الموثوقية (Reliability):</strong> قدرة النظام على العمل باستمرار دون فشل.</li>
+            <li><strong>السلامة (Safety):</strong> إذا فشل النظام، فلن يحدث شيء كارثي (catastrophic).</li>
+            <li><strong>القابلية للصيانة (Maintainability):</strong> عندما يفشل النظام، يمكن إصلاحه بسهولة وسرعة، وأحياناً دون أن يلاحظ المستخدمون الفشل.</li>
+        </ul>
+
+        <hr class="section-separator">
+
+        <h2>3. تصنيف الأعطال والأخطاء (Faults and Errors)</h2>
+
+        <h3>أ. أنواع الأعطال (Types of Fault)</h3>
+
+        <h4>1. العطل العابر (Transient Fault)</h4>
+        <p>يبدأ في وقت محدد، يبقى لبعض الوقت ثم يختفي. مثال: أعطال في أنظمة الاتصالات أو مكونات الأجهزة المتأثرة بالنشاط الإشعاعي.</p>
+
+        <h4>2. العطل المتقطع (Intermittent Fault)</h4>
+        <p>هي أعطال عابرة تحدث من حين لآخر. مثال: مكون حساس للحرارة يعمل ثم يتوقف ثم يعاود العمل بعد أن يبرد.</p>
+
+        <h4>3. العطل الدائم (Permanent Fault)</h4>
+        <p>هو خطأ قابل للتكرار (repeatable error) يبقى في النظام حتى يتم إصلاحه. أمثلة: مكون فاشل، سلك مكسور، أو خطأ في التصميم.</p>
+
+        <h3>ب. أنواع الأخطاء (Types of Errors)</h3>
+
+        <h4>1. خطأ البت الأحادي (Single-bit error)</h4>
+        <p>يحدث عندما يتغير بت واحد فقط في وحدة البيانات. هذا النوع من الأخطاء هو الأقل احتمالاً في الإرسال التسلسلي (serial data transmission)، لكنه قد يحدث في الإرسال المتوازي (parallel transmission).</p>
+
+        <h4>2. خطأ البت المتعدد (Multiple-Bit Error)</h4>
+        <p>يحدث عندما تتغير بتتان أو أكثر من البتات غير المتتالية في وحدة البيانات.</p>
+
+        <h4>3. خطأ الدفق (Burst error)</h4>
+        <p>يعني أن بتتين أو أكثر في وحدة البيانات قد تغيرتا. لا يشترط أن تكون الأخطاء متتالية، ويُقاس طول الدفق من أول بت فاسد إلى آخر بت فاسد. هذا النوع هو الأكثر احتمالية في الإرسال التسلسلي لأن مدة الضوضاء عادة ما تكون أطول من مدة البت الواحد.</p>
+
+        <hr class="section-separator">
+
+        <h2>4. استراتيجيات تحمل الأعطال (Fault Tolerance Strategies)</h2>
+
+        <p>يتم تحقيق تحمل الأعطال في أنظمة الحاسوب من خلال استخدام <strong>الازدواجية (Redundancy)</strong> في الأجهزة، أو البرمجيات، أو المعلومات، و/أو الحسابات/الوقت. الازدواجية هي ببساطة إضافة معلومات، أو موارد، أو وقت، تتجاوز ما هو ضروري للتشغيل العادي.</p>
+
+        <h3>أ. أنواع الازدواجية (Types of Redundancy)</h3>
+
+        <h4>1. ازدواجية الأجهزة (Hardware Redundancy)</h4>
+        <p>إضافة أجهزة مكررة لغرض اكتشاف أو تحمل الأعطال. مثال: في مكوك الفضاء (Space Shuttle)، يتم استخدام 5 أجهزة حاسوب متطابقة، حيث يعمل 4 منها في تكوين NMR (الازدواجية بتصويت الأغلبية) خلال المراحل الحرجة، لاستقبال نفس المدخلات وتنفيذ نفس المهام.</p>
+
+        <h4>2. ازدواجية البرمجيات (Software Redundancy)</h4>
+        <p>إضافة برامج إضافية للكشف عن الأعطال وربما تحملها. مثال: الحاسوب الخامس في مكوك الفضاء يستخدم برمجيات "متنوعة" (diverse software) ويمكنه تولي المهام الحرجة في حالة اكتشاف خطأ منهجي (systematic fault) في الأجهزة الأربعة الأخرى.</p>
+
+        <h4>3. ازدواجية المعلومات (Information Redundancy)</h4>
+        <p>إضافة معلومات إضافية (بتات زائدة) تسمح بكشف/استرداد الأخطاء. مثال: رموز كشف وتصحيح الأخطاء (Error detecting and correcting codes).</p>
+
+        <h4>4. ازدواجية الوقت (Time Redundancy)</h4>
+        <p>استخدام وقت إضافي لأداء وظائف النظام، حيث يتم تكرار العملية مرتين أو أكثر للمقارنة واكتشاف الأعطال العابرة (Transient faults).</p>
+
+        <h3>ب. تقنيات تحقيق تحمل الأعطال</h3>
+
+        <ul>
+            <li><strong>إخفاء الأعطال (Fault Masking):</strong> هي عملية تمنع الأعطال من إحداث أخطاء. مثال: ذواكر تصحيح الأخطاء والتصويت بالأغلبية.</li>
+            <li><strong>إعادة التشكيل (Reconfiguration):</strong> عملية التخلص من المكون المعطوب واستعادة النظام إلى حالة تشغيلية معينة.</li>
+        </ul>
+
+        <h3>ج. عمليات دعم تحمل الأعطال</h3>
+
+        <p>تتضمن استراتيجيات تحمل الأعطال الخطوات التالية بالترتيب:</p>
+
+        <ol>
+            <li><strong>اكتشاف الأعطال (Fault Detection):</strong> التعرف على وقوع العطل.</li>
+            <li><strong>تحديد موقع العطل (Fault Location):</strong> تحديد مكان وقوع العطل لبدء الاسترداد المناسب.</li>
+            <li><strong>عزل العطل (Fault Isolating):</strong> منع تأثيرات العطل من الانتشار في جميع أنحاء النظام.</li>
+            <li><strong>استعادة التشغيل (Fault Recovery):</strong> البقاء في حالة التشغيل أو استعادة حالة التشغيل عبر إعادة التشكيل (reconfiguration).</li>
+        </ol>
+
+        <hr class="section-separator">
+
+        <h2>5. ازدواجية المعلومات ونظرية الترميز (Coding Theory)</h2>
+
+        <p><strong>ازدواجية المعلومات (Information Redundancy)</strong> هي الأساس لرموز كشف وتصحيح الأخطاء (EDC codes). يتضمن الترميز (Coding) استخدام عدد بتات أكبر مما هو ضروري لتمثيل البيانات، مما يوفر طريقة لاكتشاف الأخطاء.</p>
+
+        <h3>أ. المسافة وقدرات الرمز (Code Capabilities)</h3>
+
+        <p>تُعرف <strong>مسافة الرمز (Distance of Code)</strong> بأنها الحد الأدنى للمسافة بين أي كلمتين برمجيتين (codewords) في الرمز. تُحدد هذه المسافة قدرة الرمز على الكشف والتصحيح:</p>
+
+        <div class="formula">
+            للكشف عن ε من الأخطاء (bit errors): d<sub>C</sub> ≥ ε + 1
+        </div>
+
+        <div class="formula">
+            لتصحيح ε من الأخطاء: d<sub>C</sub> ≥ 2ε + 1
+        </div>
+
+        <h3>ب. رمز التكافؤ البسيط (Simple Parity Code)</h3>
+
+        <p>رمز التكافؤ هو رمز قابل للفصل (Separable code)، حيث تكون الكلمة البرمجية (codeword) هي (البيانات + بتات التحقق).</p>
+
+        <div class="highlight-box">
+            <ul>
+                <li><strong>المسافة:</strong> مسافة هامنغ (Hamming distance) لرمز التكافؤ البسيط هي 2.</li>
+                <li><strong>القدرة:</strong> يمكنه كشف أي خطأ أحادي البت (any single bit error) فقط (d<sub>C</sub> = 2 ⟹ ε = 1).</li>
+            </ul>
+        </div>
+
+        <h4>آلية العمل (حساب التكافؤ الزوجي - Even Parity Check)</h4>
+        <p>يتم إضافة بت تكافؤ (parity bit) إلى وحدة البيانات بحيث يصبح العدد الإجمالي للآحاد (1s) زوجياً.</p>
+
+        <table class="example-table">
+            <thead>
+                <tr>
+                    <th>المعلومات (Data)</th>
+                    <th>عدد الـ 1s</th>
+                    <th>بت التكافؤ (Parity)</th>
+                    <th>الكلمة البرمجية (Codeword)</th>
+                    <th>عدد الـ 1s الإجمالي</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>011</td>
+                    <td>2</td>
+                    <td>0</td>
+                    <td>0110</td>
+                    <td>2 (زوجي)</td>
+                </tr>
+                <tr>
+                    <td>111</td>
+                    <td>3</td>
+                    <td>1</td>
+                    <td>1111</td>
+                    <td>4 (زوجي)</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="example-section">
+            <h4>مثال كشف الأخطاء (Detection Example)</h4>
+            
+            <p><strong>1. الإرسال:</strong> إذا أرسل المُرسِل البيانات <span class="code">1110110</span> (5 آحاد) مع بت تكافؤ زوجي (Parity) هو <span class="code">1</span>، تصبح الكلمة المرسلة <span class="code">11101101</span> (6 آحاد).</p>
+            
+            <p><strong>2. الاستقبال (خطأ):</strong> إذا استلم المُستقبِل البيانات <span class="code">00101001</span> (3 آحاد)، يقوم بعد الآحاد ويجد رقماً فردياً (3). يعرف المُستقبِل أن البيانات فاسدة (corrupted)، ويتجاهلها ويطلب إعادة إرسال.</p>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

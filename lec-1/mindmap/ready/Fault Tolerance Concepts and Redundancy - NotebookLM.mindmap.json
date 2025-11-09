@@ -1,0 +1,681 @@
+﻿{
+    "title":  "Fault Tolerance and Related Concepts",
+    "children":  [
+                     {
+                         "title":  "Terminology and Definitions",
+                         "children":  [
+                                          {
+                                              "title":  "Failure",
+                                              "children":  [
+                                                               {
+                                                                   "title":  "System cannot meet its promises",
+                                                                   "children":  [
+
+                                                                                ]
+                                                               },
+                                                               {
+                                                                   "title":  "Brought about by errors",
+                                                                   "children":  [
+
+                                                                                ]
+                                                               },
+                                                               {
+                                                                   "title":  "System can no longer perform as required",
+                                                                   "children":  [
+
+                                                                                ]
+                                                               }
+                                                           ]
+                                          },
+                                          {
+                                              "title":  "Error",
+                                              "children":  [
+                                                               {
+                                                                   "title":  "Deviation from expected behavior",
+                                                                   "children":  [
+
+                                                                                ]
+                                                               },
+                                                               {
+                                                                   "title":  "Caused by a fault",
+                                                                   "children":  [
+
+                                                                                ]
+                                                               }
+                                                           ]
+                                          },
+                                          {
+                                              "title":  "Fault",
+                                              "children":  [
+                                                               {
+                                                                   "title":  "Cause of an error",
+                                                                   "children":  [
+
+                                                                                ]
+                                                               },
+                                                               {
+                                                                   "title":  "A defect within the system",
+                                                                   "children":  [
+
+                                                                                ]
+                                                               }
+                                                           ]
+                                          },
+                                          {
+                                              "title":  "Fault Tolerance",
+                                              "children":  [
+                                                               {
+                                                                   "title":  "Ability to continue error-free operation in presence of fault",
+                                                                   "children":  [
+
+                                                                                ]
+                                                               },
+                                                               {
+                                                                   "title":  "Non-functional requirement",
+                                                                   "children":  [
+
+                                                                                ]
+                                                               },
+                                                               {
+                                                                   "title":  "Achieved with minimal user involvement",
+                                                                   "children":  [
+
+                                                                                ]
+                                                               },
+                                                               {
+                                                                   "title":  "Ability to provide service even in presence of errors",
+                                                                   "children":  [
+
+                                                                                ]
+                                                               }
+                                                           ]
+                                          }
+                                      ]
+                     },
+                     {
+                         "title":  "Relationship to Dependability",
+                         "children":  [
+                                          {
+                                              "title":  "Availability",
+                                              "children":  [
+                                                               {
+                                                                   "title":  "System ready to be used immediately",
+                                                                   "children":  [
+
+                                                                                ]
+                                                               }
+                                                           ]
+                                          },
+                                          {
+                                              "title":  "Reliability",
+                                              "children":  [
+                                                               {
+                                                                   "title":  "System runs continuously without failure",
+                                                                   "children":  [
+
+                                                                                ]
+                                                               }
+                                                           ]
+                                          },
+                                          {
+                                              "title":  "Safety",
+                                              "children":  [
+                                                               {
+                                                                   "title":  "Nothing catastrophic happens if system fails",
+                                                                   "children":  [
+
+                                                                                ]
+                                                               }
+                                                           ]
+                                          },
+                                          {
+                                              "title":  "Maintainability",
+                                              "children":  [
+                                                               {
+                                                                   "title":  "System can be repaired easily and quickly",
+                                                                   "children":  [
+
+                                                                                ]
+                                                               }
+                                                           ]
+                                          }
+                                      ]
+                     },
+                     {
+                         "title":  "Types of Fault",
+                         "children":  [
+                                          {
+                                              "title":  "Transient Fault",
+                                              "children":  [
+                                                               {
+                                                                   "title":  "Starts, remains for period, then disappears",
+                                                                   "children":  [
+
+                                                                                ]
+                                                               },
+                                                               {
+                                                                   "title":  "Example: Adverse reaction to radioactivity",
+                                                                   "children":  [
+
+                                                                                ]
+                                                               },
+                                                               {
+                                                                   "title":  "Many faults in communication systems",
+                                                                   "children":  [
+
+                                                                                ]
+                                                               }
+                                                           ]
+                                          },
+                                          {
+                                              "title":  "Intermittent Fault",
+                                              "children":  [
+                                                               {
+                                                                   "title":  "Transient faults occurring from time to time",
+                                                                   "children":  [
+
+                                                                                ]
+                                                               },
+                                                               {
+                                                                   "title":  "Example: Heat sensitive hardware component",
+                                                                   "children":  [
+
+                                                                                ]
+                                                               }
+                                                           ]
+                                          },
+                                          {
+                                              "title":  "Permanent Fault",
+                                              "children":  [
+                                                               {
+                                                                   "title":  "Repeatable error",
+                                                                   "children":  [
+
+                                                                                ]
+                                                               },
+                                                               {
+                                                                   "title":  "Remains until repaired",
+                                                                   "children":  [
+
+                                                                                ]
+                                                               },
+                                                               {
+                                                                   "title":  "Examples: Failed component, broken wire, design error",
+                                                                   "children":  [
+
+                                                                                ]
+                                                               }
+                                                           ]
+                                          }
+                                      ]
+                     },
+                     {
+                         "title":  "Types of Errors (Data Transmission)",
+                         "children":  [
+                                          {
+                                              "title":  "Single-bit Error",
+                                              "children":  [
+                                                               {
+                                                                   "title":  "Only one bit changed",
+                                                                   "children":  [
+
+                                                                                ]
+                                                               },
+                                                               {
+                                                                   "title":  "Least likely in serial transmission",
+                                                                   "children":  [
+
+                                                                                ]
+                                                               },
+                                                               {
+                                                                   "title":  "Can happen in parallel transmission",
+                                                                   "children":  [
+
+                                                                                ]
+                                                               }
+                                                           ]
+                                          },
+                                          {
+                                              "title":  "Multiple-Bit Error",
+                                              "children":  [
+                                                               {
+                                                                   "title":  "Two or more nonconsecutive bits changed",
+                                                                   "children":  [
+
+                                                                                ]
+                                                               }
+                                                           ]
+                                          },
+                                          {
+                                              "title":  "Burst Error",
+                                              "children":  [
+                                                               {
+                                                                   "title":  "Two or more consecutive bits changed",
+                                                                   "children":  [
+
+                                                                                ]
+                                                               },
+                                                               {
+                                                                   "title":  "Most likely in serial transmission",
+                                                                   "children":  [
+
+                                                                                ]
+                                                               },
+                                                               {
+                                                                   "title":  "Length measured from first to last corrupted bit",
+                                                                   "children":  [
+
+                                                                                ]
+                                                               }
+                                                           ]
+                                          },
+                                          {
+                                              "title":  "Fault Detection",
+                                              "children":  [
+                                                               {
+                                                                   "title":  "Recognizing a fault has occurred",
+                                                                   "children":  [
+
+                                                                                ]
+                                                               }
+                                                           ]
+                                          }
+                                      ]
+                     },
+                     {
+                         "title":  "Fault Tolerant Strategies/Techniques",
+                         "children":  [
+                                          {
+                                              "title":  "Fault Location",
+                                              "children":  [
+                                                               {
+                                                                   "title":  "Determining where a fault occurred",
+                                                                   "children":  [
+
+                                                                                ]
+                                                               }
+                                                           ]
+                                          },
+                                          {
+                                              "title":  "Fault Isolation",
+                                              "children":  [
+                                                               {
+                                                                   "title":  "Preventing propagation of fault effects",
+                                                                   "children":  [
+
+                                                                                ]
+                                                               }
+                                                           ]
+                                          },
+                                          {
+                                              "title":  "Fault Recovery",
+                                              "children":  [
+                                                               {
+                                                                   "title":  "Regaining operational status via reconfiguration",
+                                                                   "children":  [
+
+                                                                                ]
+                                                               }
+                                                           ]
+                                          },
+                                          {
+                                              "title":  "Fault Masking",
+                                              "children":  [
+                                                               {
+                                                                   "title":  "Prevents faults from introducing errors (e.g., voting)",
+                                                                   "children":  [
+
+                                                                                ]
+                                                               }
+                                                           ]
+                                          },
+                                          {
+                                              "title":  "Reconfiguration",
+                                              "children":  [
+                                                               {
+                                                                   "title":  "Eliminating faulty component",
+                                                                   "children":  [
+
+                                                                                ]
+                                                               }
+                                                           ]
+                                          },
+                                          {
+                                              "title":  "Redundancy (Core Method)",
+                                              "children":  [
+                                                               {
+                                                                   "title":  "Addition of information, resources, or time",
+                                                                   "children":  [
+
+                                                                                ]
+                                                               },
+                                                               {
+                                                                   "title":  "Configurations: static, dynamic, or hybrid",
+                                                                   "children":  [
+
+                                                                                ]
+                                                               }
+                                                           ]
+                                          }
+                                      ]
+                     },
+                     {
+                         "title":  "Types of Redundancy",
+                         "children":  [
+                                          {
+                                              "title":  "Information Redundancy",
+                                              "children":  [
+                                                               {
+                                                                   "title":  "Addition of extra information (check bits)",
+                                                                   "children":  [
+
+                                                                                ]
+                                                               },
+                                                               {
+                                                                   "title":  "Allows fault detection/masking",
+                                                                   "children":  [
+
+                                                                                ]
+                                                               },
+                                                               {
+                                                                   "title":  "Uses Error Detecting/Correcting Codes (EDC codes)",
+                                                                   "children":  [
+
+                                                                                ]
+                                                               },
+                                                               {
+                                                                   "title":  "Example: Hamming codes",
+                                                                   "children":  [
+
+                                                                                ]
+                                                               }
+                                                           ]
+                                          },
+                                          {
+                                              "title":  "Time Redundancy",
+                                              "children":  [
+                                                               {
+                                                                   "title":  "Uses additional time; functions repeated",
+                                                                   "children":  [
+
+                                                                                ]
+                                                               },
+                                                               {
+                                                                   "title":  "Tolerates transient faults",
+                                                                   "children":  [
+
+                                                                                ]
+                                                               },
+                                                               {
+                                                                   "title":  "Detects temporary faults",
+                                                                   "children":  [
+
+                                                                                ]
+                                                               },
+                                                               {
+                                                                   "title":  "Cannot detect permanent faults easily",
+                                                                   "children":  [
+
+                                                                                ]
+                                                               },
+                                                               {
+                                                                   "title":  "Advantage: Low hardware overhead",
+                                                                   "children":  [
+
+                                                                                ]
+                                                               }
+                                                           ]
+                                          },
+                                          {
+                                              "title":  "Hardware Redundancy",
+                                              "children":  [
+                                                               {
+                                                                   "title":  "Disadvantage: Impacts performance",
+                                                                   "children":  [
+
+                                                                                ]
+                                                               },
+                                                               {
+                                                                   "title":  "Addition of extra hardware (duplicate)",
+                                                                   "children":  [
+
+                                                                                ]
+                                                               }
+                                                           ]
+                                          },
+                                          {
+                                              "title":  "Software Redundancy",
+                                              "children":  [
+                                                               {
+                                                                   "title":  "Addition of extra software",
+                                                                   "children":  [
+
+                                                                                ]
+                                                               }
+                                                           ]
+                                          },
+                                          {
+                                              "title":  "Impacts of Redundancy",
+                                              "children":  [
+                                                               {
+                                                                   "title":  "Performance",
+                                                                   "children":  [
+
+                                                                                ]
+                                                               },
+                                                               {
+                                                                   "title":  "Size, Weight, Power consumption",
+                                                                   "children":  [
+
+                                                                                ]
+                                                               },
+                                                               {
+                                                                   "title":  "Reliability",
+                                                                   "children":  [
+
+                                                                                ]
+                                                               }
+                                                           ]
+                                          },
+                                          {
+                                              "title":  "Code Fundamentals",
+                                              "children":  [
+                                                               {
+                                                                   "title":  "Using more bits than necessary",
+                                                                   "children":  [
+
+                                                                                ]
+                                                               },
+                                                               {
+                                                                   "title":  "Provides way to detect errors (bit flips)",
+                                                                   "children":  [
+
+                                                                                ]
+                                                               },
+                                                               {
+                                                                   "title":  "Code of length n is a set of n-tuples",
+                                                                   "children":  [
+
+                                                                                ]
+                                                               }
+                                                           ]
+                                          }
+                                      ]
+                     },
+                     {
+                         "title":  "Coding Theory (Information Redundancy)",
+                         "children":  [
+                                          {
+                                              "title":  "Code Word",
+                                              "children":  [
+                                                               {
+                                                                   "title":  "Collection of symbols representing data",
+                                                                   "children":  [
+
+                                                                                ]
+                                                               },
+                                                               {
+                                                                   "title":  "Must be subset of all possible 2n tuples",
+                                                                   "children":  [
+
+                                                                                ]
+                                                               }
+                                                           ]
+                                          },
+                                          {
+                                              "title":  "Encoding vs. Decoding",
+                                              "children":  [
+                                                               {
+                                                                   "title":  "Encoding: Determining code word for data item",
+                                                                   "children":  [
+
+                                                                                ]
+                                                               },
+                                                               {
+                                                                   "title":  "Decoding: Recovering original data from code word",
+                                                                   "children":  [
+
+                                                                                ]
+                                                               }
+                                                           ]
+                                          },
+                                          {
+                                              "title":  "Distance of Code",
+                                              "children":  [
+                                                               {
+                                                                   "title":  "Minimum distance between any two codewords",
+                                                                   "children":  [
+
+                                                                                ]
+                                                               },
+                                                               {
+                                                                   "title":  "Hamming Distance: Number of differing positions",
+                                                                   "children":  [
+
+                                                                                ]
+                                                               },
+                                                               {
+                                                                   "title":  "Capability: Detect d-1 errors; Correct ⌊(d-1)/2⌋ errors",
+                                                                   "children":  [
+
+                                                                                ]
+                                                               }
+                                                           ]
+                                          },
+                                          {
+                                              "title":  "Code Characterization",
+                                              "children":  [
+                                                               {
+                                                                   "title":  "Cost (n bits)",
+                                                                   "children":  [
+
+                                                                                ]
+                                                               },
+                                                               {
+                                                                   "title":  "Power of expression (N codewords)",
+                                                                   "children":  [
+
+                                                                                ]
+                                                               },
+                                                               {
+                                                                   "title":  "Error model",
+                                                                   "children":  [
+
+                                                                                ]
+                                                               },
+                                                               {
+                                                                   "title":  "Redundancy rate (r/k)",
+                                                                   "children":  [
+
+                                                                                ]
+                                                               },
+                                                               {
+                                                                   "title":  "Density (N/2n)",
+                                                                   "children":  [
+
+                                                                                ]
+                                                               }
+                                                           ]
+                                          },
+                                          {
+                                              "title":  "Types of Codes",
+                                              "children":  [
+                                                               {
+                                                                   "title":  "Separable Code",
+                                                                   "children":  [
+                                                                                    {
+                                                                                        "title":  "Codeword = data + check bits (e.g., Parity)",
+                                                                                        "children":  [
+
+                                                                                                     ]
+                                                                                    }
+                                                                                ]
+                                                               },
+                                                               {
+                                                                   "title":  "Non-separable Code",
+                                                                   "children":  [
+                                                                                    {
+                                                                                        "title":  "Codeword = data mixed with check bits (e.g., Cyclic)",
+                                                                                        "children":  [
+
+                                                                                                     ]
+                                                                                    }
+                                                                                ]
+                                                               },
+                                                               {
+                                                                   "title":  "Block Code",
+                                                                   "children":  [
+
+                                                                                ]
+                                                               }
+                                                           ]
+                                          },
+                                          {
+                                              "title":  "Parity Codes",
+                                              "children":  [
+                                                               {
+                                                                   "title":  "Adds extra bit for even/odd number of 1s",
+                                                                   "children":  [
+
+                                                                                ]
+                                                               },
+                                                               {
+                                                                   "title":  "Separable code",
+                                                                   "children":  [
+
+                                                                                ]
+                                                               },
+                                                               {
+                                                                   "title":  "Hamming distance of 2",
+                                                                   "children":  [
+
+                                                                                ]
+                                                               },
+                                                               {
+                                                                   "title":  "Can detect any single bit error",
+                                                                   "children":  [
+                                                                                    {
+                                                                                        "title":  "Adds parity bit/byte across packet/block",
+                                                                                        "children":  [
+
+                                                                                                     ]
+                                                                                    }
+                                                                                ]
+                                                               },
+                                                               {
+                                                                   "title":  "Two-dimensional Parity",
+                                                                   "children":  [
+                                                                                    {
+                                                                                        "title":  "Can detect 1, 2, 3-bit errors, and most 4-bit errors",
+                                                                                        "children":  [
+
+                                                                                                     ]
+                                                                                    }
+                                                                                ]
+                                                               }
+                                                           ]
+                                          }
+                                      ]
+                     }
+                 ]
+}
